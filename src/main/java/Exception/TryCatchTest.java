@@ -13,11 +13,13 @@ public class TryCatchTest {
 
     public  int increment(int a){
         try{
-            return a++;
+            return a/0;
         }catch (Exception e){
             e.printStackTrace();
         }finally {
-            return a++;
+             a++;
         }
+
+        return a;
     }
 }
