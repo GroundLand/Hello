@@ -1,4 +1,4 @@
-package javase;
+package importJAVASE;
 
 import org.junit.Test;
 

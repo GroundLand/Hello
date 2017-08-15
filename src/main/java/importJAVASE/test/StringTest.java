@@ -1,5 +1,8 @@
 package importJAVASE.test;
 
+import java.util.LinkedHashMap;
+import java.util.TreeMap;
+
 /**
  * Created by Administrator on 2017/6/27 0027.
  */
@@ -15,9 +18,10 @@ public class StringTest {
         st.change(sb,s);
         System.out.println(sb.toString());
 
+        System.out.println(s);
         System.out.println();
         System.out.println();
-        System.out.println();
+
 
         Base base = new Base(23,"alice");
         st.changeObj(base);

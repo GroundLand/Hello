@@ -9,12 +9,5 @@ public class ABCDTest {
         return new Parent();
     }
 
-    public static void main(String args[]){
-        Parent obj = new Son();
-        obj.method();
 
-        Son s = (Son)(new Parent());
-        s.method();
-
-    }
 }
