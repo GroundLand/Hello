@@ -1,7 +1,5 @@
 package importJAVASE.Thread;
 
-import javafx.util.Callback;
-
 /**
  * Created by Administrator on 2017/6/27 0027.
  */
