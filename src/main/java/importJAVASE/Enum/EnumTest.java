@@ -5,6 +5,8 @@ package importJAVASE.Enum;
  */
  class EnumTest {
      public static void main(String args[]){
+
          System.out.println(AccountType.FIXED);
+         System.out.print(AccountType.FIXED.getNum());
      }
 }
