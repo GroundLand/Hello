@@ -1,4 +1,4 @@
-package guava;
+package guava.base;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
@@ -40,7 +40,9 @@ public class JoinerUtils {
        String[] strings = {"Wrong",null,"wrong"};
       //  System.out.println(joinerUtils.joinToObject(strings,"||"));
         System.out.println(joinerUtils.appendToObject(strings,"||"));
-
+        String str = "/164/0613ddf142334c7ca704a63b5a9cb765.png,/164/182bf71ca2e94a90a1a57ac9084ec953.png";
+        String[] s  = str.split(",");
+        System.out.println(joinerUtils.appendToObject(s,"http://localhost:8003/"));
         Joiner joine = Joiner.on(":").useForNull("missing");
         System.out.println(joine.join(null,null,"Wrong","Wrong"));
 

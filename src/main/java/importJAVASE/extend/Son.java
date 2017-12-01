@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Son extends Parent{
     private LocalDate date;
 
-    public Son(){
+    public Son(String s){
         date = LocalDate.of(2017,8,15);
     }
 

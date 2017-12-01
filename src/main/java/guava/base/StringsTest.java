@@ -1,4 +1,4 @@
-package guava;
+package guava.base;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Strings;

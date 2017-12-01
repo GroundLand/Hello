@@ -1,8 +1,7 @@
 package importJAVASE;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
 
 public class Main {
 
@@ -11,28 +10,13 @@ public class Main {
 
         // TODO Auto-generated method stub
 
-        try {
-
-            File file = new File("E:\\javademo/y.txt");
-
-            Scanner input = new Scanner(file);
-
-
-            while (input.hasNextLine()) {
-                String fileName = input.next();
-                String mi = input.next();
-                String lastName = input.next();
-
-                int y  = input.nextInt();
-
-                System.out.println(fileName +"mi" +"lastName" +"  y");
-            }
-            input.close();
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        int count = 0;
+        int num =0;
+        for(int i=0; i<=100;i++){
+            num = num+i;
+            count = count++;
         }
 
-
+        System.out.println(count*num);
     }
 }
