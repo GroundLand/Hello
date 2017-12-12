@@ -1,6 +1,5 @@
 package importJAVASE;
 
-import importJAVASE.singleTest.test6;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,8 +45,5 @@ public class StringTest {
         return tmp.toUpperCase();
     }
 
-    @Test
-    public void test6Test(){
-        test6 t = new  test6(3.0);
-    }
+
 }

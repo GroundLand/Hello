@@ -1,5 +1,8 @@
 package importJAVASE.algorithms_ans;
 
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
+
 /**
  * Created by Administrator on 2017/3/10 0010.
  */
