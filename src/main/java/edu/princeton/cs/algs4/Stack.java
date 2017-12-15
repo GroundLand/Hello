@@ -135,7 +135,22 @@ public class Stack<Item> implements Iterable<Item> {
         }
         return s.toString();
     }
-       
+
+    private static  <Item>Stack simplyCopy(Stack<Item> stack){
+        Stack<Item> result = new Stack<>();
+        for (Item item:stack){
+            result.push(item);
+        }
+        return result;
+    }
+
+
+    public static <Item>Stack copy(Stack<Item> stack){
+        Stack<Item> result =  Stack.simplyCopy(stack);
+        return Stack.simplyCopy(result);
+    }
+
+
 
     /**
      * Returns an iterator to this stack that iterates through the items in LIFO order.
@@ -170,22 +185,25 @@ public class Stack<Item> implements Iterable<Item> {
         }
     }
 
-
     /**
      * Unit tests the {@code Stack} data type.
      *
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        Stack<String> stack = new Stack<String>();
-        while (!StdIn.isEmpty()) {
-            String item = StdIn.readString();
-            if (!item.equals("-"))
-                stack.push(item);
-            else if (!stack.isEmpty())
-                StdOut.print(stack.pop() + " ");
-        }
-        StdOut.println("(" + stack.size() + " left on stack)");
+        Stack<String> stack = new Stack<>();
+        stack.push("12");
+        stack.push("34");
+//        while (!StdIn.isEmpty()) {
+//            String item = StdIn.readString();
+//            if (!item.equals("-"))
+//                stack.push(item);
+//            else if (!stack.isEmpty())
+//                StdOut.print(stack.pop() + " ");
+//        }
+//        StdOut.println("(" + stack.size() + " left on stack)");
+        StdOut.println(stack);
+        StdOut.println(Stack.copy(stack).toString());
     }
 }
 
