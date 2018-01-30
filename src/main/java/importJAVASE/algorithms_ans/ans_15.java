@@ -2,6 +2,7 @@ package importJAVASE.algorithms_ans;
 
 /**
  * Created by Administrator on 2017/3/9 0009.
+ *
  */
 public class ans_15 {
     public static int[] histogram(int[] a,int M){
