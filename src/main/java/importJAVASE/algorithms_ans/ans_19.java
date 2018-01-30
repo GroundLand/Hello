@@ -1,5 +1,7 @@
 package importJAVASE.algorithms_ans;
 
+import edu.princeton.cs.algs4.StdOut;
+
 /**
  * Created by Administrator on 2017/3/10 0010.
  */

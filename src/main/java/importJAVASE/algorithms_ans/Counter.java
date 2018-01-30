@@ -20,6 +20,9 @@
 
 package importJAVASE.algorithms_ans;
 
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
+
 /**
  *  The {@code Counter} class is a mutable data type to encapsulate a counter.
  *  <p>

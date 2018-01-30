@@ -96,6 +96,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>edu.printceton.cs.algs4</groupId>
+            <artifactId>cs-algs4</artifactId>
+            <version>1.0.0.0</version>
+        </dependency>
+
     </dependencies>
 
 
