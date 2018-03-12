@@ -21,7 +21,7 @@ public class ExtendTest {
 
     @Test
     public void ParentAndSonTest(){
-        Parent son = new Son("s");
+        Parent son = new Son();
         son.overrideme();
     }
 }

@@ -1,7 +1,11 @@
 package importJAVASE.collection;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,7 +13,9 @@ import java.util.Map;
  */
 public class TestMain {
     public static void main(String[] args){
-        Map<String,String> map = Maps.newHashMap();
-        System.out.println(map.get("www"));
+        List<Integer> integers = Lists.newArrayList();
+        integers.add(2);
+        integers.add(3);
+        System.out.println(integers);
     }
 }

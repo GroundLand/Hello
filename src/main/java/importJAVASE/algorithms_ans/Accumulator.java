@@ -12,6 +12,8 @@
 package importJAVASE.algorithms_ans;
 
 
+import edu.princeton.cs.algs4.StdOut;
+
 /**
  *  The {@code Accumulator} class is a data type for computing the running
  *  mean, sample standard deviation, and sample variance of a stream of real

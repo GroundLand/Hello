@@ -1,7 +1,8 @@
-package java8;
+package java8.stream;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
+import java8.Person;
 
 import java.util.Arrays;
 import java.util.List;

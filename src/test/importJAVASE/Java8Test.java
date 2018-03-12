@@ -1,6 +1,12 @@
 package importJAVASE;
 
+import java8.stream.Dish;
+import java8.stream.Trader;
+import java8.stream.Transaction;
 import org.junit.Test;
+import org.omg.PortableInterceptor.INACTIVE;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,10 +16,17 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
+
 /**
  * Created by evel on 2017/10/24.
  */
 public class Java8Test {
+
+    private Logger log = LoggerFactory.getLogger(getClass());
+
+
     @Test
     public void sortMap(){
         Map<String, Integer> unsortMap = new HashMap<>();
@@ -60,13 +73,35 @@ public class Java8Test {
         List<String> list = new ArrayList<>();
 
         try (Stream<String> stream = Files.lines(Paths.get(file))){
-                list = stream.filter(line->!line.startsWith("line3")).map(String::toUpperCase).collect(Collectors.toList());
+                list = stream.filter(line->!line.startsWith("line3")).map(String::toUpperCase).collect(toList());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         list.forEach(System.out::println);
+    }
+
+    //Stream
+    @Test
+    public void streamTest(){
+        Trader raoul = new Trader("Raoul", "Cambridge");
+        Trader mario = new Trader("Mario","Milan");
+        Trader alan = new Trader("Alan","Cambridge");
+        Trader brian = new Trader("Brian","Cambridge");
+
+        List<Transaction> transactions = Arrays.asList(
+                new Transaction(brian, 2011, 300),
+                new Transaction(raoul, 2012, 1000),
+                new Transaction(raoul, 2011, 400),
+                new Transaction(mario, 2012, 710),
+                new Transaction(mario, 2012, 700),
+                new Transaction(alan, 2012, 950)
+        );
+        Optional<Integer> result1 = transactions.stream()
+                .map(Transaction::getValue)
+                .reduce(Integer::max);
+        result1.get();
     }
 
 }
