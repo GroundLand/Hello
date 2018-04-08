@@ -1,6 +1,7 @@
 package importJAVASE;
 
 import java8.stream.Dish;
+import java8.stream.FeoboArray;
 import java8.stream.Trader;
 import java8.stream.Transaction;
 import org.junit.Test;
@@ -102,6 +103,18 @@ public class Java8Test {
                 .map(Transaction::getValue)
                 .reduce(Integer::max);
         result1.get();
+    }
+
+    @Test
+    public void FeiboTest(){
+        FeoboArray.get();
+    }
+
+    @Test
+    public void concuTest(){
+        long statTime = System.currentTimeMillis();
+        long l = Stream.iterate(1L,i-> i+1).limit(90).reduce(0L,Long::sum);
+        System.out.println(System.currentTimeMillis()-statTime);
     }
 
 }

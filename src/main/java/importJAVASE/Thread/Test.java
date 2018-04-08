@@ -9,7 +9,6 @@ package importJAVASE.Thread;
  * 2.票数
  * 3.根据不同终点 的卖票
  */
-import java.util.*;
 
 public class Test
 {
