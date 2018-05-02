@@ -8,7 +8,8 @@ import java.lang.reflect.Modifier;
 public class test4 {
     public static void main(String[] args){
         try {
-            String name  = "singleTest.test1";
+            String name  = "骨伤科、骨科专家";
+
             Class cl = Class.forName(name);
             String modifiler = Modifier.toString(cl.getModifiers());
             Class supercl = cl.getSuperclass();
