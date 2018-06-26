@@ -1,4 +1,9 @@
 package importJAVASE.Thread.pool;
 
-public class DaemonsSpawn {
+public class DaemonsSpawn implements Runnable{
+    @Override
+    public void run() {
+        while (true)
+            Thread.yield();
+    }
 }

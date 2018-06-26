@@ -6,10 +6,12 @@ package java8;
 public class Person {
     private String name;
     private int age;
+    private Car car;
 
-    public Person(String name,int age){
+    public Person(String name,int age,Car car){
         this.name = name;
         this.age = age;
+        this.car = car;
     }
 
     public String getName() {
@@ -26,6 +28,14 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     @Override

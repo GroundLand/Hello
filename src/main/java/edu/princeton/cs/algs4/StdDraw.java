@@ -390,7 +390,7 @@ import javax.swing.KeyStroke;
  *  The last two methods tells you the <em>x</em>- and <em>y</em>-coordinates of the mouse's
  *  current position, using the same coordinate system as the canvas (the unit square, by default).
  *  You should use these methods in an animation loop that waits a short while before trying
- *  to poll the mouse for its current state.
+ *  to pool the mouse for its current state.
  *  You can use the following methods to intercept keyboard events:
  *  <ul>
  *  <li> {@link #hasNextKeyTyped()}

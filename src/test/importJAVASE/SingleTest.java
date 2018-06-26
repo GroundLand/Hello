@@ -1,5 +1,6 @@
 package importJAVASE;
 
+import importJAVASE.algorithms_lintcode.codewars.JadenCase;
 import importJAVASE.proxy.Calculate;
 import importJAVASE.proxy.CalculatorHandler;
 import importJAVASE.proxy.CalculatorImpl;
@@ -8,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Proxy;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by evel on 2017/7/26.
@@ -25,6 +29,11 @@ public class SingleTest {
     }
 
     @Test
+    public void floatTest(){
+        logger.info("3*0.1 == 0.3 result is {}",3*0.1==0.3);
+    }
+
+    @Test
     public void proxyTest(){
         CalculatorImpl calculator = new CalculatorImpl();
         consumer(calculator);
@@ -39,4 +48,14 @@ public class SingleTest {
         calculate.doSomething();
         calculate.somethingElse("banana");
     }
+
+    @Test
+    public  void test1() {
+        assertEquals(1, JadenCase.rowSumOddNumbers(1));
+        assertEquals(8, JadenCase.rowSumOddNumbers(2));
+//        assertNull("Must return null when the arg is null", JadenCase.toJadenCase(""));
+//        assertEquals("toJadenCase doesn't return a valide JadenCase String! try again please :)", JadenCase.toJadenCase("most trees are blue"), "Most Trees Are Blue");
+
+    }
+
 }

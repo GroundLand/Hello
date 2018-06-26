@@ -1,6 +1,9 @@
 package importJAVASE.Thread;
 
-import org.apache.log4j.Logger;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Queue;
 
@@ -8,7 +11,7 @@ import java.util.Queue;
  * Created by Administrator on 2017/6/26 0026.
  */
 public class Consumer extends Thread {
-    private static final Logger logger = Logger.getLogger(Consumer.class);
+    private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
     private final Queue sharedQ;
 
     public Consumer(Queue sharedQ) {

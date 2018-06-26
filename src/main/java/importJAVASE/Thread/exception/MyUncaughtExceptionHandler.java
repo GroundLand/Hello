@@ -1,4 +1,11 @@
 package importJAVASE.Thread.exception;
 
-public class MyUncaughtExceptionHandler {
+import edu.princeton.cs.algs4.StdOut;
+
+public class MyUncaughtExceptionHandler implements
+        Thread.UncaughtExceptionHandler{
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        StdOut.println("caught "+e);
+    }
 }
