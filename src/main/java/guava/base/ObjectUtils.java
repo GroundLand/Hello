@@ -20,6 +20,9 @@ public class ObjectUtils {
      * @return
      */
     public static String toString(Object obj) {
+        if (obj == null) {
+            return "null";
+        }
         Field[] fields = obj.getClass().getDeclaredFields();
         MoreObjects.ToStringHelper helper = MoreObjects.toStringHelper(obj);
         for (Field field : fields){
