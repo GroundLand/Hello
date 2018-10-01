@@ -16,6 +16,10 @@ public class TestMain {
         List<Integer> integers = Lists.newArrayList();
         integers.add(2);
         integers.add(3);
+        String string = integers.toString().replace(", ", ";\n")
+                .replaceFirst("\\[", "");
         System.out.println(integers);
+        System.out.println(string);
+
     }
 }
