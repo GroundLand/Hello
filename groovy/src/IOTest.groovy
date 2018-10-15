@@ -11,11 +11,5 @@ class IOTest {
                 number++
                 println("$number: $line")
         }
-
-        def customers = new XmlSlurper().parse(new File('customer.xml'))
-        customers.each {
-            customer ->
-                println customers.@name
-        }
     }
 }

@@ -1,3 +1,9 @@
+def map = [:]
+map./slashy string/ = "123"
+map."key2" = "value"
+
+println map./slashy string/
+
 List fibo = [1, 1]
 List gold = [1, 2]
 
