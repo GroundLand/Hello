@@ -4,6 +4,7 @@ import java8.stream.Dish;
 import java8.stream.FeoboArray;
 import java8.stream.Trader;
 import java8.stream.Transaction;
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.omg.PortableInterceptor.INACTIVE;
 import org.slf4j.Logger;
@@ -107,7 +108,11 @@ public class Java8Test {
 
     @Test
     public void FeiboTest(){
-        FeoboArray.get();
+        DateTime dateTime = new DateTime();
+        DateTime lastDate = dateTime.withMonthOfYear(10).withDayOfMonth(22);
+        System.out.println(dateTime.dayOfYear().withMaximumValue());
+        System.out.println(dateTime.compareTo(lastDate));
+
     }
 
     @Test
