@@ -2,6 +2,7 @@ package importJAVASE;
 
 import lombok.Cleanup;
 import lombok.NonNull;
+import lombok.SeriPaper;
 import lombok.val;
 import org.junit.Test;
 
@@ -54,6 +55,11 @@ public class LombokTest {
         while ((by = fis.read()) != -1) {
             System.out.print((char) by);
         }
+    }
+
+    @Test
+    public void serTest() {
+        SeriPaper paper = new SeriPaper();
     }
 
 }
