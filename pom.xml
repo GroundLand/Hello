@@ -61,18 +61,12 @@
 
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.6.1</version>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
         </dependency>
+
 
         <!-- logback 日志 -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
@@ -80,7 +74,7 @@
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-access</artifactId>
+            <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
         <!--end-->
@@ -115,13 +109,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>4.3.14.RELEASE</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>edu.printceton.cs.algs4</groupId>
-            <artifactId>cs-algs4</artifactId>
-            <version>1.0.0.0</version>
         </dependency>
 
         <dependency>
