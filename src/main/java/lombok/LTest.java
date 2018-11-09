@@ -11,6 +11,17 @@ import lombok.extern.slf4j.Slf4j;
 public class LTest {
 
     public static void main(String args[]) {
+
+        Paper3 paper3 = new Paper3();
+        paper3.getColor();
+
+        PaperParent parent = new PaperSon();
+        System.out.println(parent);
+
+        //Paper2 paper2 = Paper2("blue",3.4);
+
+        //  Paper2 paper2 = Paper2.of("blue");
+
         //可以用val
         val paper = new Paper("yellow");   //使用构造函数
 

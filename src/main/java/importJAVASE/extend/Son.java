@@ -10,6 +10,10 @@ public class Son extends Parent{
 
     private LocalDate date;
 
+    public Son() {
+        super();
+    }
+
 
 
     @Override

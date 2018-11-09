@@ -2,6 +2,10 @@ package importJAVASE;
 
 import com.google.common.collect.Lists;
 import importJAVASE.algorithms_lintcode.codewars.JadenCase;
+import importJAVASE.annotation.A;
+import importJAVASE.annotation.B;
+import importJAVASE.annotation.InheritedAnnotation;
+import importJAVASE.annotation.C;
 import importJAVASE.proxy.Calculate;
 import importJAVASE.proxy.CalculatorHandler;
 import importJAVASE.proxy.CalculatorImpl;
@@ -10,9 +14,11 @@ import org.joda.time.Months;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 
 import java.lang.reflect.Proxy;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -126,6 +132,12 @@ public class SingleTest {
         System.out.println("344444" + new DateTime(date).toString());
     }
 
-
+    @Test
+    public void anatationTest1() {
+        List<Integer> integers = new ArrayList<>();
+        integers.add(null);
+        integers.add(null);
+        System.out.print(CollectionUtils.isEmpty(integers));
+    }
 
 }

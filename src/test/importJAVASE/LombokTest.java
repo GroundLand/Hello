@@ -2,7 +2,10 @@ package importJAVASE;
 
 import lombok.Cleanup;
 import lombok.NonNull;
+import lombok.Paper2;
+import lombok.Paper3;
 import lombok.SeriPaper;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.junit.Test;
 
@@ -15,6 +18,7 @@ import java.io.IOException;
  * @author cln
  * @version $Id: LombokTest.java v 0.1 18-10-23 上午10:56 cln Exp $$
  */
+@Slf4j(topic = "LombokTest")
 public class LombokTest {
 
     /**
@@ -35,7 +39,7 @@ public class LombokTest {
         try {
             method(null);
         } catch (RuntimeException e) {
-            System.out.println("空指针异常");
+            log.info("空指针异常");
         }
 
     }
@@ -60,6 +64,24 @@ public class LombokTest {
     @Test
     public void serTest() {
         SeriPaper paper = new SeriPaper();
+
     }
 
+    /**
+     * s
+     */
+    @Test
+    public void paper2Test() {
+        // Paper2 paper2 = Paper2.of("blue",3.4);
+
+    }
+
+    @Test
+    public void paperTest() {
+        Paper3 paper3 = new Paper3();
+        paper3.setColor("blue");
+        paper3.setHeight(2.3);
+        paper3.setHeight(4.3);
+        System.out.println(paper3);
+    }
 }
