@@ -113,7 +113,7 @@ public class KruskalMST {
     public double weight() {
         return weight;
     }
-    
+
     // check optimality conditions (takes time proportional to E V lg* V)
     private boolean check(EdgeWeightedGraph G) {
 
@@ -154,9 +154,10 @@ public class KruskalMST {
             uf = new UF(G.V());
             for (Edge f : mst) {
                 int x = f.either(), y = f.other(x);
-                if (f != e) uf.union(x, y);
+                if (f != e)
+                    uf.union(x, y);
             }
-            
+
             // check that e is min weight edge in crossing cut
             for (Edge f : G.edges()) {
                 int x = f.either(), y = f.other(x);
@@ -172,7 +173,6 @@ public class KruskalMST {
 
         return true;
     }
-
 
     /**
      * Unit tests the {@code KruskalMST} data type.
@@ -190,7 +190,6 @@ public class KruskalMST {
     }
 
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

@@ -11,8 +11,6 @@ public class StackOfIntegers {
 
     public static final int MAX_SIZE = 16;
 
-
-
     /** Construct a stack with the default capacity 16 */
 
     public StackOfIntegers() {
@@ -21,8 +19,6 @@ public class StackOfIntegers {
 
     }
 
-
-
     /** Construct a stack with the specified maximum capacity */
 
     public StackOfIntegers(int capacity) {
@@ -30,8 +26,6 @@ public class StackOfIntegers {
         elements = new int[capacity];
 
     }
-
-
 
     /** Push a new integer into the top of the stack */
 
@@ -47,13 +41,9 @@ public class StackOfIntegers {
 
         }
 
-
-
         return elements[size++] = value;
 
     }
-
-
 
     /** Return and remove the top element from the stack */
 
@@ -63,8 +53,6 @@ public class StackOfIntegers {
 
     }
 
-
-
     /** Return the top element from the stack */
 
     public int peek() {
@@ -73,8 +61,6 @@ public class StackOfIntegers {
 
     }
 
-
-
     /** Test whether the stack is empty */
 
     public boolean empty() {
@@ -82,8 +68,6 @@ public class StackOfIntegers {
         return size == 0;
 
     }
-
-
 
     /** Return the number of elements in the stack */
 

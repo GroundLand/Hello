@@ -2,7 +2,7 @@
  *  Compilation:  javac StdAudio.java
  *  Execution:    java StdAudio
  *  Dependencies: none
- *  
+ *
  *  Simple library for reading, writing, and manipulating .wav files.
  *
  *
@@ -15,28 +15,25 @@
 
 package edu.princeton.cs.algs4;
 
-import javax.sound.sampled.Clip;
-
-// for playing midi sound files on some older systems
-import java.applet.Applet;
-import java.applet.AudioClip;
-import java.net.MalformedURLException;
-
-import java.io.File;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.IOException;
-
-import java.net.URL;
-
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+// for playing midi sound files on some older systems
 
 /**
  *  <i>Standard audio</i>. This class provides a basic capability for
@@ -63,7 +60,6 @@ public final class StdAudio {
     private static final double MAX_16_BIT = Short.MAX_VALUE;     // 32,767
     private static final int SAMPLE_BUFFER_SIZE = 4096;
 
-
     private static SourceDataLine line;   // to play the sound
     private static byte[] buffer;         // our internal buffer
     private static int bufferSize = 0;    // number of samples currently in internal buffer
@@ -71,7 +67,7 @@ public final class StdAudio {
     private StdAudio() {
         // can not instantiate
     }
-   
+
     // static initializer
     static {
         init();
@@ -86,20 +82,18 @@ public final class StdAudio {
 
             line = (SourceDataLine) AudioSystem.getLine(info);
             line.open(format, SAMPLE_BUFFER_SIZE * BYTES_PER_SAMPLE);
-            
+
             // the internal buffer is a fraction of the actual buffer size, this choice is arbitrary
             // it gets divided because we can't expect the buffered data to line up exactly with when
             // the sound card decides to push out its samples.
-            buffer = new byte[SAMPLE_BUFFER_SIZE * BYTES_PER_SAMPLE/3];
-        }
-        catch (LineUnavailableException e) {
+            buffer = new byte[SAMPLE_BUFFER_SIZE * BYTES_PER_SAMPLE / 3];
+        } catch (LineUnavailableException e) {
             System.out.println(e.getMessage());
         }
 
         // no sound gets made before this call
         line.start();
     }
-
 
     /**
      * Closes standard audio.
@@ -108,7 +102,7 @@ public final class StdAudio {
         line.drain();
         line.stop();
     }
-    
+
     /**
      * Writes one sample (between -1.0 and +1.0) to standard audio.
      * If the sample is outside the range, it will be clipped.
@@ -119,9 +113,12 @@ public final class StdAudio {
     public static void play(double sample) {
 
         // clip if outside [-1, +1]
-        if (Double.isNaN(sample)) throw new IllegalArgumentException("sample is NaN");
-        if (sample < -1.0) sample = -1.0;
-        if (sample > +1.0) sample = +1.0;
+        if (Double.isNaN(sample))
+            throw new IllegalArgumentException("sample is NaN");
+        if (sample < -1.0)
+            sample = -1.0;
+        if (sample > +1.0)
+            sample = +1.0;
 
         // convert to bytes
         short s = (short) (MAX_16_BIT * sample);
@@ -144,7 +141,8 @@ public final class StdAudio {
      * @throws IllegalArgumentException if {@code samples} is {@code null}
      */
     public static void play(double[] samples) {
-        if (samples == null) throw new IllegalArgumentException("argument to play() is null");
+        if (samples == null)
+            throw new IllegalArgumentException("argument to play() is null");
         for (int i = 0; i < samples.length; i++) {
             play(samples[i]);
         }
@@ -160,9 +158,9 @@ public final class StdAudio {
     public static double[] read(String filename) {
         byte[] data = readByte(filename);
         int n = data.length;
-        double[] d = new double[n/2];
-        for (int i = 0; i < n/2; i++) {
-            d[i] = ((short) (((data[2*i+1] & 0xFF) << 8) + (data[2*i] & 0xFF))) / ((double) MAX_16_BIT);
+        double[] d = new double[n / 2];
+        for (int i = 0; i < n / 2; i++) {
+            d[i] = ((short) (((data[2 * i + 1] & 0xFF) << 8) + (data[2 * i] & 0xFF))) / ((double) MAX_16_BIT);
         }
         return d;
     }
@@ -181,7 +179,7 @@ public final class StdAudio {
                 data = new byte[bytesToRead];
                 int bytesRead = ais.read(data);
                 if (bytesToRead != bytesRead)
-                    throw new IllegalStateException("read only " + bytesRead + " of " + bytesToRead + " bytes"); 
+                    throw new IllegalStateException("read only " + bytesRead + " of " + bytesToRead + " bytes");
             }
 
             // try to read from URL
@@ -192,14 +190,11 @@ public final class StdAudio {
                 data = new byte[bytesToRead];
                 int bytesRead = ais.read(data);
                 if (bytesToRead != bytesRead)
-                    throw new IllegalStateException("read only " + bytesRead + " of " + bytesToRead + " bytes"); 
+                    throw new IllegalStateException("read only " + bytesRead + " of " + bytesToRead + " bytes");
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new IllegalArgumentException("could not read '" + filename + "'", e);
-        }
-
-        catch (UnsupportedAudioFileException e) {
+        } catch (UnsupportedAudioFileException e) {
             throw new IllegalArgumentException("unsupported audio format: '" + filename + "'", e);
         }
 
@@ -225,8 +220,8 @@ public final class StdAudio {
         byte[] data = new byte[2 * samples.length];
         for (int i = 0; i < samples.length; i++) {
             int temp = (short) (samples[i] * MAX_16_BIT);
-            data[2*i + 0] = (byte) temp;
-            data[2*i + 1] = (byte) (temp >> 8);
+            data[2 * i + 0] = (byte) temp;
+            data[2 * i + 1] = (byte) (temp >> 8);
         }
 
         // now save the file
@@ -235,20 +230,15 @@ public final class StdAudio {
             AudioInputStream ais = new AudioInputStream(bais, format, samples.length);
             if (filename.endsWith(".wav") || filename.endsWith(".WAV")) {
                 AudioSystem.write(ais, AudioFileFormat.Type.WAVE, new File(filename));
-            }
-            else if (filename.endsWith(".au") || filename.endsWith(".AU")) {
+            } else if (filename.endsWith(".au") || filename.endsWith(".AU")) {
                 AudioSystem.write(ais, AudioFileFormat.Type.AU, new File(filename));
-            }
-            else {
+            } else {
                 throw new IllegalArgumentException("unsupported audio format: '" + filename + "'");
             }
-        }
-        catch (IOException ioe) {
+        } catch (IOException ioe) {
             throw new IllegalArgumentException("unable to save file '" + filename + "'", ioe);
         }
     }
-
-
 
     /**
      * Plays an audio file (in .wav, .mid, or .au format) in a background thread.
@@ -258,7 +248,8 @@ public final class StdAudio {
      * @throws IllegalArgumentException if {@code filename} is {@code null}
      */
     public static synchronized void play(final String filename) {
-        if (filename == null) throw new IllegalArgumentException();
+        if (filename == null)
+            throw new IllegalArgumentException();
 
         InputStream is = StdAudio.class.getResourceAsStream(filename);
         if (is == null) {
@@ -276,7 +267,7 @@ public final class StdAudio {
                 public void run() {
                     stream(filename);
                 }
-           }).start();
+            }).start();
         }
 
         // let's try Applet.newAudioClip() instead
@@ -292,15 +283,14 @@ public final class StdAudio {
 
     }
 
-
     // play sound file using Applet.newAudioClip();
     private static void playApplet(String filename) {
         URL url = null;
         try {
             File file = new File(filename);
-            if(file.canRead()) url = file.toURI().toURL();
-        }
-        catch (MalformedURLException e) {
+            if (file.canRead())
+                url = file.toURI().toURL();
+        } catch (MalformedURLException e) {
             throw new IllegalArgumentException("could not play '" + filename + "'", e);
         }
 
@@ -333,17 +323,13 @@ public final class StdAudio {
             while ((count = ais.read(samples, 0, BUFFER_SIZE)) != -1) {
                 line.write(samples, 0, count);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        catch (UnsupportedAudioFileException e) {
+        } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
-        }
-        catch (LineUnavailableException e) {
+        } catch (LineUnavailableException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (line != null) {
                 line.drain();
                 line.close();
@@ -358,7 +344,8 @@ public final class StdAudio {
      * @throws IllegalArgumentException if {@code filename} is {@code null}
      */
     public static synchronized void loop(String filename) {
-        if (filename == null) throw new IllegalArgumentException();
+        if (filename == null)
+            throw new IllegalArgumentException();
 
         // code adapted from: http://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
         try {
@@ -367,28 +354,24 @@ public final class StdAudio {
             AudioInputStream ais = AudioSystem.getAudioInputStream(is);
             clip.open(ais);
             clip.loop(Clip.LOOP_CONTINUOUSLY);
-        }
-        catch (UnsupportedAudioFileException e) {
+        } catch (UnsupportedAudioFileException e) {
             throw new IllegalArgumentException("unsupported audio format: '" + filename + "'", e);
-        }
-        catch (LineUnavailableException e) {
+        } catch (LineUnavailableException e) {
             throw new IllegalArgumentException("could not play '" + filename + "'", e);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new IllegalArgumentException("could not play '" + filename + "'", e);
         }
     }
 
-
-   /***************************************************************************
-    * Unit tests {@code StdAudio}.
-    ***************************************************************************/
+    /***************************************************************************
+     * Unit tests {@code StdAudio}.
+     ***************************************************************************/
 
     // create a note (sine wave) of the given frequency (Hz), for the given
     // duration (seconds) scaled to the given volume (amplitude)
     private static double[] note(double hz, double duration, double amplitude) {
         int n = (int) (StdAudio.SAMPLE_RATE * duration);
-        double[] a = new double[n+1];
+        double[] a = new double[n + 1];
         for (int i = 0; i <= n; i++)
             a[i] = amplitude * Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
         return a;
@@ -405,13 +388,13 @@ public final class StdAudio {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        
+
         // 440 Hz for 1 sec
         double freq = 440.0;
         for (int i = 0; i <= StdAudio.SAMPLE_RATE; i++) {
-            StdAudio.play(0.5 * Math.sin(2*Math.PI * freq * i / StdAudio.SAMPLE_RATE));
+            StdAudio.play(0.5 * Math.sin(2 * Math.PI * freq * i / StdAudio.SAMPLE_RATE));
         }
-        
+
         // scale increments
         int[] steps = { 0, 2, 4, 5, 7, 9, 11, 12 };
         for (int i = 0; i < steps.length; i++) {
@@ -419,10 +402,9 @@ public final class StdAudio {
             StdAudio.play(note(hz, 1.0, 0.5));
         }
 
-
         // need to call this in non-interactive stuff so the program doesn't terminate
         // until all the sound leaves the speaker.
-        StdAudio.close(); 
+        StdAudio.close();
     }
 }
 

@@ -13,27 +13,28 @@ public class ResizingArrayQueueOfStrings {
 
     public ResizingArrayQueueOfStrings(int capacity) {
         this.capacity = capacity;
-        strings=new String[capacity];
+        strings = new String[capacity];
     }
 
     //添加元素
     public void add(String s) {
-        if (size<=capacity){
-            strings[size++]=s;
-        }
-        else throw new ArrayIndexOutOfBoundsException();
+        if (size <= capacity) {
+            strings[size++] = s;
+        } else
+            throw new ArrayIndexOutOfBoundsException();
     }
-    public void remove(){
-        if (size==0)
-           throw new ArrayIndexOutOfBoundsException();
-        strings[--size]=null;
+
+    public void remove() {
+        if (size == 0)
+            throw new ArrayIndexOutOfBoundsException();
+        strings[--size] = null;
     }
 
     @Override
     public String toString() {
         String toString = "";
-        for (String s:strings){
-            toString +=s+" ";
+        for (String s : strings) {
+            toString += s + " ";
         }
         return toString;
     }

@@ -20,7 +20,7 @@ public class BufferedInputFile {
         return sb.toString();
     }
 
-    public static void main(String args[]) throws IOException{
+    public static void main(String args[]) throws IOException {
         System.out.println(read("E://Hello/src/main/java/io/BufferedInputFile.java"));
 
     }

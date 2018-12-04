@@ -19,7 +19,8 @@ public class ConCurrent {
             long start = System.nanoTime();
             long sum = adder.apply(n);
             long duration = (System.nanoTime() - start) / 1_100_000;
-            if (duration < faster) faster = duration;
+            if (duration < faster)
+                faster = duration;
         }
         return faster;
 

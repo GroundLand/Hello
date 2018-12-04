@@ -83,19 +83,24 @@ public class SuffixArray {
             this.text = text;
             this.index = index;
         }
+
         private int length() {
             return text.length() - index;
         }
+
         private char charAt(int i) {
             return text.charAt(index + i);
         }
 
         public int compareTo(Suffix that) {
-            if (this == that) return 0;  // optimization
+            if (this == that)
+                return 0;  // optimization
             int n = Math.min(this.length(), that.length());
             for (int i = 0; i < n; i++) {
-                if (this.charAt(i) < that.charAt(i)) return -1;
-                if (this.charAt(i) > that.charAt(i)) return +1;
+                if (this.charAt(i) < that.charAt(i))
+                    return -1;
+                if (this.charAt(i) > that.charAt(i))
+                    return +1;
             }
             return this.length() - that.length();
         }
@@ -113,7 +118,6 @@ public class SuffixArray {
         return suffixes.length;
     }
 
-
     /**
      * Returns the index into the original string of the <em>i</em>th smallest suffix.
      * That is, {@code text.substring(sa.index(i))} is the <em>i</em>th smallest suffix.
@@ -122,10 +126,10 @@ public class SuffixArray {
      * @throws IllegalArgumentException unless {@code 0 <= i < n}
      */
     public int index(int i) {
-        if (i < 0 || i >= suffixes.length) throw new IllegalArgumentException();
+        if (i < 0 || i >= suffixes.length)
+            throw new IllegalArgumentException();
         return suffixes[i].index;
     }
-
 
     /**
      * Returns the length of the longest common prefix of the <em>i</em>th
@@ -136,15 +140,17 @@ public class SuffixArray {
      * @throws IllegalArgumentException unless {@code 1 <= i < n}
      */
     public int lcp(int i) {
-        if (i < 1 || i >= suffixes.length) throw new IllegalArgumentException();
-        return lcpSuffix(suffixes[i], suffixes[i-1]);
+        if (i < 1 || i >= suffixes.length)
+            throw new IllegalArgumentException();
+        return lcpSuffix(suffixes[i], suffixes[i - 1]);
     }
 
     // longest common prefix of s and t
     private static int lcpSuffix(Suffix s, Suffix t) {
         int n = Math.min(s.length(), t.length());
         for (int i = 0; i < n; i++) {
-            if (s.charAt(i) != t.charAt(i)) return i;
+            if (s.charAt(i) != t.charAt(i))
+                return i;
         }
         return n;
     }
@@ -156,7 +162,8 @@ public class SuffixArray {
      * @throws IllegalArgumentException unless {@code 0 <= i < n}
      */
     public String select(int i) {
-        if (i < 0 || i >= suffixes.length) throw new IllegalArgumentException();
+        if (i < 0 || i >= suffixes.length)
+            throw new IllegalArgumentException();
         return suffixes[i].toString();
     }
 
@@ -172,9 +179,12 @@ public class SuffixArray {
         while (lo <= hi) {
             int mid = lo + (hi - lo) / 2;
             int cmp = compare(query, suffixes[mid]);
-            if (cmp < 0) hi = mid - 1;
-            else if (cmp > 0) lo = mid + 1;
-            else return mid;
+            if (cmp < 0)
+                hi = mid - 1;
+            else if (cmp > 0)
+                lo = mid + 1;
+            else
+                return mid;
         }
         return lo;
     }
@@ -183,8 +193,10 @@ public class SuffixArray {
     private static int compare(String query, Suffix suffix) {
         int n = Math.min(query.length(), suffix.length());
         for (int i = 0; i < n; i++) {
-            if (query.charAt(i) < suffix.charAt(i)) return -1;
-            if (query.charAt(i) > suffix.charAt(i)) return +1;
+            if (query.charAt(i) < suffix.charAt(i))
+                return -1;
+            if (query.charAt(i) > suffix.charAt(i))
+                return +1;
         }
         return query.length() - suffix.length();
     }
@@ -210,8 +222,7 @@ public class SuffixArray {
             int rank = suffix.rank(s.substring(index));
             if (i == 0) {
                 StdOut.printf("%3d %3d %3s %3d %s\n", i, index, "-", rank, ith);
-            }
-            else {
+            } else {
                 int lcp = suffix.lcp(i);
                 StdOut.printf("%3d %3d %3d %3d %s\n", i, index, lcp, rank, ith);
             }

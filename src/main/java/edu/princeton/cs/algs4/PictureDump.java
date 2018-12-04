@@ -3,7 +3,7 @@
  *  Execution:    java PictureDump width height < file
  *  Dependencies: BinaryStdIn.java Picture.java
  *  Data file:    http://introcs.cs.princeton.edu/stdlib/abra.txt
- *  
+ *
  *  Reads in a binary file and writes out the bits as w-by-h picture,
  *  with the 1 bits in black and the 0 bits in white.
  *
@@ -16,8 +16,7 @@
 
 package edu.princeton.cs.algs4;
 
-import java.awt.Color;
-
+import java.awt.*;
 
 /**
  *  The {@code PictureDump} class provides a client for displaying the contents
@@ -35,7 +34,8 @@ import java.awt.Color;
 public class PictureDump {
 
     // Do not instantiate.
-    private PictureDump() { }
+    private PictureDump() {
+    }
 
     /**
      * Reads in a sequence of bytes from standard input and draws
@@ -53,10 +53,11 @@ public class PictureDump {
             for (int col = 0; col < width; col++) {
                 if (!BinaryStdIn.isEmpty()) {
                     boolean bit = BinaryStdIn.readBoolean();
-                    if (bit) picture.set(col, row, Color.BLACK);
-                    else     picture.set(col, row, Color.WHITE);
-                }
-                else {
+                    if (bit)
+                        picture.set(col, row, Color.BLACK);
+                    else
+                        picture.set(col, row, Color.WHITE);
+                } else {
                     picture.set(col, row, Color.RED);
                 }
             }

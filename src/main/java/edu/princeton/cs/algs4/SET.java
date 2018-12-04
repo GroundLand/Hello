@@ -2,7 +2,7 @@
  *  Compilation:  javac SET.java
  *  Execution:    java SET
  *  Dependencies: StdOut.java
- *  
+ *
  *  Set implementation using Java's TreeSet library.
  *  Does not allow duplicates.
  *
@@ -75,10 +75,10 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
      * @throws IllegalArgumentException if {@code key} is {@code null}
      */
     public void add(Key key) {
-        if (key == null) throw new IllegalArgumentException("called add() with a null key");
+        if (key == null)
+            throw new IllegalArgumentException("called add() with a null key");
         set.add(key);
     }
-
 
     /**
      * Returns true if this set contains the given key.
@@ -89,7 +89,8 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
      * @throws IllegalArgumentException if {@code key} is {@code null}
      */
     public boolean contains(Key key) {
-        if (key == null) throw new IllegalArgumentException("called contains() with a null key");
+        if (key == null)
+            throw new IllegalArgumentException("called contains() with a null key");
         return set.contains(key);
     }
 
@@ -100,7 +101,8 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
      * @throws IllegalArgumentException if {@code key} is {@code null}
      */
     public void delete(Key key) {
-        if (key == null) throw new IllegalArgumentException("called delete() with a null key");
+        if (key == null)
+            throw new IllegalArgumentException("called delete() with a null key");
         set.remove(key);
     }
 
@@ -122,7 +124,7 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
     public boolean isEmpty() {
         return size() == 0;
     }
- 
+
     /**
      * Returns all of the keys in this set, as an iterator.
      * To iterate over all of the keys in a set named {@code set}, use the
@@ -141,7 +143,8 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
      * @throws NoSuchElementException if this set is empty
      */
     public Key max() {
-        if (isEmpty()) throw new NoSuchElementException("called max() with empty set");
+        if (isEmpty())
+            throw new NoSuchElementException("called max() with empty set");
         return set.last();
     }
 
@@ -152,10 +155,10 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
      * @throws NoSuchElementException if this set is empty
      */
     public Key min() {
-        if (isEmpty()) throw new NoSuchElementException("called min() with empty set");
+        if (isEmpty())
+            throw new NoSuchElementException("called min() with empty set");
         return set.first();
     }
-
 
     /**
      * Returns the smallest key in this set greater than or equal to {@code key}.
@@ -166,9 +169,11 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
      * @throws NoSuchElementException if there is no such key
      */
     public Key ceiling(Key key) {
-        if (key == null) throw new IllegalArgumentException("called ceiling() with a null key");
+        if (key == null)
+            throw new IllegalArgumentException("called ceiling() with a null key");
         Key k = set.ceiling(key);
-        if (k == null) throw new NoSuchElementException("all keys are less than " + key);
+        if (k == null)
+            throw new NoSuchElementException("all keys are less than " + key);
         return k;
     }
 
@@ -181,9 +186,11 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
      * @throws NoSuchElementException if there is no such key
      */
     public Key floor(Key key) {
-        if (key == null) throw new IllegalArgumentException("called floor() with a null key");
+        if (key == null)
+            throw new IllegalArgumentException("called floor() with a null key");
         Key k = set.floor(key);
-        if (k == null) throw new NoSuchElementException("all keys are greater than " + key);
+        if (k == null)
+            throw new NoSuchElementException("all keys are greater than " + key);
         return k;
     }
 
@@ -195,7 +202,8 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
      * @throws IllegalArgumentException if {@code that} is {@code null}
      */
     public SET<Key> union(SET<Key> that) {
-        if (that == null) throw new IllegalArgumentException("called union() with a null argument");
+        if (that == null)
+            throw new IllegalArgumentException("called union() with a null argument");
         SET<Key> c = new SET<Key>();
         for (Key x : this) {
             c.add(x);
@@ -214,38 +222,43 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
      * @throws IllegalArgumentException if {@code that} is {@code null}
      */
     public SET<Key> intersects(SET<Key> that) {
-        if (that == null) throw new IllegalArgumentException("called intersects() with a null argument");
+        if (that == null)
+            throw new IllegalArgumentException("called intersects() with a null argument");
         SET<Key> c = new SET<Key>();
         if (this.size() < that.size()) {
             for (Key x : this) {
-                if (that.contains(x)) c.add(x);
+                if (that.contains(x))
+                    c.add(x);
             }
-        }
-        else {
+        } else {
             for (Key x : that) {
-                if (this.contains(x)) c.add(x);
+                if (this.contains(x))
+                    c.add(x);
             }
         }
         return c;
     }
 
-    /**       
+    /**
      * Compares this set to the specified set.
      * <p>
      * Note that this method declares two empty sets to be equal
      * even if they are parameterized by different generic types.
-     * This is consistent with the behavior of {@code equals()} 
+     * This is consistent with the behavior of {@code equals()}
      * within Java's Collections framework.
-     *       
+     *
      * @param  other the other set
      * @return {@code true} if this set equals {@code other};
      *         {@code false} otherwise
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) return true;
-        if (other == null) return false;
-        if (other.getClass() != this.getClass()) return false;
+        if (other == this)
+            return true;
+        if (other == null)
+            return false;
+        if (other.getClass() != this.getClass())
+            return false;
         SET that = (SET) other;
         return this.set.equals(that.set);
     }
@@ -301,7 +314,6 @@ public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
         set.add("www.movies.com");
         set.add("www.cnn.com");
         set.add("www.iitb.ac.in");
-
 
         StdOut.println(set.contains("www.cs.princeton.edu"));
         StdOut.println(!set.contains("www.harvardsucks.com"));

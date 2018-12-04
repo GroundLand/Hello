@@ -43,7 +43,6 @@ public class AcyclicSP {
     private double[] distTo;         // distTo[v] = distance  of shortest s->v path
     private DirectedEdge[] edgeTo;   // edgeTo[v] = last edge on shortest s->v path
 
-
     /**
      * Computes a shortest paths tree from {@code s} to every other vertex in
      * the directed acyclic graph {@code G}.
@@ -78,7 +77,7 @@ public class AcyclicSP {
         if (distTo[w] > distTo[v] + e.weight()) {
             distTo[w] = distTo[v] + e.weight();
             edgeTo[w] = e;
-        }       
+        }
     }
 
     /**
@@ -114,7 +113,8 @@ public class AcyclicSP {
      */
     public Iterable<DirectedEdge> pathTo(int v) {
         validateVertex(v);
-        if (!hasPathTo(v)) return null;
+        if (!hasPathTo(v))
+            return null;
         Stack<DirectedEdge> path = new Stack<DirectedEdge>();
         for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) {
             path.push(e);
@@ -126,7 +126,7 @@ public class AcyclicSP {
     private void validateVertex(int v) {
         int V = distTo.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -148,8 +148,7 @@ public class AcyclicSP {
                     StdOut.print(e + "   ");
                 }
                 StdOut.println();
-            }
-            else {
+            } else {
                 StdOut.printf("%d to %d         no path\n", s, v);
             }
         }

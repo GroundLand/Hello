@@ -11,10 +11,10 @@
  *
  *  % java Cycle tinyG.txt
  *  3 4 5 3 
- * 
+ *
  *  % java Cycle mediumG.txt 
  *  15 0 225 15 
- * 
+ *
  *  % java Cycle largeG.txt 
  *  996673 762 840164 4619 785187 194717 996673 
  *
@@ -54,15 +54,16 @@ public class Cycle {
      * @param G the undirected graph
      */
     public Cycle(Graph G) {
-        if (hasSelfLoop(G)) return;
-        if (hasParallelEdges(G)) return;
+        if (hasSelfLoop(G))
+            return;
+        if (hasParallelEdges(G))
+            return;
         marked = new boolean[G.V()];
         edgeTo = new int[G.V()];
         for (int v = 0; v < G.V(); v++)
             if (!marked[v])
                 dfs(G, -1, v);
     }
-
 
     // does this graph have a self loop?
     // side effect: initialize cycle to be self loop
@@ -116,7 +117,7 @@ public class Cycle {
         return cycle != null;
     }
 
-     /**
+    /**
      * Returns a cycle in the graph {@code G}.
      * @return a cycle if the graph {@code G} has a cycle,
      *         and {@code null} otherwise
@@ -130,7 +131,8 @@ public class Cycle {
         for (int w : G.adj(v)) {
 
             // short circuit if cycle already found
-            if (cycle != null) return;
+            if (cycle != null)
+                return;
 
             if (!marked[w]) {
                 edgeTo[w] = v;
@@ -163,15 +165,12 @@ public class Cycle {
                 StdOut.print(v + " ");
             }
             StdOut.println();
-        }
-        else {
+        } else {
             StdOut.println("Graph is acyclic");
         }
     }
 
-
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

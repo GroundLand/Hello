@@ -110,7 +110,7 @@ public class WeightedQuickUnionUF {
     public int count() {
         return count;
     }
-  
+
     /**
      * Returns the component identifier for the component containing site {@code p}.
      *
@@ -129,7 +129,7 @@ public class WeightedQuickUnionUF {
     private void validate(int p) {
         int n = parent.length;
         if (p < 0 || p >= n) {
-            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n-1));  
+            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n - 1));
         }
     }
 
@@ -159,20 +159,19 @@ public class WeightedQuickUnionUF {
     public void union(int p, int q) {
         int rootP = find(p);
         int rootQ = find(q);
-        if (rootP == rootQ) return;
+        if (rootP == rootQ)
+            return;
 
         // make smaller root point to larger one
         if (size[rootP] < size[rootQ]) {
             parent[rootP] = rootQ;
             size[rootQ] += size[rootP];
-        }
-        else {
+        } else {
             parent[rootQ] = rootP;
             size[rootP] += size[rootQ];
         }
         count--;
     }
-
 
     /**
      * Reads in a sequence of pairs of integers (between 0 and n-1) from standard input, 
@@ -188,7 +187,8 @@ public class WeightedQuickUnionUF {
         while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
-            if (uf.connected(p, q)) continue;
+            if (uf.connected(p, q))
+                continue;
             uf.union(p, q);
             StdOut.println(p + " " + q);
         }
@@ -196,7 +196,6 @@ public class WeightedQuickUnionUF {
     }
 
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

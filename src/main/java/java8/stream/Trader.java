@@ -20,6 +20,6 @@ public class Trader {
 
     @Override
     public String toString() {
-        return "Tradre:"+this.name+" in"+this.city;
+        return "Tradre:" + this.name + " in" + this.city;
     }
 }

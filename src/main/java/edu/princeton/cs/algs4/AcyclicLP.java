@@ -3,7 +3,7 @@
  *  Execution:    java AcyclicP V E
  *  Dependencies: EdgeWeightedDigraph.java DirectedEdge.java Topological.java
  *  Data files:   https://algs4.cs.princeton.edu/44sp/tinyEWDAG.txt
- *  
+ *
  *  Computes longeset paths in an edge-weighted acyclic digraph.
  *
  *  Remark: should probably check that graph is a DAG before running
@@ -79,7 +79,7 @@ public class AcyclicLP {
         if (distTo[w] < distTo[v] + e.weight()) {
             distTo[w] = distTo[v] + e.weight();
             edgeTo[w] = e;
-        }       
+        }
     }
 
     /**
@@ -115,7 +115,8 @@ public class AcyclicLP {
      */
     public Iterable<DirectedEdge> pathTo(int v) {
         validateVertex(v);
-        if (!hasPathTo(v)) return null;
+        if (!hasPathTo(v))
+            return null;
         Stack<DirectedEdge> path = new Stack<DirectedEdge>();
         for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) {
             path.push(e);
@@ -127,7 +128,7 @@ public class AcyclicLP {
     private void validateVertex(int v) {
         int V = distTo.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -149,8 +150,7 @@ public class AcyclicLP {
                     StdOut.print(e + "   ");
                 }
                 StdOut.println();
-            }
-            else {
+            } else {
                 StdOut.printf("%d to %d         no path\n", s, v);
             }
         }

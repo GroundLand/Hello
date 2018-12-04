@@ -41,7 +41,8 @@ package edu.princeton.cs.algs4;
 public class FrequencyCounter {
 
     // Do not instantiate.
-    private FrequencyCounter() { }
+    private FrequencyCounter() {
+    }
 
     /**
      * Reads in a command-line integer and sequence of words from
@@ -60,12 +61,12 @@ public class FrequencyCounter {
         // compute frequency counts
         while (!StdIn.isEmpty()) {
             String key = StdIn.readString();
-            if (key.length() < minlen) continue;
+            if (key.length() < minlen)
+                continue;
             words++;
             if (st.contains(key)) {
                 st.put(key, st.get(key) + 1);
-            }
-            else {
+            } else {
                 st.put(key, 1);
                 distinct++;
             }

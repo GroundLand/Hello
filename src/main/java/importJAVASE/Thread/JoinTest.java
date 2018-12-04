@@ -8,7 +8,6 @@ public class JoinTest {
     public static void main(String args[]) throws InterruptedException {
         System.out.println(Thread.currentThread().getName() + " is starting");
 
-
         Thread thread = new Thread(
                 () -> {
                     try {

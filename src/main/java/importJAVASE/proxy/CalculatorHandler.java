@@ -1,8 +1,5 @@
 package importJAVASE.proxy;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -19,13 +16,13 @@ public class CalculatorHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
-        System.out.println("Invoked class:{"+o.getClass()+"}, start method:{"+method.getName()+"},args:{}");
-        if (objects != null){
-            for (Object obj:objects)
-                System.out.println(" "+obj);
+        System.out.println("Invoked class:{" + o.getClass() + "}, start method:{" + method.getName() + "},args:{}");
+        if (objects != null) {
+            for (Object obj : objects)
+                System.out.println(" " + obj);
         }
 
-        return method.invoke(proxied,objects);
+        return method.invoke(proxied, objects);
     }
 
 }

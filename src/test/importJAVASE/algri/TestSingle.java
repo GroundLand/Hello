@@ -1,10 +1,6 @@
 package importJAVASE.algri;
 
 import importJAVASE.algorithms_lintcode.codewars.Line;
-import importJAVASE.useless.CopyEmployee;
-import importJAVASE.useless.Employee;
-import importJAVASE.useless.Employer;
-import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -12,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class TestSingle {
 
     @Test
-    public void test1(){
+    public void test1() {
         String[] names = new String[] { "Sheldon", "Leonard", "Penny", "Rajesh", "Howard" };
         int n = 1;
         assertEquals("Leonard", new Line().WhoIsNext(names, n));
@@ -26,7 +22,7 @@ public class TestSingle {
     }
 
     @Test
-    public void test3() throws Exception{
+    public void test3() throws Exception {
 
     }
 }

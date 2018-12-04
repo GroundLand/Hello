@@ -9,9 +9,9 @@ package importJAVASE.test;
 public class CloneTest {
 
     public static void main(String args[]) throws CloneNotSupportedException {
-        Cat cat1 = new Cat("Cat1",12);
+        Cat cat1 = new Cat("Cat1", 12);
 
-        Cat cat2 = (Cat)cat1.clone();
+        Cat cat2 = (Cat) cat1.clone();
         cat2.setName("Cat2");
         System.out.println(cat2.toString());
         System.out.println(cat1.toString());

@@ -23,7 +23,6 @@
 
 package edu.princeton.cs.algs4;
 
-
 /**
  *  The {@code UF} class represents a <em>union–find data type</em>
  *  (also known as the <em>disjoint-sets data type</em>).
@@ -110,7 +109,8 @@ public class UF {
      * @throws IllegalArgumentException if {@code n < 0}
      */
     public UF(int n) {
-        if (n < 0) throw new IllegalArgumentException();
+        if (n < 0)
+            throw new IllegalArgumentException();
         count = n;
         parent = new int[n];
         rank = new byte[n];
@@ -144,7 +144,7 @@ public class UF {
     public int count() {
         return count;
     }
-  
+
     /**
      * Returns true if the the two sites are in the same component.
      *
@@ -158,7 +158,7 @@ public class UF {
     public boolean connected(int p, int q) {
         return find(p) == find(q);
     }
-  
+
     /**
      * Merges the component containing site {@code p} with the 
      * the component containing site {@code q}.
@@ -171,11 +171,14 @@ public class UF {
     public void union(int p, int q) {
         int rootP = find(p);
         int rootQ = find(q);
-        if (rootP == rootQ) return;
+        if (rootP == rootQ)
+            return;
 
         // make root of smaller rank point to root of larger rank
-        if      (rank[rootP] < rank[rootQ]) parent[rootP] = rootQ;
-        else if (rank[rootP] > rank[rootQ]) parent[rootQ] = rootP;
+        if (rank[rootP] < rank[rootQ])
+            parent[rootP] = rootQ;
+        else if (rank[rootP] > rank[rootQ])
+            parent[rootQ] = rootP;
         else {
             parent[rootQ] = rootP;
             rank[rootP]++;
@@ -187,7 +190,7 @@ public class UF {
     private void validate(int p) {
         int n = parent.length;
         if (p < 0 || p >= n) {
-            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n-1));  
+            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n - 1));
         }
     }
 
@@ -206,14 +209,14 @@ public class UF {
         while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
-            if (uf.connected(p, q)) continue;
+            if (uf.connected(p, q))
+                continue;
             uf.union(p, q);
             StdOut.println(p + " " + q);
         }
         StdOut.println(uf.count() + " components");
     }
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

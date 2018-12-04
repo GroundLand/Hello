@@ -31,11 +31,9 @@ package edu.princeton.cs.algs4;
  *  determines whether two vertices are in the same strong component;
  *  and the <em>count</em> operation determines the number of strong
  *  components.
-
  *  The <em>component identifier</em> of a component is one of the
  *  vertices in the strong component: two vertices have the same component
  *  identifier if and only if they are in the same strong component.
-
  *  <p>
  *  This implementation uses Tarjan's algorithm.
  *  The constructor takes time proportional to <em>V</em> + <em>E</em>
@@ -62,7 +60,6 @@ public class TarjanSCC {
     private int count;               // number of strongly-connected components
     private Stack<Integer> stack;
 
-
     /**
      * Computes the strong components of the digraph {@code G}.
      * @param G the digraph
@@ -70,24 +67,27 @@ public class TarjanSCC {
     public TarjanSCC(Digraph G) {
         marked = new boolean[G.V()];
         stack = new Stack<Integer>();
-        id = new int[G.V()]; 
+        id = new int[G.V()];
         low = new int[G.V()];
         for (int v = 0; v < G.V(); v++) {
-            if (!marked[v]) dfs(G, v);
+            if (!marked[v])
+                dfs(G, v);
         }
 
         // check that id[] gives strong components
         assert check(G);
     }
 
-    private void dfs(Digraph G, int v) { 
+    private void dfs(Digraph G, int v) {
         marked[v] = true;
         low[v] = pre++;
         int min = low[v];
         stack.push(v);
         for (int w : G.adj(v)) {
-            if (!marked[w]) dfs(G, w);
-            if (low[w] < min) min = low[w];
+            if (!marked[w])
+                dfs(G, w);
+            if (low[w] < min)
+                min = low[w];
         }
         if (min < low[v]) {
             low[v] = min;
@@ -102,7 +102,6 @@ public class TarjanSCC {
         count++;
     }
 
-
     /**
      * Returns the number of strong components.
      * @return the number of strong components
@@ -110,7 +109,6 @@ public class TarjanSCC {
     public int count() {
         return count;
     }
-
 
     /**
      * Are vertices {@code v} and {@code w} in the same strong component?
@@ -154,7 +152,7 @@ public class TarjanSCC {
     private void validateVertex(int v) {
         int V = marked.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**

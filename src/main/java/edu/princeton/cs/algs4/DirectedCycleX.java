@@ -51,13 +51,15 @@ public class DirectedCycleX {
         // initialize queue to contain all vertices with indegree = 0
         Queue<Integer> queue = new Queue<Integer>();
         for (int v = 0; v < G.V(); v++)
-            if (indegree[v] == 0) queue.enqueue(v);
+            if (indegree[v] == 0)
+                queue.enqueue(v);
 
         while (!queue.isEmpty()) {
             int v = queue.dequeue();
             for (int w : G.adj(v)) {
                 indegree[w]--;
-                if (indegree[w] == 0) queue.enqueue(w);
+                if (indegree[w] == 0)
+                    queue.enqueue(w);
             }
         }
 
@@ -65,8 +67,10 @@ public class DirectedCycleX {
         int[] edgeTo = new int[G.V()];
         int root = -1;  // any vertex with indegree >= -1
         for (int v = 0; v < G.V(); v++) {
-            if (indegree[v] == 0) continue;
-            else root = v;
+            if (indegree[v] == 0)
+                continue;
+            else
+                root = v;
             for (int w : G.adj(v)) {
                 if (indegree[w] > 0) {
                     edgeTo[w] = v;
@@ -120,7 +124,8 @@ public class DirectedCycleX {
             // verify cycle
             int first = -1, last = -1;
             for (int v : cycle()) {
-                if (first == -1) first = v;
+                if (first == -1)
+                    first = v;
                 last = v;
             }
             if (first != last) {
@@ -129,10 +134,8 @@ public class DirectedCycleX {
             }
         }
 
-
         return true;
     }
-
 
     public static void main(String[] args) {
 
@@ -151,7 +154,6 @@ public class DirectedCycleX {
 
         StdOut.println(G);
 
-
         DirectedCycleX finder = new DirectedCycleX(G);
         if (finder.hasCycle()) {
             StdOut.print("Directed cycle: ");
@@ -159,9 +161,7 @@ public class DirectedCycleX {
                 StdOut.print(v + " ");
             }
             StdOut.println();
-        }
-
-        else {
+        } else {
             StdOut.println("No directed cycle");
         }
         StdOut.println();

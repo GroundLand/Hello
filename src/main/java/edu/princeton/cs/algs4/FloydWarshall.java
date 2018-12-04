@@ -16,7 +16,6 @@
 
 package edu.princeton.cs.algs4;
 
-
 /**
  *  The {@code FloydWarshall} class represents a data type for solving the
  *  all-pairs shortest paths problem in edge-weighted digraphs with
@@ -79,7 +78,8 @@ public class FloydWarshall {
         for (int i = 0; i < V; i++) {
             // compute shortest paths using only 0, 1, ..., i as intermediate vertices
             for (int v = 0; v < V; v++) {
-                if (edgeTo[v][i] == null) continue;  // optimization
+                if (edgeTo[v][i] == null)
+                    continue;  // optimization
                 for (int w = 0; w < V; w++) {
                     if (distTo[v][w] > distTo[v][i] + distTo[i][w]) {
                         distTo[v][w] = distTo[v][i] + distTo[i][w];
@@ -172,7 +172,8 @@ public class FloydWarshall {
         validateVertex(t);
         if (hasNegativeCycle())
             throw new UnsupportedOperationException("Negative cost cycle exists");
-        if (!hasPath(s, t)) return null;
+        if (!hasPath(s, t))
+            return null;
         Stack<DirectedEdge> path = new Stack<DirectedEdge>();
         for (DirectedEdge e = edgeTo[s][t]; e != null; e = edgeTo[s][e.from()]) {
             path.push(e);
@@ -204,7 +205,7 @@ public class FloydWarshall {
     private void validateVertex(int v) {
         int V = distTo.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -222,8 +223,10 @@ public class FloydWarshall {
             int v = StdRandom.uniform(V);
             int w = StdRandom.uniform(V);
             double weight = Math.round(100 * (StdRandom.uniform() - 0.15)) / 100.0;
-            if (v == w) G.addEdge(new DirectedEdge(v, w, Math.abs(weight)));
-            else G.addEdge(new DirectedEdge(v, w, weight));
+            if (v == w)
+                G.addEdge(new DirectedEdge(v, w, Math.abs(weight)));
+            else
+                G.addEdge(new DirectedEdge(v, w, weight));
         }
 
         StdOut.println(G);
@@ -240,8 +243,10 @@ public class FloydWarshall {
         for (int v = 0; v < G.V(); v++) {
             StdOut.printf("%3d: ", v);
             for (int w = 0; w < G.V(); w++) {
-                if (spt.hasPath(v, w)) StdOut.printf("%6.2f ", spt.dist(v, w));
-                else StdOut.printf("  Inf ");
+                if (spt.hasPath(v, w))
+                    StdOut.printf("%6.2f ", spt.dist(v, w));
+                else
+                    StdOut.printf("  Inf ");
             }
             StdOut.println();
         }
@@ -263,8 +268,7 @@ public class FloydWarshall {
                         for (DirectedEdge e : spt.path(v, w))
                             StdOut.print(e + "  ");
                         StdOut.println();
-                    }
-                    else {
+                    } else {
                         StdOut.printf("%d to %d no path\n", v, w);
                     }
                 }

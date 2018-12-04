@@ -28,7 +28,7 @@ package edu.princeton.cs.algs4;
  *  For additional documentation,
  *  see <a href="https://algs4.cs.princeton.edu/41graph">Section 4.1</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- * 
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  * @author Nate Liu
@@ -50,15 +50,18 @@ public class EulerianPath {
 
         // returns the other vertex of the edge
         public int other(int vertex) {
-            if      (vertex == v) return w;
-            else if (vertex == w) return v;
-            else throw new IllegalArgumentException("Illegal endpoint");
+            if (vertex == v)
+                return w;
+            else if (vertex == w)
+                return v;
+            else
+                throw new IllegalArgumentException("Illegal endpoint");
         }
     }
 
     /**
      * Computes an Eulerian path in the specified graph, if one exists.
-     * 
+     *
      * @param G the graph
      */
     public EulerianPath(Graph G) {
@@ -77,10 +80,12 @@ public class EulerianPath {
 
         // graph can't have an Eulerian path
         // (this condition is needed for correctness)
-        if (oddDegreeVertices > 2) return;
+        if (oddDegreeVertices > 2)
+            return;
 
         // special case for graph with zero edges (has a degenerate Eulerian path)
-        if (s == -1) s = 0;
+        if (s == -1)
+            s = 0;
 
         // create local view of adjacency lists, to iterate one vertex at a time
         // the helper Edge data type is used to avoid exploring both copies of an edge v-w
@@ -99,8 +104,7 @@ public class EulerianPath {
                         adj[w].enqueue(e);
                     }
                     selfLoops++;
-                }
-                else if (v < w) {
+                } else if (v < w) {
                     Edge e = new Edge(v, w);
                     adj[v].enqueue(e);
                     adj[w].enqueue(e);
@@ -118,7 +122,8 @@ public class EulerianPath {
             int v = stack.pop();
             while (!adj[v].isEmpty()) {
                 Edge edge = adj[v].dequeue();
-                if (edge.isUsed) continue;
+                if (edge.isUsed)
+                    continue;
                 edge.isUsed = true;
                 stack.push(v);
                 v = edge.other(v);
@@ -136,7 +141,7 @@ public class EulerianPath {
 
     /**
      * Returns the sequence of vertices on an Eulerian path.
-     * 
+     *
      * @return the sequence of vertices on an Eulerian path;
      *         {@code null} if no such path
      */
@@ -146,14 +151,13 @@ public class EulerianPath {
 
     /**
      * Returns true if the graph has an Eulerian path.
-     * 
+     *
      * @return {@code true} if the graph has an Eulerian path;
      *         {@code false} otherwise
      */
     public boolean hasEulerianPath() {
         return path != null;
     }
-
 
     // returns any non-isolated vertex; -1 if no such vertex
     private static int nonIsolatedVertex(Graph G) {
@@ -162,7 +166,6 @@ public class EulerianPath {
                 return v;
         return -1;
     }
-
 
     /**************************************************************************
      *
@@ -176,14 +179,16 @@ public class EulerianPath {
     //    - the graph is connected (ignoring isolated vertices)
     // This method is solely for unit testing.
     private static boolean satisfiesNecessaryAndSufficientConditions(Graph G) {
-        if (G.E() == 0) return true;
+        if (G.E() == 0)
+            return true;
 
         // Condition 1: degree(v) is even except for possibly two
         int oddDegreeVertices = 0;
         for (int v = 0; v < G.V(); v++)
             if (G.degree(v) % 2 != 0)
                 oddDegreeVertices++;
-        if (oddDegreeVertices > 2) return false;
+        if (oddDegreeVertices > 2)
+            return false;
 
         // Condition 2: graph is connected, ignoring isolated vertices
         int s = nonIsolatedVertex(G);
@@ -199,23 +204,26 @@ public class EulerianPath {
     private boolean certifySolution(Graph G) {
 
         // internal consistency check
-        if (hasEulerianPath() == (path() == null)) return false;
+        if (hasEulerianPath() == (path() == null))
+            return false;
 
         // hashEulerianPath() returns correct value
-        if (hasEulerianPath() != satisfiesNecessaryAndSufficientConditions(G)) return false;
+        if (hasEulerianPath() != satisfiesNecessaryAndSufficientConditions(G))
+            return false;
 
         // nothing else to check if no Eulerian path
-        if (path == null) return true;
+        if (path == null)
+            return true;
 
         // check that path() uses correct number of edges
-        if (path.size() != G.E() + 1) return false;
+        if (path.size() != G.E() + 1)
+            return false;
 
         // check that path() is a path in G
         // TODO
 
         return true;
     }
-
 
     private static void unitTest(Graph G, String description) {
         StdOut.println(description);
@@ -230,13 +238,11 @@ public class EulerianPath {
                 StdOut.print(v + " ");
             }
             StdOut.println();
-        }
-        else {
+        } else {
             StdOut.println("none");
         }
         StdOut.println();
     }
-
 
     /**
      * Unit tests the {@code EulerianPath} data type.
@@ -246,7 +252,6 @@ public class EulerianPath {
     public static void main(String[] args) {
         int V = Integer.parseInt(args[0]);
         int E = Integer.parseInt(args[1]);
-
 
         // Eulerian cycle
         Graph G1 = GraphGenerator.eulerianCycle(V, E);

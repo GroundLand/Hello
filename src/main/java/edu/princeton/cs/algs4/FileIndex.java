@@ -36,14 +36,15 @@ import java.io.File;
  *  <p>
  *  For additional documentation, see <a href="https://algs4.cs.princeton.edu/35applications">Section 3.5</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- *  
+ *
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class FileIndex { 
+public class FileIndex {
 
     // Do not instantiate.
-    private FileIndex() { }
+    private FileIndex() {
+    }
 
     public static void main(String[] args) {
 
@@ -58,12 +59,12 @@ public class FileIndex {
             In in = new In(file);
             while (!in.isEmpty()) {
                 String word = in.readString();
-                if (!st.contains(word)) st.put(word, new SET<File>());
+                if (!st.contains(word))
+                    st.put(word, new SET<File>());
                 SET<File> set = st.get(word);
                 set.add(file);
             }
         }
-
 
         // read queries from standard input, one per line
         while (!StdIn.isEmpty()) {

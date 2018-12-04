@@ -5,8 +5,6 @@ public class CopyEmployee {
     private String name;
     private Employer employer;
 
-
-
     public String getName() {
         return name;
     }

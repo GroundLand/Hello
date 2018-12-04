@@ -107,7 +107,7 @@ public class QuickUnionUF {
     public int count() {
         return count;
     }
-  
+
     /**
      * Returns the component identifier for the component containing site {@code p}.
      *
@@ -126,7 +126,7 @@ public class QuickUnionUF {
     private void validate(int p) {
         int n = parent.length;
         if (p < 0 || p >= n) {
-            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n-1));
+            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n - 1));
         }
     }
 
@@ -144,7 +144,6 @@ public class QuickUnionUF {
         return find(p) == find(q);
     }
 
-  
     /**
      * Merges the component containing site {@code p} with the 
      * the component containing site {@code q}.
@@ -157,8 +156,9 @@ public class QuickUnionUF {
     public void union(int p, int q) {
         int rootP = find(p);
         int rootQ = find(q);
-        if (rootP == rootQ) return;
-        parent[rootP] = rootQ; 
+        if (rootP == rootQ)
+            return;
+        parent[rootP] = rootQ;
         count--;
     }
 
@@ -176,13 +176,13 @@ public class QuickUnionUF {
         while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
-            if (uf.connected(p, q)) continue;
+            if (uf.connected(p, q))
+                continue;
             uf.union(p, q);
             StdOut.println(p + " " + q);
         }
         StdOut.println(uf.count() + " components");
     }
-
 
 }
 

@@ -53,6 +53,7 @@ import java.util.Iterator;
  */
 public class NonrecursiveDFS {
     private boolean[] marked;  // marked[v] = is there an s-v path?
+
     /**
      * Computes the vertices connected to the source vertex {@code s} in the graph {@code G}.
      * @param G the graph
@@ -86,8 +87,7 @@ public class NonrecursiveDFS {
                     stack.push(w);
                     // StdOut.printf("dfs(%d)\n", w);
                 }
-            }
-            else {
+            } else {
                 // StdOut.printf("%d done\n", v);
                 stack.pop();
             }
@@ -110,7 +110,7 @@ public class NonrecursiveDFS {
     private void validateVertex(int v) {
         int V = marked.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -128,7 +128,6 @@ public class NonrecursiveDFS {
                 StdOut.print(v + " ");
         StdOut.println();
     }
-
 
 }
 

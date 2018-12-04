@@ -31,7 +31,7 @@ import java.util.Iterator;
  *  For additional documentation,
  *  see <a href="https://algs4.cs.princeton.edu/42digraph">Section 4.2</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- * 
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  * @author Nate Liu
@@ -41,7 +41,7 @@ public class DirectedEulerianPath {
 
     /**
      * Computes an Eulerian path in the specified digraph, if one exists.
-     * 
+     *
      * @param G the digraph
      */
     public DirectedEulerianPath(Digraph G) {
@@ -60,10 +60,12 @@ public class DirectedEulerianPath {
 
         // digraph can't have an Eulerian path
         // (this condition is needed)
-        if (deficit > 1) return;
+        if (deficit > 1)
+            return;
 
         // special case for digraph with zero edges (has a degenerate Eulerian path)
-        if (s == -1) s = 0;
+        if (s == -1)
+            s = 0;
 
         // create local view of adjacency lists, to iterate one vertex at a time
         Iterator<Integer>[] adj = (Iterator<Integer>[]) new Iterator[G.V()];
@@ -83,7 +85,7 @@ public class DirectedEulerianPath {
             // push vertex with no more available edges to path
             path.push(v);
         }
-            
+
         // check if all edges have been used
         if (path.size() != G.E() + 1)
             path = null;
@@ -93,7 +95,7 @@ public class DirectedEulerianPath {
 
     /**
      * Returns the sequence of vertices on an Eulerian path.
-     * 
+     *
      * @return the sequence of vertices on an Eulerian path;
      *         {@code null} if no such path
      */
@@ -103,14 +105,13 @@ public class DirectedEulerianPath {
 
     /**
      * Returns true if the digraph has an Eulerian path.
-     * 
+     *
      * @return {@code true} if the digraph has an Eulerian path;
      *         {@code false} otherwise
      */
     public boolean hasEulerianPath() {
         return path != null;
     }
-
 
     // returns any non-isolated vertex; -1 if no such vertex
     private static int nonIsolatedVertex(Digraph G) {
@@ -119,7 +120,6 @@ public class DirectedEulerianPath {
                 return v;
         return -1;
     }
-
 
     /**************************************************************************
      *
@@ -135,7 +135,8 @@ public class DirectedEulerianPath {
     //    - the graph is connected, when viewed as an undirected graph
     //      (ignoring isolated vertices)
     private static boolean satisfiesNecessaryAndSufficientConditions(Digraph G) {
-        if (G.E() == 0) return true;
+        if (G.E() == 0)
+            return true;
 
         // Condition 1: indegree(v) == outdegree(v) for every vertex,
         // except one vertex may have outdegree(v) = indegree(v) + 1
@@ -143,14 +144,15 @@ public class DirectedEulerianPath {
         for (int v = 0; v < G.V(); v++)
             if (G.outdegree(v) > G.indegree(v))
                 deficit += (G.outdegree(v) - G.indegree(v));
-        if (deficit > 1) return false;
+        if (deficit > 1)
+            return false;
 
         // Condition 2: graph is connected, ignoring isolated vertices
         Graph H = new Graph(G.V());
         for (int v = 0; v < G.V(); v++)
             for (int w : G.adj(v))
                 H.addEdge(v, w);
-        
+
         // check that all non-isolated vertices are connected
         int s = nonIsolatedVertex(G);
         BreadthFirstPaths bfs = new BreadthFirstPaths(H, s);
@@ -161,27 +163,29 @@ public class DirectedEulerianPath {
         return true;
     }
 
-
     private boolean check(Digraph G) {
 
         // internal consistency check
-        if (hasEulerianPath() == (path() == null)) return false;
+        if (hasEulerianPath() == (path() == null))
+            return false;
 
         // hashEulerianPath() returns correct value
-        if (hasEulerianPath() != satisfiesNecessaryAndSufficientConditions(G)) return false;
+        if (hasEulerianPath() != satisfiesNecessaryAndSufficientConditions(G))
+            return false;
 
         // nothing else to check if no Eulerian path
-        if (path == null) return true;
+        if (path == null)
+            return true;
 
         // check that path() uses correct number of edges
-        if (path.size() != G.E() + 1) return false;
+        if (path.size() != G.E() + 1)
+            return false;
 
         // check that path() is a directed path in G
         // TODO
 
         return true;
     }
-
 
     private static void unitTest(Digraph G, String description) {
         StdOut.println(description);
@@ -196,8 +200,7 @@ public class DirectedEulerianPath {
                 StdOut.print(v + " ");
             }
             StdOut.println();
-        }
-        else {
+        } else {
             StdOut.println("none");
         }
         StdOut.println();
@@ -211,7 +214,6 @@ public class DirectedEulerianPath {
     public static void main(String[] args) {
         int V = Integer.parseInt(args[0]);
         int E = Integer.parseInt(args[1]);
-
 
         // Eulerian cycle
         Digraph G1 = DigraphGenerator.eulerianCycle(V, E);

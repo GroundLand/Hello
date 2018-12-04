@@ -1,7 +1,5 @@
 package lombok;
 
-import com.sun.istack.internal.NotNull;
-
 /**
  *
  * @author cln

@@ -13,6 +13,6 @@ public class CalculatorImpl implements Calculate {
 
     @Override
     public void somethingElse(String arg) {
-        StdOut.println("SimpleProxy "+ arg);
+        StdOut.println("SimpleProxy " + arg);
     }
 }

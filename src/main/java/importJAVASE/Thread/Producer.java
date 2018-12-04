@@ -1,8 +1,5 @@
 package importJAVASE.Thread;
 
-
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +29,7 @@ public class Producer extends Thread {
                         e.printStackTrace();
                     }
                 }
-                logger.debug("producing"+i);
+                logger.debug("producing" + i);
                 sharedQ.add(i);
                 sharedQ.notify();
             }

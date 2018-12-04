@@ -16,7 +16,9 @@ public @interface Content {
 
     String name();
 
-    Class value() default Object.class;
+    FieldTypeEnum fieldType() default FieldTypeEnum.STRING;
+
+    Class ennumType() default Object.class;
 
     boolean isAccountId() default false;
 }

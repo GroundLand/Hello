@@ -1,6 +1,5 @@
 package importJAVASE.annotation;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +20,6 @@ public class Base {
     @Content(name = "日期")
     private Date date;
 
-    @Content(name = "类型", value = StateEnum.class)
+    @Content(name = "类型", ennumType = StateEnum.class, fieldType = FieldTypeEnum.ENUM)
     private Integer integer;
-
 }

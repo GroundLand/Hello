@@ -13,21 +13,21 @@ import java.util.Map;
  */
 public class JoinerUtils {
 
-    public String joinToObject(Object[] objects,String delimiter){
+    public String joinToObject(Object[] objects, String delimiter) {
         return Joiner.on(delimiter).skipNulls().join(objects);
     }
 
-    public StringBuilder appendToObject(Object[] objects,String delimiter){
+    public StringBuilder appendToObject(Object[] objects, String delimiter) {
         StringBuilder sb = new StringBuilder();
-        return Joiner.on(delimiter).skipNulls().appendTo(sb,objects);
+        return Joiner.on(delimiter).skipNulls().appendTo(sb, objects);
     }
 
-    public void mapJoiner(){
-        Map<String,String> testMap = Maps.newLinkedHashMap();
-        testMap.put("Washington D.C","Redskins");
-        testMap.put("New York City","Giants");
-        testMap.put("Philadelphia","Eagles");
-        testMap.put("Dallas","Cowboys");
+    public void mapJoiner() {
+        Map<String, String> testMap = Maps.newLinkedHashMap();
+        testMap.put("Washington D.C", "Redskins");
+        testMap.put("New York City", "Giants");
+        testMap.put("Philadelphia", "Eagles");
+        testMap.put("Dallas", "Cowboys");
         //MapJoiner需要通过这种方式创建 Joiner. withKeyValueSeparator(String str);
         Joiner.MapJoiner mapJoiner = Joiner.on("#").
                 withKeyValueSeparator("=");
@@ -35,16 +35,16 @@ public class JoinerUtils {
         System.out.println(returnedString);  //Washington D.C=Redskins#New York City=Giants#Philadelphia=Eagles#Dallas=Cowboys
     }
 
-    public static void main(String[] args){
-       JoinerUtils joinerUtils = new JoinerUtils();
-       String[] strings = {"Wrong",null,"wrong"};
-      //  System.out.println(joinerUtils.joinToObject(strings,"||"));
-        System.out.println(joinerUtils.appendToObject(strings,"||"));
+    public static void main(String[] args) {
+        JoinerUtils joinerUtils = new JoinerUtils();
+        String[] strings = { "Wrong", null, "wrong" };
+        //  System.out.println(joinerUtils.joinToObject(strings,"||"));
+        System.out.println(joinerUtils.appendToObject(strings, "||"));
         String str = "/164/0613ddf142334c7ca704a63b5a9cb765.png,/164/182bf71ca2e94a90a1a57ac9084ec953.png";
-        String[] s  = str.split(",");
-        System.out.println(joinerUtils.appendToObject(s,"http://localhost:8003/"));
+        String[] s = str.split(",");
+        System.out.println(joinerUtils.appendToObject(s, "http://localhost:8003/"));
         Joiner joine = Joiner.on(":").useForNull("missing");
-        System.out.println(joine.join(null,null,"Wrong","Wrong"));
+        System.out.println(joine.join(null, null, "Wrong", "Wrong"));
 
         joinerUtils.mapJoiner();
     }

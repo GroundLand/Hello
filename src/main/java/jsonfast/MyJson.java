@@ -10,8 +10,7 @@ import java.util.Map;
  */
 public class MyJson {
 
-
-    public JSONObject convertJson(Map<String,String> map){
+    public JSONObject convertJson(Map<String, String> map) {
         return (JSONObject) JSON.toJSON(map);
     }
 

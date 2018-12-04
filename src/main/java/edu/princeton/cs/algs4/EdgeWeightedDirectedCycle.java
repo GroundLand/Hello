@@ -48,11 +48,12 @@ public class EdgeWeightedDirectedCycle {
      * @param G the edge-weighted digraph
      */
     public EdgeWeightedDirectedCycle(EdgeWeightedDigraph G) {
-        marked  = new boolean[G.V()];
+        marked = new boolean[G.V()];
         onStack = new boolean[G.V()];
-        edgeTo  = new DirectedEdge[G.V()];
+        edgeTo = new DirectedEdge[G.V()];
         for (int v = 0; v < G.V(); v++)
-            if (!marked[v]) dfs(G, v);
+            if (!marked[v])
+                dfs(G, v);
 
         // check that digraph has a cycle
         assert check();
@@ -66,9 +67,10 @@ public class EdgeWeightedDirectedCycle {
             int w = e.to();
 
             // short circuit if directed cycle found
-            if (cycle != null) return;
+            if (cycle != null)
+                return;
 
-            // found new vertex, so recur
+                // found new vertex, so recur
             else if (!marked[w]) {
                 edgeTo[w] = e;
                 dfs(G, w);
@@ -111,7 +113,6 @@ public class EdgeWeightedDirectedCycle {
         return cycle;
     }
 
-
     // certify that digraph is either acyclic or has a directed cycle
     private boolean check() {
 
@@ -120,7 +121,8 @@ public class EdgeWeightedDirectedCycle {
             // verify cycle
             DirectedEdge first = null, last = null;
             for (DirectedEdge e : cycle()) {
-                if (first == null) first = e;
+                if (first == null)
+                    first = e;
                 if (last != null) {
                     if (last.to() != e.from()) {
                         System.err.printf("cycle edges %s and %s not incident\n", last, e);
@@ -135,7 +137,6 @@ public class EdgeWeightedDirectedCycle {
                 return false;
             }
         }
-
 
         return true;
     }

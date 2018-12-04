@@ -1,24 +1,25 @@
 package importJAVASE;
 
-import java8.stream.Dish;
-import java8.stream.FeoboArray;
 import java8.stream.Trader;
 import java8.stream.Transaction;
 import org.joda.time.DateTime;
 import org.junit.Test;
-import org.omg.PortableInterceptor.INACTIVE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.function.Supplier;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -28,9 +29,8 @@ public class Java8Test {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
-
     @Test
-    public void sortMap(){
+    public void sortMap() {
         Map<String, Integer> unsortMap = new HashMap<>();
         unsortMap.put("z", 10);
         unsortMap.put("b", 5);
@@ -46,36 +46,35 @@ public class Java8Test {
 
         System.out.println("Original...");
         System.out.println(unsortMap);
-        Map<String,Integer> result = unsortMap.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,
-                        (s1,s2)->s1, LinkedHashMap::new));
+        Map<String, Integer> result = unsortMap.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (s1, s2) -> s1, LinkedHashMap::new));
 
         System.out.println("Sorted...");
         System.out.println(result);
 
-
     }
 
     @Test
-    public void sortMap1(){
+    public void sortMap1() {
         Stream<String> s = Stream.of("apple", "banana", "apricot", "orange",
                 "apple");
         Map<Character, String> m = s.collect(
-                Collectors.toMap(s1 -> s1.charAt(0),
+                Collectors.toMap(
+                        s1 -> s1.charAt(0),
                         s1 -> s1,
                         (s1, s2) -> s1 + "|" + s2));
         System.out.println(m);
     }
 
-
     //Stream 一行一行读一个文件
     @Test
-    public void readFileStream(){
+    public void readFileStream() {
         String file = "d://test.txt";
         List<String> list = new ArrayList<>();
 
-        try (Stream<String> stream = Files.lines(Paths.get(file))){
-                list = stream.filter(line->!line.startsWith("line3")).map(String::toUpperCase).collect(toList());
+        try (Stream<String> stream = Files.lines(Paths.get(file))) {
+            list = stream.filter(line -> !line.startsWith("line3")).map(String::toUpperCase).collect(toList());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -86,11 +85,11 @@ public class Java8Test {
 
     //Stream
     @Test
-    public void streamTest(){
+    public void streamTest() {
         Trader raoul = new Trader("Raoul", "Cambridge");
-        Trader mario = new Trader("Mario","Milan");
-        Trader alan = new Trader("Alan","Cambridge");
-        Trader brian = new Trader("Brian","Cambridge");
+        Trader mario = new Trader("Mario", "Milan");
+        Trader alan = new Trader("Alan", "Cambridge");
+        Trader brian = new Trader("Brian", "Cambridge");
 
         List<Transaction> transactions = Arrays.asList(
                 new Transaction(brian, 2011, 300),
@@ -107,7 +106,7 @@ public class Java8Test {
     }
 
     @Test
-    public void FeiboTest(){
+    public void FeiboTest() {
         DateTime dateTime = new DateTime();
         DateTime lastDate = dateTime.withMonthOfYear(10).withDayOfMonth(22);
         System.out.println(dateTime.dayOfYear().withMaximumValue());
@@ -116,10 +115,10 @@ public class Java8Test {
     }
 
     @Test
-    public void concuTest(){
+    public void concuTest() {
         long statTime = System.currentTimeMillis();
-        long l = Stream.iterate(1L,i-> i+1).limit(90).reduce(0L,Long::sum);
-        System.out.println(System.currentTimeMillis()-statTime);
+        long l = Stream.iterate(1L, i -> i + 1).limit(90).reduce(0L, Long::sum);
+        System.out.println(System.currentTimeMillis() - statTime);
     }
 
 }

@@ -13,14 +13,14 @@ import java.util.Arrays;
 public class ExtendTest {
 
     @Test
-    public void InstrumentedHashSetTest(){
+    public void InstrumentedHashSetTest() {
         InstrumentedHashSet<String> set = new InstrumentedHashSet<String>();
-        set.addAll(Arrays.asList("Snap","Crackle","Pop"));
+        set.addAll(Arrays.asList("Snap", "Crackle", "Pop"));
         System.out.println(set.getAddCount());
     }
 
     @Test
-    public void ParentAndSonTest(){
+    public void ParentAndSonTest() {
         Parent son = new Son();
         son.overrideme();
     }

@@ -13,18 +13,17 @@ public class StringTest {
     public static Logger logger = LoggerFactory.getLogger(StringTest.class);
 
     @Test
-    public void singleTest(){
-       // String str = "a";
-        byte[]  bytes = {(byte)0x61, (byte)0x62, (byte)0x63};
+    public void singleTest() {
+        // String str = "a";
+        byte[] bytes = { (byte) 0x61, (byte) 0x62, (byte) 0x63 };
 
-          //  bytes = str.getBytes("UTF-8");
-            System.out.println(bytes);
+        //  bytes = str.getBytes("UTF-8");
+        System.out.println(bytes);
 
         String str = "中国";
         printBytes("中国的UNICODE编码：", str.getBytes(Charset.forName("unicode")));
         printBytes("中国的GBK编码：", str.getBytes(Charset.forName("GBK")));
         printBytes("中国的UTF-8编码：", str.getBytes(Charset.forName("UTF-8")));
-
 
     }
 
@@ -44,6 +43,5 @@ public class StringTest {
 
         return tmp.toUpperCase();
     }
-
 
 }

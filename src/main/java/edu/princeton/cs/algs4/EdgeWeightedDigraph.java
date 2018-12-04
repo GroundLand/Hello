@@ -42,7 +42,7 @@ public class EdgeWeightedDigraph {
     private int E;                      // number of edges in this digraph
     private Bag<DirectedEdge>[] adj;    // adj[v] = adjacency list for vertex v
     private int[] indegree;             // indegree[v] = indegree of vertex v
-    
+
     /**
      * Initializes an empty edge-weighted digraph with {@code V} vertices and 0 edges.
      *
@@ -50,7 +50,8 @@ public class EdgeWeightedDigraph {
      * @throws IllegalArgumentException if {@code V < 0}
      */
     public EdgeWeightedDigraph(int V) {
-        if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
+        if (V < 0)
+            throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
         this.V = V;
         this.E = 0;
         this.indegree = new int[V];
@@ -69,7 +70,8 @@ public class EdgeWeightedDigraph {
      */
     public EdgeWeightedDigraph(int V, int E) {
         this(V);
-        if (E < 0) throw new IllegalArgumentException("Number of edges in a Digraph must be nonnegative");
+        if (E < 0)
+            throw new IllegalArgumentException("Number of edges in a Digraph must be nonnegative");
         for (int i = 0; i < E; i++) {
             int v = StdRandom.uniform(V);
             int w = StdRandom.uniform(V);
@@ -79,7 +81,7 @@ public class EdgeWeightedDigraph {
         }
     }
 
-    /**  
+    /**
      * Initializes an edge-weighted digraph from the specified input stream.
      * The format is the number of vertices <em>V</em>,
      * followed by the number of edges <em>E</em>,
@@ -93,7 +95,8 @@ public class EdgeWeightedDigraph {
     public EdgeWeightedDigraph(In in) {
         this(in.readInt());
         int E = in.readInt();
-        if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
+        if (E < 0)
+            throw new IllegalArgumentException("Number of edges must be nonnegative");
         for (int i = 0; i < E; i++) {
             int v = in.readInt();
             int w = in.readInt();
@@ -147,7 +150,7 @@ public class EdgeWeightedDigraph {
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
     private void validateVertex(int v) {
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -166,7 +169,6 @@ public class EdgeWeightedDigraph {
         indegree[w]++;
         E++;
     }
-
 
     /**
      * Returns the directed edges incident from vertex {@code v}.
@@ -221,7 +223,7 @@ public class EdgeWeightedDigraph {
             }
         }
         return list;
-    } 
+    }
 
     /**
      * Returns a string representation of this edge-weighted digraph.

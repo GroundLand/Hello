@@ -1,37 +1,33 @@
 package importJAVASE.algorithms_lintcode;
 
-import java.util.regex.Pattern;
-
 public class Partition {
 
-//    private static class Node {
-//        private int item;
-//        private Node next;
-//
-//        Node(int item){
-//            this.item = item;
-//        }
-//
-//    }
-//
-//    public static void add(Node node,int i){
-//        Node n = new Node(i);
-//        node.next=n;
-//    }
-
+    //    private static class Node {
+    //        private int item;
+    //        private Node next;
+    //
+    //        Node(int item){
+    //            this.item = item;
+    //        }
+    //
+    //    }
+    //
+    //    public static void add(Node node,int i){
+    //        Node n = new Node(i);
+    //        node.next=n;
+    //    }
 
     Node partition(Node node, int x) {
         Node head = node;
         Node tail = node;
 
-        while(node != null) {
+        while (node != null) {
             Node next = node.next;
-            if(node.item < x) {
+            if (node.item < x) {
                 /* insert node at head */
                 node.next = head;
                 head = node;
-            }
-            else {
+            } else {
                 /* insert node at tail */
                 tail.next = node;
                 tail = node;
@@ -44,17 +40,14 @@ public class Partition {
         return head;
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         Node node = new Node(3);
         node.add(1);
         node.add(4);
         node.add(5);
 
-
         Partition partition = new Partition();
-        partition.partition(node,4);
+        partition.partition(node, 4);
     }
-
-
 
 }

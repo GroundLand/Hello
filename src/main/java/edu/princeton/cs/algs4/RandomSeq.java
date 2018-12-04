@@ -26,11 +26,11 @@ package edu.princeton.cs.algs4;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class RandomSeq { 
+public class RandomSeq {
 
     // this class should not be instantiated
-    private RandomSeq() { }
-
+    private RandomSeq() {
+    }
 
     /**
      * Reads in two command-line arguments lo and hi and prints n uniformly
@@ -50,9 +50,7 @@ public class RandomSeq {
                 double x = StdRandom.uniform();
                 StdOut.println(x);
             }
-        }
-
-        else if (args.length == 3) {
+        } else if (args.length == 3) {
             double lo = Double.parseDouble(args[1]);
             double hi = Double.parseDouble(args[2]);
 
@@ -61,9 +59,7 @@ public class RandomSeq {
                 double x = StdRandom.uniform(lo, hi);
                 StdOut.printf("%.2f\n", x);
             }
-        }
-
-        else {
+        } else {
             throw new IllegalArgumentException("Invalid number of arguments");
         }
     }

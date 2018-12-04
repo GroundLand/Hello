@@ -12,7 +12,6 @@
  *     4000     4.5   8.0
  *     8000    35.7   8.0
  *     4000     3.9   6.6
-
  *  ...
  *
  ******************************************************************************/
@@ -33,7 +32,8 @@ public class DoublingRatio {
     private static final int MAXIMUM_INTEGER = 1000000;
 
     // This class should not be instantiated.
-    private DoublingRatio() { }
+    private DoublingRatio() {
+    }
 
     /**
      * Returns the amount of time to call {@code ThreeSum.count()} with <em>n</em>
@@ -59,16 +59,15 @@ public class DoublingRatio {
      *
      * @param args the command-line arguments
      */
-    public static void main(String[] args) { 
+    public static void main(String[] args) {
         double prev = timeTrial(125);
         for (int n = 250; true; n += n) {
             double time = timeTrial(n);
-            StdOut.printf("%7d %7.1f %5.1f\n", n, time, time/prev);
+            StdOut.printf("%7d %7.1f %5.1f\n", n, time, time / prev);
             prev = time;
-        } 
-    } 
-} 
-
+        }
+    }
+}
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

@@ -25,10 +25,10 @@ public class ObjectUtils {
         }
         Field[] fields = obj.getClass().getDeclaredFields();
         MoreObjects.ToStringHelper helper = MoreObjects.toStringHelper(obj);
-        for (Field field : fields){
+        for (Field field : fields) {
             try {
                 field.setAccessible(true);
-                helper.add(field.getName(),field.get(obj));
+                helper.add(field.getName(), field.get(obj));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -36,7 +36,7 @@ public class ObjectUtils {
         return helper.toString();
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Base base = new Base();
         base.setAge(12);
         base.setName("test");

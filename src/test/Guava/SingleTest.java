@@ -1,7 +1,6 @@
 package Guava;
 
 import edu.princeton.cs.algs4.StdOut;
-import importJAVASE.test.Base;
 import org.junit.Test;
 
 import java.util.GregorianCalendar;
@@ -12,7 +11,7 @@ import java.util.GregorianCalendar;
 public class SingleTest {
 
     @Test
-    public void tt(){
+    public void tt() {
         GregorianCalendar gc = new GregorianCalendar();
         StdOut.println(gc.get(GregorianCalendar.AM_PM));
     }

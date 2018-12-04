@@ -1,7 +1,5 @@
 package importJAVASE.Thread;
 
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +35,8 @@ public class Consumer extends Thread {
                 sharedQ.notify();
 
                 if (number == 3) {
-                    sharedQ.poll();;
+                    sharedQ.poll();
+                    ;
                 }
             }
         }

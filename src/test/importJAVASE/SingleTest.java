@@ -2,10 +2,6 @@ package importJAVASE;
 
 import com.google.common.collect.Lists;
 import importJAVASE.algorithms_lintcode.codewars.JadenCase;
-import importJAVASE.annotation.A;
-import importJAVASE.annotation.B;
-import importJAVASE.annotation.InheritedAnnotation;
-import importJAVASE.annotation.C;
 import importJAVASE.proxy.Calculate;
 import importJAVASE.proxy.CalculatorHandler;
 import importJAVASE.proxy.CalculatorImpl;
@@ -14,11 +10,9 @@ import org.joda.time.Months;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
 import java.lang.reflect.Proxy;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -40,6 +34,13 @@ public class SingleTest {
         Integer oldT = 2;
         logger.info("Temperature set to {}. Old temperature was {}.", t, oldT);
 
+    }
+
+    @Test
+    public void Test() {
+        String str = "false";
+        boolean flag = Boolean.parseBoolean(str);
+        logger.info("{}", flag);
     }
 
     @Test
@@ -133,11 +134,15 @@ public class SingleTest {
     }
 
     @Test
-    public void anatationTest1() {
-        List<Integer> integers = new ArrayList<>();
-        integers.add(null);
-        integers.add(null);
-        System.out.print(CollectionUtils.isEmpty(integers));
+    public void annotationTest1() {
+        String str1 = new StringBuilder("computersoft").append("soft").toString();
+        System.out.println(str1.intern() == str1);
+        String str2 = new StringBuilder("ja").append("va").toString();
+        System.out.println(str2.intern() == str2);
+
+        String str3 = new StringBuilder("computersoftsoft").toString();
+        System.out.println(str3.intern() == str3);
+
     }
 
 }

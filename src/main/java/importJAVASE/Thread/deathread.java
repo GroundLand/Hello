@@ -5,8 +5,9 @@ package importJAVASE.Thread;
  */
 public class deathread {
     public static int a = 0;
-    public static void main(String[]args){
-        Thread t= new Thread();
+
+    public static void main(String[] args) {
+        Thread t = new Thread();
     }
 
 }

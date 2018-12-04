@@ -32,7 +32,7 @@ import java.util.Iterator;
  *  For additional documentation,
  *  see <a href="https://algs4.cs.princeton.edu/42digraph">Section 4.2</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- * 
+ *
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  *  @author Nate Liu
@@ -42,13 +42,14 @@ public class DirectedEulerianCycle {
 
     /**
      * Computes an Eulerian cycle in the specified digraph, if one exists.
-     * 
+     *
      * @param G the digraph
      */
     public DirectedEulerianCycle(Digraph G) {
 
         // must have at least one edge
-        if (G.E() == 0) return;
+        if (G.E() == 0)
+            return;
 
         // necessary condition: indegree(v) = outdegree(v) for each vertex v
         // (without this check, DFS might return a path instead of a cycle)
@@ -88,7 +89,7 @@ public class DirectedEulerianCycle {
 
     /**
      * Returns the sequence of vertices on an Eulerian cycle.
-     * 
+     *
      * @return the sequence of vertices on an Eulerian cycle;
      *         {@code null} if no such cycle
      */
@@ -98,7 +99,7 @@ public class DirectedEulerianCycle {
 
     /**
      * Returns true if the digraph has an Eulerian cycle.
-     * 
+     *
      * @return {@code true} if the digraph has an Eulerian cycle;
      *         {@code false} otherwise
      */
@@ -113,7 +114,6 @@ public class DirectedEulerianCycle {
                 return v;
         return -1;
     }
-
 
     /**************************************************************************
      *
@@ -130,7 +130,8 @@ public class DirectedEulerianCycle {
     private static boolean satisfiesNecessaryAndSufficientConditions(Digraph G) {
 
         // Condition 0: at least 1 edge
-        if (G.E() == 0) return false;
+        if (G.E() == 0)
+            return false;
 
         // Condition 1: indegree(v) == outdegree(v) for every vertex
         for (int v = 0; v < G.V(); v++)
@@ -142,7 +143,7 @@ public class DirectedEulerianCycle {
         for (int v = 0; v < G.V(); v++)
             for (int w : G.adj(v))
                 H.addEdge(v, w);
-        
+
         // check that all non-isolated vertices are conneted
         int s = nonIsolatedVertex(G);
         BreadthFirstPaths bfs = new BreadthFirstPaths(H, s);
@@ -157,23 +158,26 @@ public class DirectedEulerianCycle {
     private boolean certifySolution(Digraph G) {
 
         // internal consistency check
-        if (hasEulerianCycle() == (cycle() == null)) return false;
+        if (hasEulerianCycle() == (cycle() == null))
+            return false;
 
         // hashEulerianCycle() returns correct value
-        if (hasEulerianCycle() != satisfiesNecessaryAndSufficientConditions(G)) return false;
+        if (hasEulerianCycle() != satisfiesNecessaryAndSufficientConditions(G))
+            return false;
 
         // nothing else to check if no Eulerian cycle
-        if (cycle == null) return true;
+        if (cycle == null)
+            return true;
 
         // check that cycle() uses correct number of edges
-        if (cycle.size() != G.E() + 1) return false;
+        if (cycle.size() != G.E() + 1)
+            return false;
 
         // check that cycle() is a directed cycle of G
         // TODO
 
         return true;
     }
-
 
     private static void unitTest(Digraph G, String description) {
         StdOut.println(description);
@@ -188,13 +192,11 @@ public class DirectedEulerianCycle {
                 StdOut.print(v + " ");
             }
             StdOut.println();
-        }
-        else {
+        } else {
             StdOut.println("none");
         }
         StdOut.println();
     }
-
 
     /**
      * Unit tests the {@code DirectedEulerianCycle} data type.
@@ -224,8 +226,8 @@ public class DirectedEulerianCycle {
         unitTest(G4, "single self loop");
 
         // union of two disjoint cycles
-        Digraph H1 = DigraphGenerator.eulerianCycle(V/2, E/2);
-        Digraph H2 = DigraphGenerator.eulerianCycle(V - V/2, E - E/2);
+        Digraph H1 = DigraphGenerator.eulerianCycle(V / 2, E / 2);
+        Digraph H2 = DigraphGenerator.eulerianCycle(V - V / 2, E - E / 2);
         int[] perm = new int[V];
         for (int i = 0; i < V; i++)
             perm[i] = i;
@@ -236,7 +238,7 @@ public class DirectedEulerianCycle {
                 G5.addEdge(perm[v], perm[w]);
         for (int v = 0; v < H2.V(); v++)
             for (int w : H2.adj(v))
-                G5.addEdge(perm[V/2 + v], perm[V/2 + w]);
+                G5.addEdge(perm[V / 2 + v], perm[V / 2 + w]);
         unitTest(G5, "Union of two disjoint cycles");
 
         // random digraph

@@ -48,7 +48,8 @@ package edu.princeton.cs.algs4;
  */
 public final class StdStats {
 
-    private StdStats() { }
+    private StdStats() {
+    }
 
     /**
      * Returns the maximum value in the specified array.
@@ -62,8 +63,10 @@ public final class StdStats {
 
         double max = Double.NEGATIVE_INFINITY;
         for (int i = 0; i < a.length; i++) {
-            if (Double.isNaN(a[i])) return Double.NaN;
-            if (a[i] > max) max = a[i];
+            if (Double.isNaN(a[i]))
+                return Double.NaN;
+            if (a[i] > max)
+                max = a[i];
         }
         return max;
     }
@@ -85,8 +88,10 @@ public final class StdStats {
 
         double max = Double.NEGATIVE_INFINITY;
         for (int i = lo; i < hi; i++) {
-            if (Double.isNaN(a[i])) return Double.NaN;
-            if (a[i] > max) max = a[i];
+            if (Double.isNaN(a[i]))
+                return Double.NaN;
+            if (a[i] > max)
+                max = a[i];
         }
         return max;
     }
@@ -103,7 +108,8 @@ public final class StdStats {
 
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < a.length; i++) {
-            if (a[i] > max) max = a[i];
+            if (a[i] > max)
+                max = a[i];
         }
         return max;
     }
@@ -120,8 +126,10 @@ public final class StdStats {
 
         double min = Double.POSITIVE_INFINITY;
         for (int i = 0; i < a.length; i++) {
-            if (Double.isNaN(a[i])) return Double.NaN;
-            if (a[i] < min) min = a[i];
+            if (Double.isNaN(a[i]))
+                return Double.NaN;
+            if (a[i] < min)
+                min = a[i];
         }
         return min;
     }
@@ -143,8 +151,10 @@ public final class StdStats {
 
         double min = Double.POSITIVE_INFINITY;
         for (int i = lo; i < hi; i++) {
-            if (Double.isNaN(a[i])) return Double.NaN;
-            if (a[i] < min) min = a[i];
+            if (Double.isNaN(a[i]))
+                return Double.NaN;
+            if (a[i] < min)
+                min = a[i];
         }
         return min;
     }
@@ -161,7 +171,8 @@ public final class StdStats {
 
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < a.length; i++) {
-            if (a[i] < min) min = a[i];
+            if (a[i] < min)
+                min = a[i];
         }
         return min;
     }
@@ -176,7 +187,8 @@ public final class StdStats {
     public static double mean(double[] a) {
         validateNotNull(a);
 
-        if (a.length == 0) return Double.NaN;
+        if (a.length == 0)
+            return Double.NaN;
         double sum = sum(a);
         return sum / a.length;
     }
@@ -197,7 +209,8 @@ public final class StdStats {
         validateSubarrayIndices(lo, hi, a.length);
 
         int length = hi - lo;
-        if (length == 0) return Double.NaN;
+        if (length == 0)
+            return Double.NaN;
 
         double sum = sum(a, lo, hi);
         return sum / length;
@@ -213,7 +226,8 @@ public final class StdStats {
     public static double mean(int[] a) {
         validateNotNull(a);
 
-        if (a.length == 0) return Double.NaN;
+        if (a.length == 0)
+            return Double.NaN;
         int sum = sum(a);
         return 1.0 * sum / a.length;
     }
@@ -228,7 +242,8 @@ public final class StdStats {
     public static double var(double[] a) {
         validateNotNull(a);
 
-        if (a.length == 0) return Double.NaN;
+        if (a.length == 0)
+            return Double.NaN;
         double avg = mean(a);
         double sum = 0.0;
         for (int i = 0; i < a.length; i++) {
@@ -253,7 +268,8 @@ public final class StdStats {
         validateSubarrayIndices(lo, hi, a.length);
 
         int length = hi - lo;
-        if (length == 0) return Double.NaN;
+        if (length == 0)
+            return Double.NaN;
 
         double avg = mean(a, lo, hi);
         double sum = 0.0;
@@ -272,7 +288,8 @@ public final class StdStats {
      */
     public static double var(int[] a) {
         validateNotNull(a);
-        if (a.length == 0) return Double.NaN;
+        if (a.length == 0)
+            return Double.NaN;
         double avg = mean(a);
         double sum = 0.0;
         for (int i = 0; i < a.length; i++) {
@@ -290,7 +307,8 @@ public final class StdStats {
      */
     public static double varp(double[] a) {
         validateNotNull(a);
-        if (a.length == 0) return Double.NaN;
+        if (a.length == 0)
+            return Double.NaN;
         double avg = mean(a);
         double sum = 0.0;
         for (int i = 0; i < a.length; i++) {
@@ -315,7 +333,8 @@ public final class StdStats {
         validateSubarrayIndices(lo, hi, a.length);
 
         int length = hi - lo;
-        if (length == 0) return Double.NaN;
+        if (length == 0)
+            return Double.NaN;
 
         double avg = mean(a, lo, hi);
         double sum = 0.0;
@@ -366,7 +385,6 @@ public final class StdStats {
 
         return Math.sqrt(var(a, lo, hi));
     }
-
 
     /**
      * Returns the population standard deviation in the specified array.
@@ -452,7 +470,7 @@ public final class StdStats {
         return sum;
     }
 
-   /**
+    /**
      * Plots the points (0, <em>a</em><sub>0</sub>), (1, <em>a</em><sub>1</sub>), ...,
      * (<em>n</em>–1, <em>a</em><sub><em>n</em>–1</sub>) to standard draw.
      *
@@ -468,7 +486,7 @@ public final class StdStats {
         }
     }
 
-   /**
+    /**
      * Plots the line segments connecting 
      * (<em>i</em>, <em>a</em><sub><em>i</em></sub>) to
      * (<em>i</em>+1, <em>a</em><sub><em>i</em>+1</sub>) for 
@@ -482,11 +500,11 @@ public final class StdStats {
         StdDraw.setXscale(-1, n);
         StdDraw.setPenRadius();
         for (int i = 1; i < n; i++) {
-            StdDraw.line(i-1, a[i-1], i, a[i]);
+            StdDraw.line(i - 1, a[i - 1], i, a[i]);
         }
     }
 
-   /**
+    /**
      * Plots bars from (0, <em>a</em><sub><em>i</em></sub>) to
      * (<em>a</em><sub><em>i</em></sub>) for each <em>i</em>
      * to standard draw.
@@ -498,7 +516,7 @@ public final class StdStats {
         int n = a.length;
         StdDraw.setXscale(-1, n);
         for (int i = 0; i < n; i++) {
-            StdDraw.filledRectangle(i, a[i]/2, 0.25, a[i]/2);
+            StdDraw.filledRectangle(i, a[i] / 2, 0.25, a[i] / 2);
         }
     }
 
@@ -515,8 +533,7 @@ public final class StdStats {
             throw new IllegalArgumentException("subarray indices out of bounds: [" + lo + ", " + hi + ")");
     }
 
-
-   /**
+    /**
      * Unit tests {@code StdStats}.
      * Convert command-line arguments to array of doubles and call various methods.
      *

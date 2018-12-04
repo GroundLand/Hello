@@ -60,7 +60,7 @@ public class HopcroftKarp {
     private BipartiteX bipartition;      // the bipartition
     private int cardinality;             // cardinality of current matching
     private int[] mate;                  // mate[v] =  w if v-w is an edge in current matching
-                                         //         = -1 if v is not in current matching
+    //         = -1 if v is not in current matching
     private boolean[] inMinVertexCover;  // inMinVertexCover[v] = true iff v is in min vertex cover
     private boolean[] marked;            // marked[v] = true iff v is reachable via alternating path
     private int[] distTo;                // distTo[v] = number of edges on shortest path to v
@@ -95,7 +95,8 @@ public class HopcroftKarp {
 
             // for each unmatched vertex s on one side of bipartition
             for (int s = 0; s < V; s++) {
-                if (isMatched(s) || !bipartition.color(s)) continue;   // or use distTo[s] == 0
+                if (isMatched(s) || !bipartition.color(s))
+                    continue;   // or use distTo[s] == 0
 
                 // find augmenting path from s using nonrecursive DFS
                 Stack<Integer> path = new Stack<Integer>();
@@ -107,11 +108,12 @@ public class HopcroftKarp {
                     if (!adj[v].hasNext())
                         path.pop();
 
-                    // advance
+                        // advance
                     else {
                         // process edge v-w only if it is an edge in level graph
                         int w = adj[v].next();
-                        if (!isLevelGraphEdge(v, w)) continue;
+                        if (!isLevelGraphEdge(v, w))
+                            continue;
 
                         // add w to augmenting path
                         path.push(w);
@@ -136,8 +138,10 @@ public class HopcroftKarp {
         // also find a min vertex cover
         inMinVertexCover = new boolean[V];
         for (int v = 0; v < V; v++) {
-            if (bipartition.color(v) && !marked[v]) inMinVertexCover[v] = true;
-            if (!bipartition.color(v) && marked[v]) inMinVertexCover[v] = true;
+            if (bipartition.color(v) && !marked[v])
+                inMinVertexCover[v] = true;
+            if (!bipartition.color(v) && marked[v])
+                inMinVertexCover[v] = true;
         }
 
         assert certifySolution(G);
@@ -153,15 +157,17 @@ public class HopcroftKarp {
         return s;
     }
 
-   // is the edge v-w in the level graph?
+    // is the edge v-w in the level graph?
     private boolean isLevelGraphEdge(int v, int w) {
         return (distTo[w] == distTo[v] + 1) && isResidualGraphEdge(v, w);
     }
 
-   // is the edge v-w a forward edge not in the matching or a reverse edge in the matching?
+    // is the edge v-w a forward edge not in the matching or a reverse edge in the matching?
     private boolean isResidualGraphEdge(int v, int w) {
-        if ((mate[v] != w) &&  bipartition.color(v)) return true;
-        if ((mate[v] == w) && !bipartition.color(v)) return true;
+        if ((mate[v] != w) && bipartition.color(v))
+            return true;
+        if ((mate[v] == w) && !bipartition.color(v))
+            return true;
         return false;
     }
 
@@ -211,7 +217,8 @@ public class HopcroftKarp {
 
                         // stop enqueuing vertices once an alternating path has been discovered
                         // (no vertex on same side will be marked if its shortest path distance longer)
-                        if (!hasAugmentingPath) queue.enqueue(w);
+                        if (!hasAugmentingPath)
+                            queue.enqueue(w);
                     }
                 }
             }
@@ -288,11 +295,11 @@ public class HopcroftKarp {
     // throw an exception if vertex is invalid
     private void validate(int v) {
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**************************************************************************
-     *   
+     *
      *  The code below is solely for testing correctness of the data type.
      *
      **************************************************************************/
@@ -302,54 +309,68 @@ public class HopcroftKarp {
 
         // check that mate(v) = w iff mate(w) = v
         for (int v = 0; v < V; v++) {
-            if (mate(v) == -1) continue;
-            if (mate(mate(v)) != v) return false;
+            if (mate(v) == -1)
+                continue;
+            if (mate(mate(v)) != v)
+                return false;
         }
 
         // check that size() is consistent with mate()
         int matchedVertices = 0;
         for (int v = 0; v < V; v++) {
-            if (mate(v) != -1) matchedVertices++;
+            if (mate(v) != -1)
+                matchedVertices++;
         }
-        if (2*size() != matchedVertices) return false;
+        if (2 * size() != matchedVertices)
+            return false;
 
         // check that size() is consistent with minVertexCover()
         int sizeOfMinVertexCover = 0;
         for (int v = 0; v < V; v++)
-            if (inMinVertexCover(v)) sizeOfMinVertexCover++;
-        if (size() != sizeOfMinVertexCover) return false;
+            if (inMinVertexCover(v))
+                sizeOfMinVertexCover++;
+        if (size() != sizeOfMinVertexCover)
+            return false;
 
         // check that mate() uses each vertex at most once
         boolean[] isMatched = new boolean[V];
         for (int v = 0; v < V; v++) {
             int w = mate[v];
-            if (w == -1) continue;
-            if (v == w) return false;
-            if (v >= w) continue;
-            if (isMatched[v] || isMatched[w]) return false;
+            if (w == -1)
+                continue;
+            if (v == w)
+                return false;
+            if (v >= w)
+                continue;
+            if (isMatched[v] || isMatched[w])
+                return false;
             isMatched[v] = true;
             isMatched[w] = true;
         }
 
         // check that mate() uses only edges that appear in the graph
         for (int v = 0; v < V; v++) {
-            if (mate(v) == -1) continue;
+            if (mate(v) == -1)
+                continue;
             boolean isEdge = false;
             for (int w : G.adj(v)) {
-                if (mate(v) == w) isEdge = true;
+                if (mate(v) == w)
+                    isEdge = true;
             }
-            if (!isEdge) return false;
+            if (!isEdge)
+                return false;
         }
 
         // check that inMinVertexCover() is a vertex cover
         for (int v = 0; v < V; v++)
             for (int w : G.adj(v))
-                if (!inMinVertexCover(v) && !inMinVertexCover(w)) return false;
+                if (!inMinVertexCover(v) && !inMinVertexCover(w))
+                    return false;
 
         return true;
     }
 
-    /** 
+    /**
      * Unit tests the {@code HopcroftKarp} data type.   
      * Takes three command-line arguments {@code V1}, {@code V2}, and {@code E};
      * creates a random bipartite graph with {@code V1} + {@code V2} vertices
@@ -362,9 +383,10 @@ public class HopcroftKarp {
 
         int V1 = Integer.parseInt(args[0]);
         int V2 = Integer.parseInt(args[1]);
-        int E  = Integer.parseInt(args[2]);
+        int E = Integer.parseInt(args[2]);
         Graph G = GraphGenerator.bipartite(V1, V2, E);
-        if (G.V() < 1000) StdOut.println(G);
+        if (G.V() < 1000)
+            StdOut.println(G);
 
         HopcroftKarp matching = new HopcroftKarp(G);
 
@@ -374,7 +396,8 @@ public class HopcroftKarp {
         StdOut.printf("Graph has a perfect matching           = %b\n", matching.isPerfect());
         StdOut.println();
 
-        if (G.V() >= 1000) return;
+        if (G.V() >= 1000)
+            return;
 
         StdOut.print("Max matching: ");
         for (int v = 0; v < G.V(); v++) {

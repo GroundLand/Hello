@@ -5,15 +5,14 @@ package importJAVASE.extend;
  */
 public class ABCDTest {
 
-    public Parent getParent(){
+    public Parent getParent() {
         return new Parent();
     }
 
+    public static void main(String args[]) {
 
-    public static void main(String args[]){
-
-       Son son = new Son();
-       son.overrideme();
+        Son son = new Son();
+        son.overrideme();
         System.out.println(son.s);
     }
 

@@ -10,17 +10,17 @@ public class DaemonFromFactory implements Runnable {
         try {
             while (true) {
                 TimeUnit.MILLISECONDS.sleep(100);
-                System.out.println(Thread.currentThread()+" "+this);
+                System.out.println(Thread.currentThread() + " " + this);
             }
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
 
         }
     }
 
-    public static void main(String[] args)  throws Exception{
+    public static void main(String[] args) throws Exception {
         //不指定ThreadFactory,则使用默认的Factory
         ExecutorService exec = Executors.newCachedThreadPool(new DaemonThreadFactory());
-        for (int i=0;i<10;i++)
+        for (int i = 0; i < 10; i++)
             exec.execute(new DaemonFromFactory());
         System.out.println("ll daemons started");
         TimeUnit.MILLISECONDS.sleep(500);

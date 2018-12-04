@@ -13,31 +13,29 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
         this(numbers, 0, numbers.length);
     }
 
-
     public ForkJoinSumCalculator(long[] numbers, int start, int end) {
         this.numbers = numbers;
         this.start = start;
         this.end = end;
     }
 
-
     @Override
     protected Long compute() {
         int length = end - start;
-        if (length<= THRESHOLD){
+        if (length <= THRESHOLD) {
             return computeSequentially();
         }
-        ForkJoinSumCalculator leftTask = new ForkJoinSumCalculator(numbers,start,start+length/2);
+        ForkJoinSumCalculator leftTask = new ForkJoinSumCalculator(numbers, start, start + length / 2);
         leftTask.fork();
-        ForkJoinSumCalculator rightTask = new ForkJoinSumCalculator(numbers,start+length/2,end);
+        ForkJoinSumCalculator rightTask = new ForkJoinSumCalculator(numbers, start + length / 2, end);
         Long rightResult = rightTask.compute();
         Long leftResult = leftTask.join();
-        return rightResult+leftResult;
+        return rightResult + leftResult;
     }
 
-    private long computeSequentially(){
-        long sum=0;
-        for (int i =start; i < end; i++){
+    private long computeSequentially() {
+        long sum = 0;
+        for (int i = start; i < end; i++) {
             sum += numbers[i];
         }
 

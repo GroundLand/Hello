@@ -1,8 +1,5 @@
 package importJAVASE;
 
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -11,12 +8,12 @@ public class Main {
         // TODO Auto-generated method stub
 
         int count = 0;
-        int num =0;
-        for(int i=0; i<=100;i++){
-            num = num+i;
+        int num = 0;
+        for (int i = 0; i <= 100; i++) {
+            num = num + i;
             count = count++;
         }
 
-        System.out.println(count*num);
+        System.out.println(count * num);
     }
 }

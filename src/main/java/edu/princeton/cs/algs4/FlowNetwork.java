@@ -9,7 +9,6 @@
 
 package edu.princeton.cs.algs4;
 
-
 /**
  *  The {@code FlowNetwork} class represents a capacitated network
  *  with vertices named 0 through <em>V</em> - 1, where each directed
@@ -39,14 +38,15 @@ public class FlowNetwork {
     private final int V;
     private int E;
     private Bag<FlowEdge>[] adj;
-    
+
     /**
      * Initializes an empty flow network with {@code V} vertices and 0 edges.
      * @param V the number of vertices
      * @throws IllegalArgumentException if {@code V < 0}
      */
     public FlowNetwork(int V) {
-        if (V < 0) throw new IllegalArgumentException("Number of vertices in a Graph must be nonnegative");
+        if (V < 0)
+            throw new IllegalArgumentException("Number of vertices in a Graph must be nonnegative");
         this.V = V;
         this.E = 0;
         adj = (Bag<FlowEdge>[]) new Bag[V];
@@ -64,7 +64,8 @@ public class FlowNetwork {
      */
     public FlowNetwork(int V, int E) {
         this(V);
-        if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
+        if (E < 0)
+            throw new IllegalArgumentException("Number of edges must be nonnegative");
         for (int i = 0; i < E; i++) {
             int v = StdRandom.uniform(V);
             int w = StdRandom.uniform(V);
@@ -73,7 +74,7 @@ public class FlowNetwork {
         }
     }
 
-    /**  
+    /**
      * Initializes a flow network from an input stream.
      * The format is the number of vertices <em>V</em>,
      * followed by the number of edges <em>E</em>,
@@ -86,7 +87,8 @@ public class FlowNetwork {
     public FlowNetwork(In in) {
         this(in.readInt());
         int E = in.readInt();
-        if (E < 0) throw new IllegalArgumentException("number of edges must be nonnegative");
+        if (E < 0)
+            throw new IllegalArgumentException("number of edges must be nonnegative");
         for (int i = 0; i < E; i++) {
             int v = in.readInt();
             int w = in.readInt();
@@ -96,7 +98,6 @@ public class FlowNetwork {
             addEdge(new FlowEdge(v, w, capacity));
         }
     }
-
 
     /**
      * Returns the number of vertices in the edge-weighted graph.
@@ -117,7 +118,7 @@ public class FlowNetwork {
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
     private void validateVertex(int v) {
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -159,7 +160,6 @@ public class FlowNetwork {
         return list;
     }
 
-
     /**
      * Returns a string representation of the flow network.
      * This method takes time proportional to <em>E</em> + <em>V</em>.
@@ -172,7 +172,8 @@ public class FlowNetwork {
         for (int v = 0; v < V; v++) {
             s.append(v + ":  ");
             for (FlowEdge e : adj[v]) {
-                if (e.to() != v) s.append(e + "  ");
+                if (e.to() != v)
+                    s.append(e + "  ");
             }
             s.append(NEWLINE);
         }

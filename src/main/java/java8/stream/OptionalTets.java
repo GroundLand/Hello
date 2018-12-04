@@ -2,10 +2,7 @@ package java8.stream;
 
 import java8.Car;
 import java8.Person;
-import jdk.nashorn.internal.runtime.regexp.joni.constants.OPCode;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 public class OptionalTets {

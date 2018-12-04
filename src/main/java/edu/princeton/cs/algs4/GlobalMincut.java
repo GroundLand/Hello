@@ -12,7 +12,7 @@
  *  % java GlobalMincut tinyEWG.txt 
  *    Min cut: 5 
  *    Min cut weight = 0.9500000000000001
- *    
+ *
  *  % java GlobalMincut mediumEWG.txt 
  *    Min cut: 25 60 63 96 199 237 
  *    Min cut weight = 0.14021
@@ -54,7 +54,7 @@ package edu.princeton.cs.algs4;
  * <li>M. Stoer and F. Wagner (1997). A simple min-cut algorithm. <em>Journal of
  * the ACM </em>, 44(4):585-591.
  * </ul>
- * 
+ *
  * @author Marcelo Silva
  */
 public class GlobalMincut {
@@ -90,7 +90,7 @@ public class GlobalMincut {
 
     /**
      * Computes a minimum cut of an edge-weighted graph.
-     * 
+     *
      * @param G the edge-weighted graph
      * @throws IllegalArgumentException if the number of vertices of {@code G}
      *             is less than {@code 2} or if anny edge weight is negative
@@ -104,21 +104,23 @@ public class GlobalMincut {
 
     /**
      * Validates the edge-weighted graph.
-     * 
+     *
      * @param G the edge-weighted graph
      * @throws IllegalArgumentException if the number of vertices of {@code G}
      *             is less than {@code 2} or if any edge weight is negative
      */
     private void validate(EdgeWeightedGraph G) {
-        if (G.V() < 2) throw new IllegalArgumentException("number of vertices of G is less than 2");
+        if (G.V() < 2)
+            throw new IllegalArgumentException("number of vertices of G is less than 2");
         for (Edge e : G.edges()) {
-            if (e.weight() < 0) throw new IllegalArgumentException("edge " + e + " has negative weight");
+            if (e.weight() < 0)
+                throw new IllegalArgumentException("edge " + e + " has negative weight");
         }
     }
 
     /**
      * Returns the weight of the minimum cut.
-     * 
+     *
      * @return the weight of the minimum cut
      */
     public double weight() {
@@ -129,7 +131,7 @@ public class GlobalMincut {
      * Returns {@code true} if the vertex {@code v} is on the first subset of
      * vertices of the minimum cut; or {@code false} if the vertex {@code v} is
      * on the second subset.
-     * 
+     *
      * @param v the vertex to check
      * @return {@code true} if the vertex {@code v} is on the first subset of
      *         vertices of the minimum cut; or {@code false} if the vertex
@@ -147,7 +149,7 @@ public class GlobalMincut {
      * of vertices into two nonempty subsets. The vertices connected to the
      * vertex {@code t} belong to the first subset. Other vertices not connected
      * to {@code t} belong to the second subset.
-     * 
+     *
      * @param t the vertex {@code t}
      * @param uf the union-find data type
      */
@@ -161,7 +163,7 @@ public class GlobalMincut {
      * Computes a minimum cut of the edge-weighted graph. Precisely, it computes
      * the lightest of the cuts-of-the-phase which yields the desired minimum
      * cut.
-     * 
+     *
      * @param G the edge-weighted graph
      * @param a the starting vertex
      */
@@ -187,7 +189,7 @@ public class GlobalMincut {
      * in the current graph, where {@code s} and {@code t} are the two vertices
      * added last in the phase. This algorithm is known in the literature as
      * <em>maximum adjacency search</em> or <em>maximum cardinality search</em>.
-     * 
+     *
      * @param G the edge-weighted graph
      * @param marked the array of contracted vertices, where {@code marked[v]}
      *            is {@code true} if the vertex {@code v} was already
@@ -198,7 +200,8 @@ public class GlobalMincut {
     private CutPhase minCutPhase(EdgeWeightedGraph G, boolean[] marked, CutPhase cp) {
         IndexMaxPQ<Double> pq = new IndexMaxPQ<Double>(G.V());
         for (int v = 0; v < G.V(); v++) {
-            if (v != cp.s && !marked[v]) pq.insert(v, 0.0);
+            if (v != cp.s && !marked[v])
+                pq.insert(v, 0.0);
         }
         pq.insert(cp.s, Double.POSITIVE_INFINITY);
         while (!pq.isEmpty()) {
@@ -207,7 +210,8 @@ public class GlobalMincut {
             cp.t = v;
             for (Edge e : G.adj(v)) {
                 int w = e.other(v);
-                if (pq.contains(w)) pq.increaseKey(w, pq.keyOf(w) + e.weight());
+                if (pq.contains(w))
+                    pq.increaseKey(w, pq.keyOf(w) + e.weight());
             }
         }
         cp.weight = 0.0;
@@ -220,7 +224,7 @@ public class GlobalMincut {
     /**
      * Contracts the edges incidents on the vertices {@code s} and {@code t} of
      * the given edge-weighted graph.
-     * 
+     *
      * @param G the edge-weighted graph
      * @param s the vertex {@code s}
      * @param t the vertex {@code t}
@@ -232,11 +236,15 @@ public class GlobalMincut {
         for (int v = 0; v < G.V(); v++) {
             for (Edge e : G.adj(v)) {
                 int w = e.other(v);
-                if (v == s && w == t || v == t && w == s) continue;
+                if (v == s && w == t || v == t && w == s)
+                    continue;
                 if (v < w) {
-                    if (w == t)      H.addEdge(new Edge(v, s, e.weight()));
-                    else if (v == t) H.addEdge(new Edge(w, s, e.weight()));
-                    else             H.addEdge(new Edge(v, w, e.weight()));
+                    if (w == t)
+                        H.addEdge(new Edge(v, s, e.weight()));
+                    else if (v == t)
+                        H.addEdge(new Edge(w, s, e.weight()));
+                    else
+                        H.addEdge(new Edge(v, w, e.weight()));
                 }
             }
         }
@@ -245,7 +253,7 @@ public class GlobalMincut {
 
     /**
      * Checks optimality conditions.
-     * 
+     *
      * @param G the edge-weighted graph
      * @return {@code true} if optimality conditions are fine
      */
@@ -275,13 +283,12 @@ public class GlobalMincut {
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
     private void validateVertex(int v) {
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
-
 
     /**
      * Unit tests the {@code GlobalMincut} data type.
-     * 
+     *
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
@@ -290,7 +297,8 @@ public class GlobalMincut {
         GlobalMincut mc = new GlobalMincut(G);
         StdOut.print("Min cut: ");
         for (int v = 0; v < G.V(); v++) {
-            if (mc.cut(v)) StdOut.print(v + " ");
+            if (mc.cut(v))
+                StdOut.print(v + " ");
         }
         StdOut.println();
         StdOut.println("Min cut weight = " + mc.weight());

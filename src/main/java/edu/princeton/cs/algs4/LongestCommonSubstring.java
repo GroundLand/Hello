@@ -4,10 +4,10 @@
  *  Dependencies: SuffixArray.java In.java StdOut.java
  *  Data files:   https://algs4.cs.princeton.edu/63suffix/tale.txt
  *                https://algs4.cs.princeton.edu/63suffix/mobydick.txt
- *  
+ *
  *  Read in two text files and find the longest substring that
  *  appears in both texts.
- * 
+ *
  *  % java LongestCommonSubstring tale.txt mobydick.txt
  *  ' seemed on the point of being '
  *
@@ -29,14 +29,15 @@ package edu.princeton.cs.algs4;
  *  see <a href="https://algs4.cs.princeton.edu/63suffix">Section 6.3</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *  <p>
- *     
+ *
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
 public class LongestCommonSubstring {
 
     // Do not instantiate.
-    private LongestCommonSubstring() { }
+    private LongestCommonSubstring() {
+    }
 
     // return the longest common prefix of suffix s[p..] and suffix t[q..]
     private static String lcp(String s, int p, String t, int q) {
@@ -53,11 +54,14 @@ public class LongestCommonSubstring {
         int n = Math.min(s.length() - p, t.length() - q);
         for (int i = 0; i < n; i++) {
             if (s.charAt(p + i) != t.charAt(q + i))
-                return s.charAt(p+i) - t.charAt(q+i);
+                return s.charAt(p + i) - t.charAt(q + i);
         }
-        if      (s.length() - p < t.length() - q) return -1;
-        else if (s.length() - p > t.length() - q) return +1;
-        else                                      return  0;
+        if (s.length() - p < t.length() - q)
+            return -1;
+        else if (s.length() - p > t.length() - q)
+            return +1;
+        else
+            return 0;
     }
 
     /**
@@ -80,9 +84,12 @@ public class LongestCommonSubstring {
             int p = suffix1.index(i);
             int q = suffix2.index(j);
             String x = lcp(s, p, t, q);
-            if (x.length() > lcs.length()) lcs = x;
-            if (compare(s, p, t, q) < 0) i++;
-            else                         j++;
+            if (x.length() > lcs.length())
+                lcs = x;
+            if (compare(s, p, t, q) < 0)
+                i++;
+            else
+                j++;
         }
         return lcs;
     }
@@ -103,7 +110,6 @@ public class LongestCommonSubstring {
         StdOut.println("'" + lcs(s, t) + "'");
     }
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

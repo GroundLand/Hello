@@ -18,5 +18,9 @@ public class ShareCount {
         return (count = ++temp);
     }
 
-    public synchronized int value(){return count;};
+    public synchronized int value() {
+        return count;
+    }
+
+    ;
 }

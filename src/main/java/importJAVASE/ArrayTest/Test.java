@@ -1,9 +1,6 @@
 package importJAVASE.ArrayTest;
 
 import com.google.common.collect.Lists;
-import edu.princeton.cs.algs4.BinarySearch;
-import edu.princeton.cs.algs4.In;
-import org.apache.shiro.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,14 +11,14 @@ import java.util.List;
 public class Test {
 
     public static void main(String args[]) {
-        char chars2D[][] = {{'X', 'X', 'X', 'X'}, {'X', 'O', 'O', 'O'}, {'X', 'X', 'O', 'X'}, {'X', 'X', 'O', 'X'}};
+        char chars2D[][] = { { 'X', 'X', 'X', 'X' }, { 'X', 'O', 'O', 'O' }, { 'X', 'X', 'O', 'X' }, { 'X', 'X', 'O', 'X' } };
         printArray(chars2D);
         solve(chars2D);
         printArray(chars2D);
 
-        int[] array = {2,2,2};
-        Integer[] integers = findLocation(array,2);
-        for (Integer i:integers){
+        int[] array = { 2, 2, 2 };
+        Integer[] integers = findLocation(array, 2);
+        for (Integer i : integers) {
             System.out.println(i);
         }
 
@@ -33,20 +30,20 @@ public class Test {
 
     public static Integer[] findLocation(int[] array, int target) {
         //二分查找
-       int index = Arrays.binarySearch(array,target);
-       int start = index;
-       int end = index;
-       List<Integer> list = Lists.newArrayList();
-       //往前找
-       while (start>0&&array[--start]==target)
-           list.add(start);
-       //添加
-       list.add(index);
-       //往后找
-       while (end<array.length-1 && array[++end]==target){
-           list.add(end);
-       }
-       return list.toArray(new Integer[list.size()]);
+        int index = Arrays.binarySearch(array, target);
+        int start = index;
+        int end = index;
+        List<Integer> list = Lists.newArrayList();
+        //往前找
+        while (start > 0 && array[--start] == target)
+            list.add(start);
+        //添加
+        list.add(index);
+        //往后找
+        while (end < array.length - 1 && array[++end] == target) {
+            list.add(end);
+        }
+        return list.toArray(new Integer[list.size()]);
     }
 
     public static void printArray(char[][] chars2D) {

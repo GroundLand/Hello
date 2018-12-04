@@ -31,7 +31,7 @@
  *  % cat tinyDouble1D.txt tinyDouble2D.txt tinyBoolean2D.txt | java StdArrayIO
  *  4
  *    0.00000   0.24600   0.22200  -0.03200 
- *  
+ *
  *  4 3
  *    0.00000   0.27000   0.00000 
  *    0.24600   0.22400  -0.03600 
@@ -47,7 +47,6 @@
  ******************************************************************************/
 
 package edu.princeton.cs.algs4;
-
 
 /**
  *  <i>Standard array IO</i>. This class provides methods for reading
@@ -65,7 +64,8 @@ package edu.princeton.cs.algs4;
 public class StdArrayIO {
 
     // it doesn't make sense to instantiate this class
-    private StdArrayIO() { }
+    private StdArrayIO() {
+    }
 
     /**
      * Reads a 1D array of doubles from standard input and returns it.
@@ -95,7 +95,6 @@ public class StdArrayIO {
         StdOut.println();
     }
 
-        
     /**
      * Reads a 2D array of doubles from standard input and returns it.
      *
@@ -130,7 +129,6 @@ public class StdArrayIO {
         }
     }
 
-
     /**
      * Reads a 1D array of integers from standard input and returns it.
      *
@@ -159,7 +157,6 @@ public class StdArrayIO {
         StdOut.println();
     }
 
-        
     /**
      * Reads a 2D array of integers from standard input and returns it.
      *
@@ -194,7 +191,6 @@ public class StdArrayIO {
         }
     }
 
-
     /**
      * Reads a 1D array of booleans from standard input and returns it.
      *
@@ -218,8 +214,10 @@ public class StdArrayIO {
         int n = a.length;
         StdOut.println(n);
         for (int i = 0; i < n; i++) {
-            if (a[i]) StdOut.print("1 ");
-            else      StdOut.print("0 ");
+            if (a[i])
+                StdOut.print("1 ");
+            else
+                StdOut.print("0 ");
         }
         StdOut.println();
     }
@@ -241,7 +239,7 @@ public class StdArrayIO {
         return a;
     }
 
-   /**
+    /**
      * Prints a 2D array of booleans to standard output.
      *
      * @param a the 2D array of booleans
@@ -252,15 +250,16 @@ public class StdArrayIO {
         StdOut.println(m + " " + n);
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (a[i][j]) StdOut.print("1 ");
-                else         StdOut.print("0 ");
+                if (a[i][j])
+                    StdOut.print("1 ");
+                else
+                    StdOut.print("0 ");
             }
             StdOut.println();
         }
     }
 
-
-   /**
+    /**
      * Unit tests {@code StdArrayIO}.
      *
      * @param args the command-line arguments

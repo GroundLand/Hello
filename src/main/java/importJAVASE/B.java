@@ -2,7 +2,7 @@ package importJAVASE; /**
  * Created by Administrator on 2017/3/7 0007.
  */
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
 
 class B {
     public static void main(String args[]) {
@@ -32,6 +32,5 @@ class B {
             e.printStackTrace();
         }
     }
-
 
 }

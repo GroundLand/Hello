@@ -6,7 +6,7 @@
  *
  *  A generic stack, implemented using a linked list. Each stack
  *  element is of type Item.
- *  
+ *
  *  % more tobe.txt 
  *  to be or not to - be - - that - - - is
  *
@@ -19,7 +19,6 @@ package edu.princeton.cs.algs4;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 
 /**
  *  The {@code LinkedStack} class represents a last-in-first-out (LIFO) stack of
@@ -94,7 +93,8 @@ public class LinkedStack<Item> implements Iterable<Item> {
      * @throws NoSuchElementException if this stack is empty
      */
     public Item pop() {
-        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        if (isEmpty())
+            throw new NoSuchElementException("Stack underflow");
         Item item = first.item;        // save item to return
         first = first.next;            // delete first node
         n--;
@@ -102,14 +102,14 @@ public class LinkedStack<Item> implements Iterable<Item> {
         return item;                   // return the saved item
     }
 
-
     /**
      * Returns (but does not remove) the item most recently added to this stack.
      * @return the item most recently added to this stack
      * @throws NoSuchElementException if this stack is empty
      */
     public Item peek() {
-        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        if (isEmpty())
+            throw new NoSuchElementException("Stack underflow");
         return first.item;
     }
 
@@ -123,7 +123,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
             s.append(item + " ");
         return s.toString();
     }
-       
+
     /**
      * Returns an iterator to this stack that iterates through the items in LIFO order.
      * @return an iterator to this stack that iterates through the items in LIFO order.
@@ -135,17 +135,23 @@ public class LinkedStack<Item> implements Iterable<Item> {
     // an iterator, doesn't implement remove() since it's optional
     private class ListIterator implements Iterator<Item> {
         private Node current = first;
-        public boolean hasNext()  { return current != null;                     }
-        public void remove()      { throw new UnsupportedOperationException();  }
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
 
         public Item next() {
-            if (!hasNext()) throw new NoSuchElementException();
+            if (!hasNext())
+                throw new NoSuchElementException();
             Item item = current.item;
-            current = current.next; 
+            current = current.next;
             return item;
         }
     }
-
 
     // check internal invariants
     private boolean check() {
@@ -155,15 +161,18 @@ public class LinkedStack<Item> implements Iterable<Item> {
             return false;
         }
         if (n == 0) {
-            if (first != null) return false;
-        }
-        else if (n == 1) {
-            if (first == null)      return false;
-            if (first.next != null) return false;
-        }
-        else {
-            if (first == null)      return false;
-            if (first.next == null) return false;
+            if (first != null)
+                return false;
+        } else if (n == 1) {
+            if (first == null)
+                return false;
+            if (first.next != null)
+                return false;
+        } else {
+            if (first == null)
+                return false;
+            if (first.next == null)
+                return false;
         }
 
         // check internal consistency of instance variable n
@@ -171,7 +180,8 @@ public class LinkedStack<Item> implements Iterable<Item> {
         for (Node x = first; x != null && numberOfNodes <= n; x = x.next) {
             numberOfNodes++;
         }
-        if (numberOfNodes != n) return false;
+        if (numberOfNodes != n)
+            return false;
 
         return true;
     }
@@ -193,7 +203,6 @@ public class LinkedStack<Item> implements Iterable<Item> {
         StdOut.println("(" + stack.size() + " left on stack)");
     }
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

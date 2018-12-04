@@ -9,10 +9,11 @@ import java.util.HashSet;
 public class InstrumentedHashSet<E> extends HashSet<E> {
     private int addCount = 0;
 
-    public InstrumentedHashSet(){}
+    public InstrumentedHashSet() {
+    }
 
-    public InstrumentedHashSet(int initialCapacity, float loadFactor){
-        super(initialCapacity,loadFactor);
+    public InstrumentedHashSet(int initialCapacity, float loadFactor) {
+        super(initialCapacity, loadFactor);
     }
 
     @Override
@@ -27,7 +28,7 @@ public class InstrumentedHashSet<E> extends HashSet<E> {
         return super.addAll(c);
     }
 
-    public int getAddCount(){
+    public int getAddCount() {
         return addCount;
     }
 }

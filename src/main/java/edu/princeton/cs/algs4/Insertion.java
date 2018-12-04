@@ -4,7 +4,7 @@
  *  Dependencies: StdOut.java StdIn.java
  *  Data files:   https://algs4.cs.princeton.edu/21elementary/tiny.txt
  *                https://algs4.cs.princeton.edu/21elementary/words3.txt
- *  
+ *
  *  Sorts a sequence of strings from standard input using insertion sort.
  *
  *  % more tiny.txt
@@ -49,7 +49,8 @@ import java.util.Comparator;
 public class Insertion {
 
     // This class should not be instantiated.
-    private Insertion() { }
+    private Insertion() {
+    }
 
     /**
      * Rearranges the array in ascending order, using the natural order.
@@ -58,8 +59,8 @@ public class Insertion {
     public static void sort(Comparable[] a) {
         int n = a.length;
         for (int i = 0; i < n; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j-1]); j--) {
-                exch(a, j, j-1);
+            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
+                exch(a, j, j - 1);
             }
             assert isSorted(a, 0, i);
         }
@@ -74,8 +75,8 @@ public class Insertion {
      */
     public static void sort(Comparable[] a, int lo, int hi) {
         for (int i = lo; i < hi; i++) {
-            for (int j = i; j > lo && less(a[j], a[j-1]); j--) {
-                exch(a, j, j-1);
+            for (int j = i; j > lo && less(a[j], a[j - 1]); j--) {
+                exch(a, j, j - 1);
             }
         }
         assert isSorted(a, lo, hi);
@@ -89,8 +90,8 @@ public class Insertion {
     public static void sort(Object[] a, Comparator comparator) {
         int n = a.length;
         for (int i = 0; i < n; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j-1], comparator); j--) {
-                exch(a, j, j-1);
+            for (int j = i; j > 0 && less(a[j], a[j - 1], comparator); j--) {
+                exch(a, j, j - 1);
             }
             assert isSorted(a, 0, i, comparator);
         }
@@ -106,16 +107,16 @@ public class Insertion {
      */
     public static void sort(Object[] a, int lo, int hi, Comparator comparator) {
         for (int i = lo; i < hi; i++) {
-            for (int j = i; j > lo && less(a[j], a[j-1], comparator); j--) {
-                exch(a, j, j-1);
+            for (int j = i; j > lo && less(a[j], a[j - 1], comparator); j--) {
+                exch(a, j, j - 1);
             }
         }
         assert isSorted(a, lo, hi, comparator);
     }
 
-
     // return a permutation that gives the elements in a[] in ascending order
     // do not change the original array a[]
+
     /**
      * Returns a permutation that gives the elements in the array in ascending order.
      * @param a the array
@@ -129,16 +130,16 @@ public class Insertion {
             index[i] = i;
 
         for (int i = 0; i < n; i++)
-            for (int j = i; j > 0 && less(a[index[j]], a[index[j-1]]); j--)
-                exch(index, j, j-1);
+            for (int j = i; j > 0 && less(a[index[j]], a[index[j - 1]]); j--)
+                exch(index, j, j - 1);
 
         return index;
     }
 
-   /***************************************************************************
-    *  Helper sorting functions.
-    ***************************************************************************/
-    
+    /***************************************************************************
+     *  Helper sorting functions.
+     ***************************************************************************/
+
     // is v < w ?
     private static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
@@ -148,7 +149,7 @@ public class Insertion {
     private static boolean less(Object v, Object w, Comparator comparator) {
         return comparator.compare(v, w) < 0;
     }
-        
+
     // exchange a[i] and a[j]
     private static void exch(Object[] a, int i, int j) {
         Object swap = a[i];
@@ -163,17 +164,18 @@ public class Insertion {
         a[j] = swap;
     }
 
-   /***************************************************************************
-    *  Check if array is sorted - useful for debugging.
-    ***************************************************************************/
+    /***************************************************************************
+     *  Check if array is sorted - useful for debugging.
+     ***************************************************************************/
     private static boolean isSorted(Comparable[] a) {
         return isSorted(a, 0, a.length);
     }
 
     // is the array a[lo..hi) sorted
     private static boolean isSorted(Comparable[] a, int lo, int hi) {
-        for (int i = lo+1; i < hi; i++)
-            if (less(a[i], a[i-1])) return false;
+        for (int i = lo + 1; i < hi; i++)
+            if (less(a[i], a[i - 1]))
+                return false;
         return true;
     }
 
@@ -183,12 +185,13 @@ public class Insertion {
 
     // is the array a[lo..hi) sorted
     private static boolean isSorted(Object[] a, int lo, int hi, Comparator comparator) {
-        for (int i = lo+1; i < hi; i++)
-            if (less(a[i], a[i-1], comparator)) return false;
+        for (int i = lo + 1; i < hi; i++)
+            if (less(a[i], a[i - 1], comparator))
+                return false;
         return true;
     }
 
-   // print array to standard output
+    // print array to standard output
     public static void show(Comparable[] a) {
         for (int i = 0; i < a.length; i++) {
             StdOut.println(a[i]);

@@ -1,16 +1,14 @@
 package importJAVASE.io;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.StringReader;
 
 /**
  * Created by Administrator on 2017/6/8 0008.
  */
 public class BasicFileOutput {
     static String file = "BasicFileOutput.out";
-    public static void main(String args[]) throws IOException{
+
+    public static void main(String args[]) throws IOException {
         String string = "127025483_429.txt   127092784_121.txt  127229888_3.txt    127613093_1.txt    13872201_957.txt  14023747_1.txt    200006_992.txt       24982422398_1369.txt     601245_1492.txt  io.txt\n"
                 + "127037971_432.txt   127110147_605.txt  127239371_311.txt  127789890_501.txt  13881053_403.txt  14024308_264.txt  200179_1593.txt      25033311057_2.txt        625897_517.txt\n"
                 + "127046672_520.txt   127115466_186.txt  127300329_338.txt  127822735_99.txt   13943280_296.txt  14049678_216.txt  23854007135_183.txt  300188_2887.txt          8130652_382.txt\n"

@@ -5,7 +5,8 @@ package importJAVASE.test;
  */
 public abstract class AbstractTest {
     private static String str = "Hello world";
-    public static String test(){
+
+    public static String test() {
         return str;
     }
 }

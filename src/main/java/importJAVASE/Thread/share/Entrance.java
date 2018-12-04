@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Entrance implements Runnable{
+public class Entrance implements Runnable {
     private static ShareCount count = new ShareCount();
     private static List<Entrance> entrances = new ArrayList<>();
     private int number = 0;
@@ -14,19 +14,21 @@ public class Entrance implements Runnable{
     //此处设置为volatile是因为while循环
     private static volatile boolean cancled = false;
 
-    public static void cancel(){cancled=true;}
+    public static void cancel() {
+        cancled = true;
+    }
 
-    public Entrance(int id){
+    public Entrance(int id) {
         this.id = id;
         entrances.add(this);
     }
 
     @Override
     public void run() {
-        while (!cancled){
-            synchronized (this){
+        while (!cancled) {
+            synchronized (this) {
                 ++number;
-                System.out.println(this+" Total:"+count.increment());
+                System.out.println(this + " Total:" + count.increment());
             }
 
             try {
@@ -35,24 +37,26 @@ public class Entrance implements Runnable{
                 e.printStackTrace();
             }
         }
-        System.out.println("Stopping "+this);
+        System.out.println("Stopping " + this);
 
     }
 
-    public synchronized int getValue(){return number;}
+    public synchronized int getValue() {
+        return number;
+    }
 
     @Override
     public String toString() {
-        return "Entance "+id +": "+getValue();
+        return "Entance " + id + ": " + getValue();
     }
 
-    public static int getTotalCount(){
+    public static int getTotalCount() {
         return count.value();
     }
 
-    public static int sumEntrances(){
-        int sum =0;
-        for (Entrance entrance:entrances)
+    public static int sumEntrances() {
+        int sum = 0;
+        for (Entrance entrance : entrances)
             sum += entrance.getValue();
         return sum;
     }

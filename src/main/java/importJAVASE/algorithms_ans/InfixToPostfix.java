@@ -1,6 +1,5 @@
 package importJAVASE.algorithms_ans;
 
-import com.google.common.base.Strings;
 import edu.princeton.cs.algs4.Stack;
 
 /**
@@ -8,7 +7,8 @@ import edu.princeton.cs.algs4.Stack;
  */
 public class InfixToPostfix {
     private boolean isDigitl(char c) {
-        if (c >= '0' && c <= '9') return true;
+        if (c >= '0' && c <= '9')
+            return true;
         return false;
     }
 
@@ -42,7 +42,7 @@ public class InfixToPostfix {
         Stack<Character> opreStack = new Stack();
 
         opreStack.push('#');
-        for(char expre:expres){
+        for (char expre : expres) {
 
             if (isDigitl(expre)) {
                 dataStack.push(expre);
@@ -63,7 +63,7 @@ public class InfixToPostfix {
             i++;
         }
 
-        while (opreStack.peek()!='#') {
+        while (opreStack.peek() != '#') {
             dataStack.push(opreStack.pop());
         }
         opreStack.pop();
@@ -78,20 +78,27 @@ public class InfixToPostfix {
         return str;
     }
 
-    public void evaluePostinfox(char[] suffixs){
+    public void evaluePostinfox(char[] suffixs) {
         Stack<Integer> stack = new Stack<>();
-        for(char suff:suffixs){
-            if (isDigitl(suff)){
+        for (char suff : suffixs) {
+            if (isDigitl(suff)) {
                 stack.push(Character.getNumericValue(suff));
-            }
-            else if (isOpera(suff)){
+            } else if (isOpera(suff)) {
                 int passive = stack.pop();
                 int positive = stack.pop();
-                switch (suff){
-                    case '+':stack.push(positive+passive);continue;
-                    case '-':stack.push(positive-passive);continue;
-                    case '*':stack.push(positive*passive);continue;
-                    case '/':stack.push(positive/passive);continue;
+                switch (suff) {
+                    case '+':
+                        stack.push(positive + passive);
+                        continue;
+                    case '-':
+                        stack.push(positive - passive);
+                        continue;
+                    case '*':
+                        stack.push(positive * passive);
+                        continue;
+                    case '/':
+                        stack.push(positive / passive);
+                        continue;
                 }
             }
         }

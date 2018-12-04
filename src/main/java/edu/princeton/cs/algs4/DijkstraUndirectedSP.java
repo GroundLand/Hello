@@ -36,7 +36,6 @@
 
 package edu.princeton.cs.algs4;
 
-
 /**
  *  The {@code DijkstraUndirectedSP} class represents a data type for solving
  *  the single-source shortest paths problem in edge-weighted graphs
@@ -106,8 +105,10 @@ public class DijkstraUndirectedSP {
         if (distTo[w] > distTo[v] + e.weight()) {
             distTo[w] = distTo[v] + e.weight();
             edgeTo[w] = e;
-            if (pq.contains(w)) pq.decreaseKey(w, distTo[w]);
-            else                pq.insert(w, distTo[w]);
+            if (pq.contains(w))
+                pq.decreaseKey(w, distTo[w]);
+            else
+                pq.insert(w, distTo[w]);
         }
     }
 
@@ -149,7 +150,8 @@ public class DijkstraUndirectedSP {
      */
     public Iterable<Edge> pathTo(int v) {
         validateVertex(v);
-        if (!hasPathTo(v)) return null;
+        if (!hasPathTo(v))
+            return null;
         Stack<Edge> path = new Stack<Edge>();
         int x = v;
         for (Edge e = edgeTo[v]; e != null; e = edgeTo[x]) {
@@ -158,7 +160,6 @@ public class DijkstraUndirectedSP {
         }
         return path;
     }
-
 
     // check optimality conditions:
     // (i) for all edges e = v-w:            distTo[w] <= distTo[v] + e.weight()
@@ -179,7 +180,8 @@ public class DijkstraUndirectedSP {
             return false;
         }
         for (int v = 0; v < G.V(); v++) {
-            if (v == s) continue;
+            if (v == s)
+                continue;
             if (edgeTo[v] == null && distTo[v] != Double.POSITIVE_INFINITY) {
                 System.err.println("distTo[] and edgeTo[] inconsistent");
                 return false;
@@ -199,9 +201,11 @@ public class DijkstraUndirectedSP {
 
         // check that all edges e = v-w on SPT satisfy distTo[w] == distTo[v] + e.weight()
         for (int w = 0; w < G.V(); w++) {
-            if (edgeTo[w] == null) continue;
+            if (edgeTo[w] == null)
+                continue;
             Edge e = edgeTo[w];
-            if (w != e.either() && w != e.other(e.either())) return false;
+            if (w != e.either() && w != e.other(e.either()))
+                return false;
             int v = e.other(w);
             if (distTo[v] + e.weight() != distTo[w]) {
                 System.err.println("edge " + e + " on shortest path not tight");
@@ -215,7 +219,7 @@ public class DijkstraUndirectedSP {
     private void validateVertex(int v) {
         int V = distTo.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -231,7 +235,6 @@ public class DijkstraUndirectedSP {
         // compute shortest paths
         DijkstraUndirectedSP sp = new DijkstraUndirectedSP(G, s);
 
-
         // print shortest path
         for (int t = 0; t < G.V(); t++) {
             if (sp.hasPathTo(t)) {
@@ -240,8 +243,7 @@ public class DijkstraUndirectedSP {
                     StdOut.print(e + "   ");
                 }
                 StdOut.println();
-            }
-            else {
+            } else {
                 StdOut.printf("%d to %d         no path\n", s, t);
             }
         }

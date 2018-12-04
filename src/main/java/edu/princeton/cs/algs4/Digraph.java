@@ -24,7 +24,7 @@
  *  10: 12 
  *  11: 4 12 
  *  12: 9 
- *  
+ *
  ******************************************************************************/
 
 package edu.princeton.cs.algs4;
@@ -59,7 +59,7 @@ public class Digraph {
     private int E;                 // number of edges in this digraph
     private Bag<Integer>[] adj;    // adj[v] = adjacency list for vertex v
     private int[] indegree;        // indegree[v] = indegree of vertex v
-    
+
     /**
      * Initializes an empty digraph with <em>V</em> vertices.
      *
@@ -67,7 +67,8 @@ public class Digraph {
      * @throws IllegalArgumentException if {@code V < 0}
      */
     public Digraph(int V) {
-        if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
+        if (V < 0)
+            throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
         this.V = V;
         this.E = 0;
         indegree = new int[V];
@@ -77,7 +78,7 @@ public class Digraph {
         }
     }
 
-    /**  
+    /**
      * Initializes a digraph from the specified input stream.
      * The format is the number of vertices <em>V</em>,
      * followed by the number of edges <em>E</em>,
@@ -91,21 +92,22 @@ public class Digraph {
     public Digraph(In in) {
         try {
             this.V = in.readInt();
-            if (V < 0) throw new IllegalArgumentException("number of vertices in a Digraph must be nonnegative");
+            if (V < 0)
+                throw new IllegalArgumentException("number of vertices in a Digraph must be nonnegative");
             indegree = new int[V];
             adj = (Bag<Integer>[]) new Bag[V];
             for (int v = 0; v < V; v++) {
                 adj[v] = new Bag<Integer>();
             }
             int E = in.readInt();
-            if (E < 0) throw new IllegalArgumentException("number of edges in a Digraph must be nonnegative");
+            if (E < 0)
+                throw new IllegalArgumentException("number of edges in a Digraph must be nonnegative");
             for (int i = 0; i < E; i++) {
                 int v = in.readInt();
                 int w = in.readInt();
-                addEdge(v, w); 
+                addEdge(v, w);
             }
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new IllegalArgumentException("invalid input format in Digraph constructor", e);
         }
     }
@@ -131,7 +133,7 @@ public class Digraph {
             }
         }
     }
-        
+
     /**
      * Returns the number of vertices in this digraph.
      *
@@ -150,11 +152,10 @@ public class Digraph {
         return E;
     }
 
-
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
     private void validateVertex(int v) {
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**

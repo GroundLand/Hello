@@ -17,7 +17,7 @@
  *   10z     = [ 60.0 40.0 70.0 50.0 ]
  *    |x|    = 5.477225575051661
  *   <x, y>  = 25.0
- * 
+ *
  *
  *  Note that Vector is also the name of an unrelated Java library class
  *  in the package java.util.
@@ -40,11 +40,10 @@ package edu.princeton.cs.algs4;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class Vector { 
+public class Vector {
 
     private int d;               // dimension of the vector
     private double[] data;       // array of vector's components
-
 
     /**
      * Initializes a d-dimensional zero vector.
@@ -100,7 +99,8 @@ public class Vector {
      * @throws IllegalArgumentException if the dimensions of the two vectors are not equal
      */
     public double dot(Vector that) {
-        if (this.d != that.d) throw new IllegalArgumentException("Dimensions don't agree");
+        if (this.d != that.d)
+            throw new IllegalArgumentException("Dimensions don't agree");
         double sum = 0.0;
         for (int i = 0; i < d; i++)
             sum = sum + (this.data[i] * that.data[i]);
@@ -125,7 +125,8 @@ public class Vector {
      * @throws IllegalArgumentException if the dimensions of the two vectors are not equal
      */
     public double distanceTo(Vector that) {
-        if (this.d != that.d) throw new IllegalArgumentException("Dimensions don't agree");
+        if (this.d != that.d)
+            throw new IllegalArgumentException("Dimensions don't agree");
         return this.minus(that).magnitude();
     }
 
@@ -137,7 +138,8 @@ public class Vector {
      * @throws IllegalArgumentException if the dimensions of the two vectors are not equal
      */
     public Vector plus(Vector that) {
-        if (this.d != that.d) throw new IllegalArgumentException("Dimensions don't agree");
+        if (this.d != that.d)
+            throw new IllegalArgumentException("Dimensions don't agree");
         Vector c = new Vector(d);
         for (int i = 0; i < d; i++)
             c.data[i] = this.data[i] + that.data[i];
@@ -152,7 +154,8 @@ public class Vector {
      * @throws IllegalArgumentException if the dimensions of the two vectors are not equal
      */
     public Vector minus(Vector that) {
-        if (this.d != that.d) throw new IllegalArgumentException("Dimensions don't agree");
+        if (this.d != that.d)
+            throw new IllegalArgumentException("Dimensions don't agree");
         Vector c = new Vector(d);
         for (int i = 0; i < d; i++)
             c.data[i] = this.data[i] - that.data[i];
@@ -204,10 +207,10 @@ public class Vector {
      * @throws ArithmeticException if this vector is the zero vector
      */
     public Vector direction() {
-        if (this.magnitude() == 0.0) throw new ArithmeticException("Zero-vector has no direction");
+        if (this.magnitude() == 0.0)
+            throw new ArithmeticException("Zero-vector has no direction");
         return this.times(1.0 / this.magnitude());
     }
-
 
     /**
      * Returns a string representation of this vector.

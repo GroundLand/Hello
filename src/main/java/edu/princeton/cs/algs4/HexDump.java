@@ -3,7 +3,7 @@
  *  Execution:    java HexDump < file
  *  Dependencies: BinaryStdIn.java StdOut.java
  *  Data file:    https://algs4.cs.princeton.edu/55compression/abra.txt
- *  
+ *
  *  Reads in a binary file and writes out the bytes in hex, 16 per line.
  *
  *  % more abra.txt
@@ -45,7 +45,8 @@ package edu.princeton.cs.algs4;
 public class HexDump {
 
     // Do not instantiate.
-    private HexDump() { }
+    private HexDump() {
+    }
 
     /**
      * Reads in a sequence of bytes from standard input and writes
@@ -68,14 +69,18 @@ public class HexDump {
                 BinaryStdIn.readChar();
                 continue;
             }
-            if (i == 0) StdOut.printf("");
-            else if (i % bytesPerLine == 0) StdOut.printf("\n", i);
-            else StdOut.print(" ");
+            if (i == 0)
+                StdOut.printf("");
+            else if (i % bytesPerLine == 0)
+                StdOut.printf("\n", i);
+            else
+                StdOut.print(" ");
             char c = BinaryStdIn.readChar();
             StdOut.printf("%02x", c & 0xff);
         }
-        if (bytesPerLine != 0) StdOut.println();
-        StdOut.println((i*8) + " bits");
+        if (bytesPerLine != 0)
+            StdOut.println();
+        StdOut.println((i * 8) + " bits");
     }
 }
 

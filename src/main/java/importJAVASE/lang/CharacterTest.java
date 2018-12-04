@@ -4,7 +4,7 @@ package importJAVASE.lang;
  * Created by evel on 2017/7/18.
  */
 public class CharacterTest {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String str = "Aa";
         char c = str.charAt(0);
         System.out.println(Character.isUpperCase(c));

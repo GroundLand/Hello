@@ -5,7 +5,7 @@ package importJAVASE.annotation;
  * @author cln
  * @version $Id: StateEnum.java v 0.1 18-11-5 下午1:45 cln Exp $$
  */
-public enum StateEnum {
+public enum StateEnum implements EnumInterface {
 
     YES(0, "正确"),
 

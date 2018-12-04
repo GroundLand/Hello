@@ -1,7 +1,5 @@
 package importJAVASE.algorithms_lintcode.codewars;
 
-import java.util.stream.IntStream;
-
 public class LongestConsec {
     public static String longestConsec(String[] strarr, int k) {
         if (strarr.length == 0 || k > strarr.length || k <= 0)

@@ -10,7 +10,7 @@
  *  This version uses a static nested class Node (to save 8 bytes per
  *  Node), whereas the version in the textbook uses a non-static nested
  *  class (for simplicity).
- *  
+ *
  *  % more tobe.txt 
  *  to be or not to - be - - that - - - is
  *
@@ -23,7 +23,6 @@ package edu.princeton.cs.algs4;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 
 /**
  *  The {@code Stack} class represents a last-in-first-out (LIFO) stack of generic items.
@@ -103,13 +102,13 @@ public class Stack<Item> implements Iterable<Item> {
      * @throws NoSuchElementException if this stack is empty
      */
     public Item pop() {
-        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        if (isEmpty())
+            throw new NoSuchElementException("Stack underflow");
         Item item = first.item;        // save item to return
         first = first.next;            // delete first node
         n--;
         return item;                   // return the saved item
     }
-
 
     /**
      * Returns (but does not remove) the item most recently added to this stack.
@@ -118,7 +117,8 @@ public class Stack<Item> implements Iterable<Item> {
      * @throws NoSuchElementException if this stack is empty
      */
     public Item peek() {
-        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        if (isEmpty())
+            throw new NoSuchElementException("Stack underflow");
         return first.item;
     }
 
@@ -136,21 +136,18 @@ public class Stack<Item> implements Iterable<Item> {
         return s.toString();
     }
 
-    private static  <Item>Stack simplyCopy(Stack<Item> stack){
+    private static <Item> Stack simplyCopy(Stack<Item> stack) {
         Stack<Item> result = new Stack<>();
-        for (Item item:stack){
+        for (Item item : stack) {
             result.push(item);
         }
         return result;
     }
 
-
-    public static <Item>Stack copy(Stack<Item> stack){
-        Stack<Item> result =  Stack.simplyCopy(stack);
+    public static <Item> Stack copy(Stack<Item> stack) {
+        Stack<Item> result = Stack.simplyCopy(stack);
         return Stack.simplyCopy(result);
     }
-
-
 
     /**
      * Returns an iterator to this stack that iterates through the items in LIFO order.
@@ -178,9 +175,10 @@ public class Stack<Item> implements Iterable<Item> {
         }
 
         public Item next() {
-            if (!hasNext()) throw new NoSuchElementException();
+            if (!hasNext())
+                throw new NoSuchElementException();
             Item item = current.item;
-            current = current.next; 
+            current = current.next;
             return item;
         }
     }
@@ -194,19 +192,18 @@ public class Stack<Item> implements Iterable<Item> {
         Stack<String> stack = new Stack<>();
         stack.push("12");
         stack.push("34");
-//        while (!StdIn.isEmpty()) {
-//            String item = StdIn.readString();
-//            if (!item.equals("-"))
-//                stack.push(item);
-//            else if (!stack.isEmpty())
-//                StdOut.print(stack.pop() + " ");
-//        }
-//        StdOut.println("(" + stack.size() + " left on stack)");
+        //        while (!StdIn.isEmpty()) {
+        //            String item = StdIn.readString();
+        //            if (!item.equals("-"))
+        //                stack.push(item);
+        //            else if (!stack.isEmpty())
+        //                StdOut.print(stack.pop() + " ");
+        //        }
+        //        StdOut.println("(" + stack.size() + " left on stack)");
         StdOut.println(stack);
         StdOut.println(Stack.copy(stack).toString());
     }
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

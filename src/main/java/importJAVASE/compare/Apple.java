@@ -1,6 +1,6 @@
 package importJAVASE.compare;
 
-public class Apple implements Comparable<Apple>{
+public class Apple implements Comparable<Apple> {
 
     private Integer weight;
 
@@ -28,6 +28,6 @@ public class Apple implements Comparable<Apple>{
     }
 
     public int compareTo(Apple apple) {
-     return weight.compareTo(apple.getWeight());
+        return weight.compareTo(apple.getWeight());
     }
 }

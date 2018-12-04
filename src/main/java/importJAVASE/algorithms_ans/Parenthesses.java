@@ -18,9 +18,12 @@ public class Parenthesses {
                 System.out.println(false);
                 return;
             }
-            if ('}' == c) stack.pop();
-            if (']' == c) stack.pop();
-            if (')' == c) stack.pop();
+            if ('}' == c)
+                stack.pop();
+            if (']' == c)
+                stack.pop();
+            if (')' == c)
+                stack.pop();
 
         }
         //如果此处str为args,则判断该值是否为空

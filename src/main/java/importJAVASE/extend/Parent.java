@@ -6,11 +6,11 @@ package importJAVASE.extend;
 public class Parent {
     public String s = "Parent";
 
-    public Parent(){
+    public Parent() {
         overrideme();
     }
 
-    public void overrideme(){
+    public void overrideme() {
         System.out.println("Parent  overrideme");
-}
+    }
 }

@@ -5,5 +5,6 @@ package importJAVASE.proxy;
  */
 public interface Calculate {
     void doSomething();
+
     void somethingElse(String arg);
 }

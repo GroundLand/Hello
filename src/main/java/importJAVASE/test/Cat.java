@@ -14,8 +14,6 @@ public class Cat implements Cloneable {
 
     private int age;
 
-
-
     public Cat(String name, int age) {
         this.name = name;
         this.age = age;
@@ -44,6 +42,6 @@ public class Cat implements Cloneable {
 
     @Override
     public String toString() {
-        return "姓名为："+this.name+"     年龄为："+age;
+        return "姓名为：" + this.name + "     年龄为：" + age;
     }
 }

@@ -85,7 +85,7 @@ public class TransitiveClosure {
     private void validateVertex(int v) {
         int V = tc.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -110,8 +110,10 @@ public class TransitiveClosure {
         for (int v = 0; v < G.V(); v++) {
             StdOut.printf("%3d: ", v);
             for (int w = 0; w < G.V(); w++) {
-                if (tc.reachable(v, w)) StdOut.printf("  T");
-                else                    StdOut.printf("   ");
+                if (tc.reachable(v, w))
+                    StdOut.printf("  T");
+                else
+                    StdOut.printf("   ");
             }
             StdOut.println();
         }

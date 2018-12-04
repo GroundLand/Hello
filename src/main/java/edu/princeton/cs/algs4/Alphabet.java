@@ -2,7 +2,7 @@
  *  Compilation:  javac Alphabet.java
  *  Execution:    java Alphabet
  *  Dependencies: StdOut.java
- *  
+ *
  *  A data type for alphabets, for use with string-processing code
  *  that must convert between an alphabet of size R and the integers
  *  0 through R-1.
@@ -75,8 +75,7 @@ public class Alphabet {
     /**
      *  The Unicode 16 alphabet (0-65,535).
      */
-    public static final Alphabet UNICODE16      = new Alphabet(65536);
-
+    public static final Alphabet UNICODE16 = new Alphabet(65536);
 
     private char[] alphabet;     // the characters in the alphabet
     private int[] inverse;       // indices
@@ -146,7 +145,7 @@ public class Alphabet {
 
     /**
      * Returns the number of characters in this alphabet (the radix).
-     * 
+     *
      * @return the number of characters in this alphabet
      * @deprecated Replaced by {@link #radix()}.
      */
@@ -157,7 +156,7 @@ public class Alphabet {
 
     /**
      * Returns the number of characters in this alphabet (the radix).
-     * 
+     *
      * @return the number of characters in this alphabet
      */
     public int radix() {
@@ -166,19 +165,19 @@ public class Alphabet {
 
     /**
      * Returns the binary logarithm of the number of characters in this alphabet.
-     * 
+     *
      * @return the binary logarithm (rounded up) of the number of characters in this alphabet
      */
     public int lgR() {
         int lgR = 0;
-        for (int t = R-1; t >= 1; t /= 2)
+        for (int t = R - 1; t >= 1; t /= 2)
             lgR++;
         return lgR;
     }
 
     /**
      * Returns the index corresponding to the argument character.
-     * 
+     *
      * @param  c the character
      * @return the index corresponding to the character {@code c}
      * @throws IllegalArgumentException unless {@code c} is a character in this alphabet
@@ -192,7 +191,7 @@ public class Alphabet {
 
     /**
      * Returns the indices corresponding to the argument characters.
-     * 
+     *
      * @param  s the characters
      * @return the indices corresponding to the characters {@code s}
      * @throws IllegalArgumentException unless every character in {@code s}
@@ -200,7 +199,7 @@ public class Alphabet {
      */
     public int[] toIndices(String s) {
         char[] source = s.toCharArray();
-        int[] target  = new int[s.length()];
+        int[] target = new int[s.length()];
         for (int i = 0; i < source.length; i++)
             target[i] = toIndex(source[i]);
         return target;
@@ -208,7 +207,7 @@ public class Alphabet {
 
     /**
      * Returns the character corresponding to the argument index.
-     * 
+     *
      * @param  index the index
      * @return the character corresponding to the index {@code index}
      * @throws IllegalArgumentException unless {@code 0 <= index < R}
@@ -222,7 +221,7 @@ public class Alphabet {
 
     /**
      * Returns the characters corresponding to the argument indices.
-     * 
+     *
      * @param  indices the indices
      * @return the characters corresponding to the indices {@code indices}
      * @throws IllegalArgumentException unless {@code 0 < indices[i] < R}
@@ -241,15 +240,15 @@ public class Alphabet {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        int[]  encoded1 = Alphabet.BASE64.toIndices("NowIsTheTimeForAllGoodMen");
+        int[] encoded1 = Alphabet.BASE64.toIndices("NowIsTheTimeForAllGoodMen");
         String decoded1 = Alphabet.BASE64.toChars(encoded1);
         StdOut.println(decoded1);
- 
-        int[]  encoded2 = Alphabet.DNA.toIndices("AACGAACGGTTTACCCCG");
+
+        int[] encoded2 = Alphabet.DNA.toIndices("AACGAACGGTTTACCCCG");
         String decoded2 = Alphabet.DNA.toChars(encoded2);
         StdOut.println(decoded2);
 
-        int[]  encoded3 = Alphabet.DECIMAL.toIndices("01234567890123456789");
+        int[] encoded3 = Alphabet.DECIMAL.toIndices("01234567890123456789");
         String decoded3 = Alphabet.DECIMAL.toChars(encoded3);
         StdOut.println(decoded3);
     }

@@ -44,17 +44,18 @@ package edu.princeton.cs.algs4;
  *  <p>
  *  For additional documentation, see <a href="https://algs4.cs.princeton.edu/35applications">Section 3.5</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- *  
+ *
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class LookupIndex { 
+public class LookupIndex {
 
     // Do not instantiate.
-    private LookupIndex() { }
+    private LookupIndex() {
+    }
 
     public static void main(String[] args) {
-        String filename  = args[0];
+        String filename = args[0];
         String separator = args[1];
         In in = new In(filename);
 
@@ -67,8 +68,10 @@ public class LookupIndex {
             String key = fields[0];
             for (int i = 1; i < fields.length; i++) {
                 String val = fields[i];
-                if (!st.contains(key)) st.put(key, new Queue<String>());
-                if (!ts.contains(val)) ts.put(val, new Queue<String>());
+                if (!st.contains(key))
+                    st.put(key, new Queue<String>());
+                if (!ts.contains(val))
+                    ts.put(val, new Queue<String>());
                 st.get(key).enqueue(val);
                 ts.get(val).enqueue(key);
             }
@@ -79,10 +82,10 @@ public class LookupIndex {
         // read queries from standard input, one per line
         while (!StdIn.isEmpty()) {
             String query = StdIn.readLine();
-            if (st.contains(query)) 
+            if (st.contains(query))
                 for (String vals : st.get(query))
                     StdOut.println("  " + vals);
-            if (ts.contains(query)) 
+            if (ts.contains(query))
                 for (String keys : ts.get(query))
                     StdOut.println("  " + keys);
         }

@@ -4,7 +4,7 @@
  *  Dependencies: Point2D.java
  *  Data files:   https://algs4.cs.princeton.edu/99hull/rs1423.txt
  *                https://algs4.cs.princeton.edu/99hull/kw1260.txt
- * 
+ *
  *  Create points from standard input and compute the convex hull using
  *  Graham scan algorithm.
  *
@@ -27,7 +27,6 @@
 package edu.princeton.cs.algs4;
 
 import java.util.Arrays;
-
 
 /**
  *  The {@code GrahamScan} data type provides methods for computing the 
@@ -55,8 +54,10 @@ public class GrahamScan {
      * @throws IllegalArgumentException if {@code points.length} is {@code 0}
      */
     public GrahamScan(Point2D[] points) {
-        if (points == null) throw new IllegalArgumentException("argument is null");
-        if (points.length == 0) throw new IllegalArgumentException("array is of length 0");
+        if (points == null)
+            throw new IllegalArgumentException("argument is null");
+        if (points.length == 0)
+            throw new IllegalArgumentException("array is of length 0");
 
         // defensive copy
         int n = points.length;
@@ -65,7 +66,7 @@ public class GrahamScan {
             if (points[i] == null)
                 throw new IllegalArgumentException("points[" + i + "] is null");
             a[i] = points[i];
-         }
+        }
 
         // preprocess so that a[0] has lowest y-coordinate; break ties by x-coordinate
         // a[0] is an extreme point of the convex hull
@@ -81,14 +82,17 @@ public class GrahamScan {
         // find index k1 of first point not equal to a[0]
         int k1;
         for (k1 = 1; k1 < n; k1++)
-            if (!a[0].equals(a[k1])) break;
-        if (k1 == n) return;        // all points equal
+            if (!a[0].equals(a[k1]))
+                break;
+        if (k1 == n)
+            return;        // all points equal
 
         // find index k2 of first point not collinear with a[0] and a[k1]
         int k2;
-        for (k2 = k1+1; k2 < n; k2++)
-            if (Point2D.ccw(a[0], a[k1], a[k2]) != 0) break;
-        hull.push(a[k2-1]);    // a[k2-1] is second extreme point
+        for (k2 = k1 + 1; k2 < n; k2++)
+            if (Point2D.ccw(a[0], a[k1], a[k2]) != 0)
+                break;
+        hull.push(a[k2 - 1]);    // a[k2-1] is second extreme point
 
         // Graham scan; note that a[n-1] is extreme point different from a[0]
         for (int i = k2; i < n; i++) {
@@ -110,14 +114,16 @@ public class GrahamScan {
      */
     public Iterable<Point2D> hull() {
         Stack<Point2D> s = new Stack<Point2D>();
-        for (Point2D p : hull) s.push(p);
+        for (Point2D p : hull)
+            s.push(p);
         return s;
     }
 
     // check that boundary of hull is strictly convex
     private boolean isConvex() {
         int n = hull.size();
-        if (n <= 2) return true;
+        if (n <= 2)
+            return true;
 
         Point2D[] points = new Point2D[n];
         int k = 0;
@@ -126,14 +132,14 @@ public class GrahamScan {
         }
 
         for (int i = 0; i < n; i++) {
-            if (Point2D.ccw(points[i], points[(i+1) % n], points[(i+2) % n]) <= 0) {
+            if (Point2D.ccw(points[i], points[(i + 1) % n], points[(i + 2) % n]) <= 0) {
                 return false;
             }
         }
         return true;
     }
 
-   /**
+    /**
      * Unit tests the {@code GrahamScan} data type.
      * Reads in an integer {@code n} and {@code n} points (specified by
      * their <em>x</em>- and <em>y</em>-coordinates) from standard input;

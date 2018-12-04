@@ -34,7 +34,7 @@ package edu.princeton.cs.algs4;
  *  For additional documentation,
  *  see <a href="https://algs4.cs.princeton.edu/41graph">Section 4.1</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- * 
+ *
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  *  @author Nate Liu
@@ -56,25 +56,29 @@ public class EulerianCycle {
 
         // returns the other vertex of the edge
         public int other(int vertex) {
-            if      (vertex == v) return w;
-            else if (vertex == w) return v;
-            else throw new IllegalArgumentException("Illegal endpoint");
+            if (vertex == v)
+                return w;
+            else if (vertex == w)
+                return v;
+            else
+                throw new IllegalArgumentException("Illegal endpoint");
         }
     }
 
     /**
      * Computes an Eulerian cycle in the specified graph, if one exists.
-     * 
+     *
      * @param G the graph
      */
     public EulerianCycle(Graph G) {
 
         // must have at least one edge
-        if (G.E() == 0) return;
+        if (G.E() == 0)
+            return;
 
         // necessary condition: all vertices have even degree
         // (this test is needed or it might find an Eulerian path instead of cycle)
-        for (int v = 0; v < G.V(); v++) 
+        for (int v = 0; v < G.V(); v++)
             if (G.degree(v) % 2 != 0)
                 return;
 
@@ -95,8 +99,7 @@ public class EulerianCycle {
                         adj[w].enqueue(e);
                     }
                     selfLoops++;
-                }
-                else if (v < w) {
+                } else if (v < w) {
                     Edge e = new Edge(v, w);
                     adj[v].enqueue(e);
                     adj[w].enqueue(e);
@@ -115,7 +118,8 @@ public class EulerianCycle {
             int v = stack.pop();
             while (!adj[v].isEmpty()) {
                 Edge edge = adj[v].dequeue();
-                if (edge.isUsed) continue;
+                if (edge.isUsed)
+                    continue;
                 edge.isUsed = true;
                 stack.push(v);
                 v = edge.other(v);
@@ -133,7 +137,7 @@ public class EulerianCycle {
 
     /**
      * Returns the sequence of vertices on an Eulerian cycle.
-     * 
+     *
      * @return the sequence of vertices on an Eulerian cycle;
      *         {@code null} if no such cycle
      */
@@ -143,7 +147,7 @@ public class EulerianCycle {
 
     /**
      * Returns true if the graph has an Eulerian cycle.
-     * 
+     *
      * @return {@code true} if the graph has an Eulerian cycle;
      *         {@code false} otherwise
      */
@@ -173,7 +177,8 @@ public class EulerianCycle {
     private static boolean satisfiesNecessaryAndSufficientConditions(Graph G) {
 
         // Condition 0: at least 1 edge
-        if (G.E() == 0) return false;
+        if (G.E() == 0)
+            return false;
 
         // Condition 1: degree(v) is even for every vertex
         for (int v = 0; v < G.V(); v++)
@@ -194,16 +199,20 @@ public class EulerianCycle {
     private boolean certifySolution(Graph G) {
 
         // internal consistency check
-        if (hasEulerianCycle() == (cycle() == null)) return false;
+        if (hasEulerianCycle() == (cycle() == null))
+            return false;
 
         // hashEulerianCycle() returns correct value
-        if (hasEulerianCycle() != satisfiesNecessaryAndSufficientConditions(G)) return false;
+        if (hasEulerianCycle() != satisfiesNecessaryAndSufficientConditions(G))
+            return false;
 
         // nothing else to check if no Eulerian cycle
-        if (cycle == null) return true;
+        if (cycle == null)
+            return true;
 
         // check that cycle() uses correct number of edges
-        if (cycle.size() != G.E() + 1) return false;
+        if (cycle.size() != G.E() + 1)
+            return false;
 
         // check that cycle() is a cycle of G
         // TODO
@@ -211,10 +220,12 @@ public class EulerianCycle {
         // check that first and last vertices in cycle() are the same
         int first = -1, last = -1;
         for (int v : cycle()) {
-            if (first == -1) first = v;
+            if (first == -1)
+                first = v;
             last = v;
         }
-        if (first != last) return false;
+        if (first != last)
+            return false;
 
         return true;
     }
@@ -232,13 +243,11 @@ public class EulerianCycle {
                 StdOut.print(v + " ");
             }
             StdOut.println();
-        }
-        else {
+        } else {
             StdOut.println("none");
         }
         StdOut.println();
     }
-
 
     /**
      * Unit tests the {@code EulerianCycle} data type.
@@ -268,8 +277,8 @@ public class EulerianCycle {
         unitTest(G4, "single self loop");
 
         // union of two disjoint cycles
-        Graph H1 = GraphGenerator.eulerianCycle(V/2, E/2);
-        Graph H2 = GraphGenerator.eulerianCycle(V - V/2, E - E/2);
+        Graph H1 = GraphGenerator.eulerianCycle(V / 2, E / 2);
+        Graph H2 = GraphGenerator.eulerianCycle(V - V / 2, E - E / 2);
         int[] perm = new int[V];
         for (int i = 0; i < V; i++)
             perm[i] = i;
@@ -280,7 +289,7 @@ public class EulerianCycle {
                 G5.addEdge(perm[v], perm[w]);
         for (int v = 0; v < H2.V(); v++)
             for (int w : H2.adj(v))
-                G5.addEdge(perm[V/2 + v], perm[V/2 + w]);
+                G5.addEdge(perm[V / 2 + v], perm[V / 2 + w]);
         unitTest(G5, "Union of two disjoint cycles");
 
         // random digraph

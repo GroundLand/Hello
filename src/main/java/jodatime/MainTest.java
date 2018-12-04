@@ -5,13 +5,10 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;  //Project Structure->modules->source->language level
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by evel on 2017/7/21.
@@ -20,7 +17,7 @@ public class MainTest {
 
     public static Logger logger = LoggerFactory.getLogger(MainTest.class);
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         String startDate = CharMatcher.is('-').removeFrom("201601");
         startDate = startDate.substring(0, 6);

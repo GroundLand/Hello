@@ -22,6 +22,7 @@
  ******************************************************************************/
 
 package edu.princeton.cs.algs4;
+
 /**
  *  The {@code DirectedDFS} class represents a data type for 
  *  determining the vertices reachable from a given source vertex <em>s</em>
@@ -42,7 +43,7 @@ package edu.princeton.cs.algs4;
  */
 public class DirectedDFS {
     private boolean[] marked;  // marked[v] = true if v is reachable
-                               // from source (or sources)
+    // from source (or sources)
     private int count;         // number of vertices reachable from s
 
     /**
@@ -70,15 +71,17 @@ public class DirectedDFS {
         marked = new boolean[G.V()];
         validateVertices(sources);
         for (int v : sources) {
-            if (!marked[v]) dfs(G, v);
+            if (!marked[v])
+                dfs(G, v);
         }
     }
 
-    private void dfs(Digraph G, int v) { 
+    private void dfs(Digraph G, int v) {
         count++;
         marked[v] = true;
         for (int w : G.adj(v)) {
-            if (!marked[w]) dfs(G, w);
+            if (!marked[w])
+                dfs(G, w);
         }
     }
 
@@ -108,7 +111,7 @@ public class DirectedDFS {
     private void validateVertex(int v) {
         int V = marked.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
@@ -119,11 +122,10 @@ public class DirectedDFS {
         int V = marked.length;
         for (int v : vertices) {
             if (v < 0 || v >= V) {
-                throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+                throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
             }
         }
     }
-
 
     /**
      * Unit tests the {@code DirectedDFS} data type.
@@ -148,7 +150,8 @@ public class DirectedDFS {
 
         // print out vertices reachable from sources
         for (int v = 0; v < G.V(); v++) {
-            if (dfs.marked(v)) StdOut.print(v + " ");
+            if (dfs.marked(v))
+                StdOut.print(v + " ");
         }
         StdOut.println();
     }

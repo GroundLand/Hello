@@ -101,17 +101,17 @@ public class BoyerMoore {
         int skip;
         for (int i = 0; i <= n - m; i += skip) {
             skip = 0;
-            for (int j = m-1; j >= 0; j--) {
-                if (pat.charAt(j) != txt.charAt(i+j)) {
-                    skip = Math.max(1, j - right[txt.charAt(i+j)]);
+            for (int j = m - 1; j >= 0; j--) {
+                if (pat.charAt(j) != txt.charAt(i + j)) {
+                    skip = Math.max(1, j - right[txt.charAt(i + j)]);
                     break;
                 }
             }
-            if (skip == 0) return i;    // found
+            if (skip == 0)
+                return i;    // found
         }
         return n;                       // not found
     }
-
 
     /**
      * Returns the index of the first occurrrence of the pattern string
@@ -127,17 +127,17 @@ public class BoyerMoore {
         int skip;
         for (int i = 0; i <= n - m; i += skip) {
             skip = 0;
-            for (int j = m-1; j >= 0; j--) {
-                if (pattern[j] != text[i+j]) {
-                    skip = Math.max(1, j - right[text[i+j]]);
+            for (int j = m - 1; j >= 0; j--) {
+                if (pattern[j] != text[i + j]) {
+                    skip = Math.max(1, j - right[text[i + j]]);
                     break;
                 }
             }
-            if (skip == 0) return i;    // found
+            if (skip == 0)
+                return i;    // found
         }
         return n;                       // not found
     }
-
 
     /**
      * Takes a pattern string and an input string as command-line arguments;
@@ -150,7 +150,7 @@ public class BoyerMoore {
         String pat = args[0];
         String txt = args[1];
         char[] pattern = pat.toCharArray();
-        char[] text    = txt.toCharArray();
+        char[] text = txt.toCharArray();
 
         BoyerMoore boyermoore1 = new BoyerMoore(pat);
         BoyerMoore boyermoore2 = new BoyerMoore(pattern, 256);
@@ -171,7 +171,6 @@ public class BoyerMoore {
         StdOut.println(pat);
     }
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

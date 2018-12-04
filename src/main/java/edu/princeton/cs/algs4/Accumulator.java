@@ -11,7 +11,6 @@
 
 package edu.princeton.cs.algs4;
 
-
 /**
  *  The {@code Accumulator} class is a data type for computing the running
  *  mean, sample standard deviation, and sample variance of a stream of real
@@ -51,7 +50,7 @@ public class Accumulator {
     public void addDataValue(double x) {
         n++;
         double delta = x - mu;
-        mu  += delta / n;
+        mu += delta / n;
         sum += (double) (n - 1) / n * delta * delta;
     }
 
@@ -68,7 +67,8 @@ public class Accumulator {
      * @return the sample variance of the data values
      */
     public double var() {
-        if (n <= 1) return Double.NaN;
+        if (n <= 1)
+            return Double.NaN;
         return sum / (n - 1);
     }
 
@@ -104,7 +104,7 @@ public class Accumulator {
             stats.addDataValue(x);
         }
 
-        StdOut.printf("n      = %d\n",   stats.count());
+        StdOut.printf("n      = %d\n", stats.count());
         StdOut.printf("mean   = %.5f\n", stats.mean());
         StdOut.printf("stddev = %.5f\n", stats.stddev());
         StdOut.printf("var    = %.5f\n", stats.var());

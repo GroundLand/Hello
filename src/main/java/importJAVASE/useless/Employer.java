@@ -6,7 +6,7 @@ public class Employer {
     //职称
     private String level;
 
-    public Employer(String name,String level){
+    public Employer(String name, String level) {
         this.name = name;
         this.level = level;
     }

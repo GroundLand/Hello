@@ -66,13 +66,14 @@ public class DepthFirstOrder {
      * @param G the digraph
      */
     public DepthFirstOrder(Digraph G) {
-        pre    = new int[G.V()];
-        post   = new int[G.V()];
+        pre = new int[G.V()];
+        post = new int[G.V()];
         postorder = new Queue<Integer>();
-        preorder  = new Queue<Integer>();
-        marked    = new boolean[G.V()];
+        preorder = new Queue<Integer>();
+        marked = new boolean[G.V()];
         for (int v = 0; v < G.V(); v++)
-            if (!marked[v]) dfs(G, v);
+            if (!marked[v])
+                dfs(G, v);
 
         assert check();
     }
@@ -82,13 +83,14 @@ public class DepthFirstOrder {
      * @param G the edge-weighted digraph
      */
     public DepthFirstOrder(EdgeWeightedDigraph G) {
-        pre    = new int[G.V()];
-        post   = new int[G.V()];
+        pre = new int[G.V()];
+        post = new int[G.V()];
         postorder = new Queue<Integer>();
-        preorder  = new Queue<Integer>();
-        marked    = new boolean[G.V()];
+        preorder = new Queue<Integer>();
+        marked = new boolean[G.V()];
         for (int v = 0; v < G.V(); v++)
-            if (!marked[v]) dfs(G, v);
+            if (!marked[v])
+                dfs(G, v);
     }
 
     // run DFS in digraph G from vertex v and compute preorder/postorder
@@ -169,7 +171,6 @@ public class DepthFirstOrder {
         return reverse;
     }
 
-
     // check that pre() and post() are consistent with pre(v) and post(v)
     private boolean check() {
 
@@ -200,7 +201,7 @@ public class DepthFirstOrder {
     private void validateVertex(int v) {
         int V = marked.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -236,7 +237,6 @@ public class DepthFirstOrder {
             StdOut.print(v + " ");
         }
         StdOut.println();
-
 
     }
 

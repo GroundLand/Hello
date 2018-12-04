@@ -33,7 +33,6 @@
 
 package edu.princeton.cs.algs4;
 
-
 /**
  *  The {@code Count} class provides an {@link Alphabet} client for reading
  *  in a piece of text and computing the frequency of occurrence of each
@@ -49,7 +48,8 @@ package edu.princeton.cs.algs4;
 public class Count {
 
     // Do not instantiate.
-    private Count() { }
+    private Count() {
+    }
 
     /**
      * Reads in text from standard input; calculates the frequency of
@@ -72,7 +72,6 @@ public class Count {
             StdOut.println(alphabet.toChar(c) + " " + count[c]);
     }
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

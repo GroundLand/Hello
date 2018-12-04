@@ -21,13 +21,13 @@
  *
  *  % java ThreeSumFast 1Kints.txt
  *  70
- *  
+ *
  *  % java ThreeSumFast 2Kints.txt
  *  528
- *                
+ *
  *  % java ThreeSumFast 4Kints.txt
  *  4039
- * 
+ *
  *  % java ThreeSumFast 8Kints.txt
  *  32074
  *
@@ -60,12 +60,14 @@ import java.util.Arrays;
 public class ThreeSumFast {
 
     // Do not instantiate.
-    private ThreeSumFast() { }
+    private ThreeSumFast() {
+    }
 
     // returns true if the sorted array a[] contains any duplicated integers
     private static boolean containsDuplicates(int[] a) {
         for (int i = 1; i < a.length; i++)
-            if (a[i] == a[i-1]) return true;
+            if (a[i] == a[i - 1])
+                return true;
         return false;
     }
 
@@ -79,14 +81,16 @@ public class ThreeSumFast {
     public static void printAll(int[] a) {
         int n = a.length;
         Arrays.sort(a);
-        if (containsDuplicates(a)) throw new IllegalArgumentException("array contains duplicate integers");
+        if (containsDuplicates(a))
+            throw new IllegalArgumentException("array contains duplicate integers");
         for (int i = 0; i < n; i++) {
-            for (int j = i+1; j < n; j++) {
+            for (int j = i + 1; j < n; j++) {
                 int k = Arrays.binarySearch(a, -(a[i] + a[j]));
-                if (k > j) StdOut.println(a[i] + " " + a[j] + " " + a[k]);
+                if (k > j)
+                    StdOut.println(a[i] + " " + a[j] + " " + a[k]);
             }
         }
-    } 
+    }
 
     /**
      * Returns the number of triples (i, j, k) with {@code i < j < k}
@@ -99,16 +103,18 @@ public class ThreeSumFast {
     public static int count(int[] a) {
         int n = a.length;
         Arrays.sort(a);
-        if (containsDuplicates(a)) throw new IllegalArgumentException("array contains duplicate integers");
+        if (containsDuplicates(a))
+            throw new IllegalArgumentException("array contains duplicate integers");
         int count = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = i+1; j < n; j++) {
+            for (int j = i + 1; j < n; j++) {
                 int k = Arrays.binarySearch(a, -(a[i] + a[j]));
-                if (k > j) count++;
+                if (k > j)
+                    count++;
             }
         }
         return count;
-    } 
+    }
 
     /**
      * Reads in a sequence of distinct integers from a file, specified as a command-line argument;
@@ -117,13 +123,13 @@ public class ThreeSumFast {
      *
      * @param args the command-line arguments
      */
-    public static void main(String[] args)  { 
+    public static void main(String[] args) {
         In in = new In(args[0]);
         int[] a = in.readAllInts();
         int count = count(a);
         StdOut.println(count);
-    } 
-} 
+    }
+}
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

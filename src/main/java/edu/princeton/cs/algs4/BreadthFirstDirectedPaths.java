@@ -161,7 +161,8 @@ public class BreadthFirstDirectedPaths {
     public Iterable<Integer> pathTo(int v) {
         validateVertex(v);
 
-        if (!hasPathTo(v)) return null;
+        if (!hasPathTo(v))
+            return null;
         Stack<Integer> path = new Stack<Integer>();
         int x;
         for (x = v; distTo[x] != 0; x = edgeTo[x])
@@ -174,7 +175,7 @@ public class BreadthFirstDirectedPaths {
     private void validateVertex(int v) {
         int V = marked.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
@@ -185,11 +186,10 @@ public class BreadthFirstDirectedPaths {
         int V = marked.length;
         for (int v : vertices) {
             if (v < 0 || v >= V) {
-                throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+                throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
             }
         }
     }
-
 
     /**
      * Unit tests the {@code BreadthFirstDirectedPaths} data type.
@@ -208,19 +208,18 @@ public class BreadthFirstDirectedPaths {
             if (bfs.hasPathTo(v)) {
                 StdOut.printf("%d to %d (%d):  ", s, v, bfs.distTo(v));
                 for (int x : bfs.pathTo(v)) {
-                    if (x == s) StdOut.print(x);
-                    else        StdOut.print("->" + x);
+                    if (x == s)
+                        StdOut.print(x);
+                    else
+                        StdOut.print("->" + x);
                 }
                 StdOut.println();
-            }
-
-            else {
+            } else {
                 StdOut.printf("%d to %d (-):  not connected\n", s, v);
             }
 
         }
     }
-
 
 }
 

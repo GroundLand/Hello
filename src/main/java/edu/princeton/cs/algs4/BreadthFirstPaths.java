@@ -40,7 +40,6 @@
 
 package edu.princeton.cs.algs4;
 
-
 /**
  *  The {@code BreadthFirstPaths} class represents a data type for finding
  *  shortest paths (number of edges) from a source vertex <em>s</em>
@@ -102,7 +101,6 @@ public class BreadthFirstPaths {
         validateVertices(sources);
         bfs(G, sources);
     }
-
 
     // breadth-first search from a single source
     private void bfs(Graph G, int s) {
@@ -179,7 +177,8 @@ public class BreadthFirstPaths {
      */
     public Iterable<Integer> pathTo(int v) {
         validateVertex(v);
-        if (!hasPathTo(v)) return null;
+        if (!hasPathTo(v))
+            return null;
         Stack<Integer> path = new Stack<Integer>();
         int x;
         for (x = v; distTo[x] != 0; x = edgeTo[x])
@@ -187,7 +186,6 @@ public class BreadthFirstPaths {
         path.push(x);
         return path;
     }
-
 
     // check optimality conditions for single source
     private boolean check(Graph G, int s) {
@@ -220,7 +218,8 @@ public class BreadthFirstPaths {
         // check that v = edgeTo[w] satisfies distTo[w] = distTo[v] + 1
         // provided v is reachable from s
         for (int w = 0; w < G.V(); w++) {
-            if (!hasPathTo(w) || w == s) continue;
+            if (!hasPathTo(w) || w == s)
+                continue;
             int v = edgeTo[w];
             if (distTo[w] != distTo[v] + 1) {
                 StdOut.println("shortest path edge " + v + "-" + w);
@@ -237,7 +236,7 @@ public class BreadthFirstPaths {
     private void validateVertex(int v) {
         int V = marked.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
@@ -248,7 +247,7 @@ public class BreadthFirstPaths {
         int V = marked.length;
         for (int v : vertices) {
             if (v < 0 || v >= V) {
-                throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+                throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
             }
         }
     }
@@ -270,19 +269,18 @@ public class BreadthFirstPaths {
             if (bfs.hasPathTo(v)) {
                 StdOut.printf("%d to %d (%d):  ", s, v, bfs.distTo(v));
                 for (int x : bfs.pathTo(v)) {
-                    if (x == s) StdOut.print(x);
-                    else        StdOut.print("-" + x);
+                    if (x == s)
+                        StdOut.print(x);
+                    else
+                        StdOut.print("-" + x);
                 }
                 StdOut.println();
-            }
-
-            else {
+            } else {
                 StdOut.printf("%d to %d (-):  not connected\n", s, v);
             }
 
         }
     }
-
 
 }
 

@@ -14,7 +14,6 @@
 
 package edu.princeton.cs.algs4;
 
-
 /**
  *  The {@code Bipartite} class represents a data type for 
  *  determining whether an undirected graph is bipartite or whether
@@ -55,7 +54,7 @@ public class Bipartite {
      */
     public Bipartite(Graph G) {
         isBipartite = true;
-        color  = new boolean[G.V()];
+        color = new boolean[G.V()];
         marked = new boolean[G.V()];
         edgeTo = new int[G.V()];
 
@@ -67,19 +66,20 @@ public class Bipartite {
         assert check(G);
     }
 
-    private void dfs(Graph G, int v) { 
+    private void dfs(Graph G, int v) {
         marked[v] = true;
         for (int w : G.adj(v)) {
 
             // short circuit if odd-length cycle found
-            if (cycle != null) return;
+            if (cycle != null)
+                return;
 
             // found uncolored vertex, so recur
             if (!marked[w]) {
                 edgeTo[w] = v;
                 color[w] = !color[v];
                 dfs(G, w);
-            } 
+            }
 
             // if v-w create an odd-length cycle, find it
             else if (color[w] == color[v]) {
@@ -102,7 +102,7 @@ public class Bipartite {
     public boolean isBipartite() {
         return isBipartite;
     }
- 
+
     /**
      * Returns the side of the bipartite that vertex {@code v} is on.
      *
@@ -130,7 +130,7 @@ public class Bipartite {
      *         otherwise
      */
     public Iterable<Integer> oddCycle() {
-        return cycle; 
+        return cycle;
     }
 
     private boolean check(Graph G) {
@@ -151,7 +151,8 @@ public class Bipartite {
             // verify cycle
             int first = -1, last = -1;
             for (int v : oddCycle()) {
-                if (first == -1) first = v;
+                if (first == -1)
+                    first = v;
                 last = v;
             }
             if (first != last) {
@@ -167,7 +168,7 @@ public class Bipartite {
     private void validateVertex(int v) {
         int V = marked.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -178,8 +179,8 @@ public class Bipartite {
     public static void main(String[] args) {
         int V1 = Integer.parseInt(args[0]);
         int V2 = Integer.parseInt(args[1]);
-        int E  = Integer.parseInt(args[2]);
-        int F  = Integer.parseInt(args[3]);
+        int E = Integer.parseInt(args[2]);
+        int F = Integer.parseInt(args[3]);
 
         // create random bipartite graph with V1 vertices on left side,
         // V2 vertices on right side, and E edges; then add F random edges
@@ -192,15 +193,13 @@ public class Bipartite {
 
         StdOut.println(G);
 
-
         Bipartite b = new Bipartite(G);
         if (b.isBipartite()) {
             StdOut.println("Graph is bipartite");
             for (int v = 0; v < G.V(); v++) {
                 StdOut.println(v + ": " + b.color(v));
             }
-        }
-        else {
+        } else {
             StdOut.print("Graph has an odd-length cycle: ");
             for (int x : b.oddCycle()) {
                 StdOut.print(x + " ");
@@ -208,7 +207,6 @@ public class Bipartite {
             StdOut.println();
         }
     }
-
 
 }
 

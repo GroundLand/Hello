@@ -11,7 +11,6 @@
 
 package importJAVASE.algorithms_ans;
 
-
 import edu.princeton.cs.algs4.StdOut;
 
 /**
@@ -53,7 +52,7 @@ public class Accumulator {
     public void addDataValue(double x) {
         n++;
         double delta = x - mu;
-        mu  += delta / n;
+        mu += delta / n;
         sum += (double) (n - 1) / n * delta * delta;
     }
 
@@ -70,7 +69,8 @@ public class Accumulator {
      * @return the sample variance of the data values
      */
     public double var() {
-        if (n <= 1) return Double.NaN;
+        if (n <= 1)
+            return Double.NaN;
         return sum / (n - 1);
     }
 
@@ -101,15 +101,15 @@ public class Accumulator {
      */
     public static void main(String[] args) {
         Accumulator stats = new Accumulator();
-//        while (!StdIn.isEmpty()) {
-//            double x = StdIn.readDouble();
-//
-//        }
+        //        while (!StdIn.isEmpty()) {
+        //            double x = StdIn.readDouble();
+        //
+        //        }
 
         stats.addDataValue(22.1);
         stats.addDataValue(55.666);
 
-        StdOut.printf("n      = %d\n",   stats.count());
+        StdOut.printf("n      = %d\n", stats.count());
         StdOut.printf("mean   = %.5f\n", stats.mean());
         StdOut.printf("stddev = %.5f\n", stats.stddev());
         StdOut.printf("var    = %.5f\n", stats.var());

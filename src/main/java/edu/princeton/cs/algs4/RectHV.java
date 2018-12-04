@@ -50,7 +50,7 @@ public final class RectHV {
         if (Double.isNaN(ymin) || Double.isNaN(ymax)) {
             throw new IllegalArgumentException("y-coordinate is NaN: " + toString());
         }
-	if (xmax < xmin) {
+        if (xmax < xmin) {
             throw new IllegalArgumentException("xmax < xmin: " + toString());
         }
         if (ymax < ymin) {
@@ -120,22 +120,22 @@ public final class RectHV {
      *
      * @param  that the other rectangle
      * @return {@code true} if this rectangle intersect the argument
-               rectangle at one or more points
+    rectangle at one or more points
      */
     public boolean intersects(RectHV that) {
         return this.xmax >= that.xmin && this.ymax >= that.ymin
-            && that.xmax >= this.xmin && that.ymax >= this.ymin;
+                && that.xmax >= this.xmin && that.ymax >= this.ymin;
     }
 
     /**
      * Returns true if this rectangle contain the point.
      * @param  p the point
      * @return {@code true} if this rectangle contain the point {@code p},
-               possibly at the boundary; {@code false} otherwise
+    possibly at the boundary; {@code false} otherwise
      */
     public boolean contains(Point2D p) {
         return (p.x() >= xmin) && (p.x() <= xmax)
-            && (p.y() >= ymin) && (p.y() <= ymax);
+                && (p.y() >= ymin) && (p.y() <= ymax);
     }
 
     /**
@@ -143,7 +143,7 @@ public final class RectHV {
      *
      * @param  p the point
      * @return the Euclidean distance between the point {@code p} and the closest point
-               on this rectangle; 0 if the point is contained in this rectangle
+    on this rectangle; 0 if the point is contained in this rectangle
      */
     public double distanceTo(Point2D p) {
         return Math.sqrt(this.distanceSquaredTo(p));
@@ -159,11 +159,15 @@ public final class RectHV {
      */
     public double distanceSquaredTo(Point2D p) {
         double dx = 0.0, dy = 0.0;
-        if      (p.x() < xmin) dx = p.x() - xmin;
-        else if (p.x() > xmax) dx = p.x() - xmax;
-        if      (p.y() < ymin) dy = p.y() - ymin;
-        else if (p.y() > ymax) dy = p.y() - ymax;
-        return dx*dx + dy*dy;
+        if (p.x() < xmin)
+            dx = p.x() - xmin;
+        else if (p.x() > xmax)
+            dx = p.x() - xmax;
+        if (p.y() < ymin)
+            dy = p.y() - ymin;
+        else if (p.y() > ymax)
+            dy = p.y() - ymax;
+        return dx * dx + dy * dy;
     }
 
     /**
@@ -175,14 +179,21 @@ public final class RectHV {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) return true;
-        if (other == null) return false;
-        if (other.getClass() != this.getClass()) return false;
+        if (other == this)
+            return true;
+        if (other == null)
+            return false;
+        if (other.getClass() != this.getClass())
+            return false;
         RectHV that = (RectHV) other;
-        if (this.xmin != that.xmin) return false;
-        if (this.ymin != that.ymin) return false;
-        if (this.xmax != that.xmax) return false;
-        if (this.ymax != that.ymax) return false;
+        if (this.xmin != that.xmin)
+            return false;
+        if (this.ymin != that.ymin)
+            return false;
+        if (this.xmax != that.xmax)
+            return false;
+        if (this.ymax != that.ymax)
+            return false;
         return true;
     }
 
@@ -196,7 +207,7 @@ public final class RectHV {
         int hash2 = ((Double) ymin).hashCode();
         int hash3 = ((Double) xmax).hashCode();
         int hash4 = ((Double) ymax).hashCode();
-        return 31*(31*(31*hash1 + hash2) + hash3) + hash4;
+        return 31 * (31 * (31 * hash1 + hash2) + hash3) + hash4;
     }
 
     /**
@@ -219,7 +230,6 @@ public final class RectHV {
         StdDraw.line(xmax, ymax, xmin, ymax);
         StdDraw.line(xmin, ymax, xmin, ymin);
     }
-
 
 }
 

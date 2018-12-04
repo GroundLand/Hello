@@ -2,7 +2,7 @@
  *  Compilation:  javac SparseVector.java
  *  Execution:    java SparseVector
  *  Dependencies: StdOut.java
- *  
+ *
  *  A sparse vector, implementing using a symbol table.
  *
  *  [Not clear we need the instance variable N except for error checking.]
@@ -19,7 +19,7 @@ package edu.princeton.cs.algs4;
  *  <p>
  *  The implementation is a symbol table of indices and values for which the vector
  *  coordinates are nonzero. This makes it efficient when most of the vector coordindates
-  * are zero.
+ * are zero.
  *  <p>
  *  For additional documentation,    
  *  see <a href="https://algs4.cs.princeton.edu/35applications">Section 3.5</a> of
@@ -33,16 +33,16 @@ public class SparseVector {
     private int d;                   // dimension
     private ST<Integer, Double> st;  // the vector, represented by index-value pairs
 
-   /**
+    /**
      * Initializes a d-dimensional zero vector.
      * @param d the dimension of the vector
      */
     public SparseVector(int d) {
-        this.d  = d;
+        this.d = d;
         this.st = new ST<Integer, Double>();
     }
 
-   /**
+    /**
      * Sets the ith coordinate of this vector to the specified value.
      *
      * @param  i the index
@@ -50,12 +50,15 @@ public class SparseVector {
      * @throws IllegalArgumentException unless i is between 0 and d-1
      */
     public void put(int i, double value) {
-        if (i < 0 || i >= d) throw new IllegalArgumentException("Illegal index");
-        if (value == 0.0) st.delete(i);
-        else              st.put(i, value);
+        if (i < 0 || i >= d)
+            throw new IllegalArgumentException("Illegal index");
+        if (value == 0.0)
+            st.delete(i);
+        else
+            st.put(i, value);
     }
 
-   /**
+    /**
      * Returns the ith coordinate of this vector.
      *
      * @param  i the index
@@ -63,12 +66,15 @@ public class SparseVector {
      * @throws IllegalArgumentException unless i is between 0 and d-1
      */
     public double get(int i) {
-        if (i < 0 || i >= d) throw new IllegalArgumentException("Illegal index");
-        if (st.contains(i)) return st.get(i);
-        else                return 0.0;
+        if (i < 0 || i >= d)
+            throw new IllegalArgumentException("Illegal index");
+        if (st.contains(i))
+            return st.get(i);
+        else
+            return 0.0;
     }
 
-   /**
+    /**
      * Returns the number of nonzero entries in this vector.
      *
      * @return the number of nonzero entries in this vector
@@ -77,7 +83,7 @@ public class SparseVector {
         return st.size();
     }
 
-   /**
+    /**
      * Returns the dimension of this vector.
      *
      * @return the dimension of this vector
@@ -88,7 +94,7 @@ public class SparseVector {
         return d;
     }
 
-   /**
+    /**
      * Returns the dimension of this vector.
      *
      * @return the dimension of this vector
@@ -105,21 +111,22 @@ public class SparseVector {
      * @throws IllegalArgumentException if the lengths of the two vectors are not equal
      */
     public double dot(SparseVector that) {
-        if (this.d != that.d) throw new IllegalArgumentException("Vector lengths disagree");
+        if (this.d != that.d)
+            throw new IllegalArgumentException("Vector lengths disagree");
         double sum = 0.0;
 
         // iterate over the vector with the fewest nonzeros
         if (this.st.size() <= that.st.size()) {
             for (int i : this.st.keys())
-                if (that.st.contains(i)) sum += this.get(i) * that.get(i);
-        }
-        else  {
+                if (that.st.contains(i))
+                    sum += this.get(i) * that.get(i);
+        } else {
             for (int i : that.st.keys())
-                if (this.st.contains(i)) sum += this.get(i) * that.get(i);
+                if (this.st.contains(i))
+                    sum += this.get(i) * that.get(i);
         }
         return sum;
     }
-
 
     /**
      * Returns the inner product of this vector with the specified array.
@@ -138,13 +145,12 @@ public class SparseVector {
     /**
      * Returns the magnitude of this vector.
      * This is also known as the L2 norm or the Euclidean norm.
-     * 
+     *
      * @return the magnitude of this vector
      */
     public double magnitude() {
         return Math.sqrt(this.dot(this));
     }
-
 
     /**
      * Returns the Euclidean norm of this vector.
@@ -165,7 +171,8 @@ public class SparseVector {
      */
     public SparseVector scale(double alpha) {
         SparseVector c = new SparseVector(d);
-        for (int i : this.st.keys()) c.put(i, alpha * this.get(i));
+        for (int i : this.st.keys())
+            c.put(i, alpha * this.get(i));
         return c;
     }
 
@@ -177,14 +184,17 @@ public class SparseVector {
      * @throws IllegalArgumentException if the dimensions of the two vectors are not equal
      */
     public SparseVector plus(SparseVector that) {
-        if (this.d != that.d) throw new IllegalArgumentException("Vector lengths disagree");
+        if (this.d != that.d)
+            throw new IllegalArgumentException("Vector lengths disagree");
         SparseVector c = new SparseVector(d);
-        for (int i : this.st.keys()) c.put(i, this.get(i));                // c = this
-        for (int i : that.st.keys()) c.put(i, that.get(i) + c.get(i));     // c = c + that
+        for (int i : this.st.keys())
+            c.put(i, this.get(i));                // c = this
+        for (int i : that.st.keys())
+            c.put(i, that.get(i) + c.get(i));     // c = c + that
         return c;
     }
 
-   /**
+    /**
      * Returns a string representation of this vector.
      * @return a string representation of this vector, which consists of the 
      *         the vector entries, separates by commas, enclosed in parentheses
@@ -196,7 +206,6 @@ public class SparseVector {
         }
         return s.toString();
     }
-
 
     /**
      * Unit tests the {@code SparseVector} data type.

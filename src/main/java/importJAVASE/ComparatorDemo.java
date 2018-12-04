@@ -21,7 +21,7 @@ public class ComparatorDemo {
         Collections.sort(people, new AgeComparator());
         System.out.println(people);
 
-//
+        //
 
     }
 }

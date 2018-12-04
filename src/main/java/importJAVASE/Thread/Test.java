@@ -10,12 +10,9 @@ package importJAVASE.Thread;
  * 3.根据不同终点 的卖票
  */
 
-public class Test
-{
+public class Test {
 
-    public static void main(String[] args)
-    {
-
+    public static void main(String[] args) {
 
         Runnableclass_3 t = new Runnableclass_3("2222");
 
@@ -28,7 +25,6 @@ public class Test
         Thread thread6 = new Thread(t);
         Thread thread7 = new Thread(t);
 
-
         thread1.start();
         thread2.start();
         thread3.start();
@@ -37,36 +33,28 @@ public class Test
         thread6.start();
         thread7.start();
 
-
     }
 }
 
-
 //优化后的程序
 
-class Runnableclass_3 implements Runnable
-{
-    private int tick1 =50;
+class Runnableclass_3 implements Runnable {
+    private int tick1 = 50;
 
     private String string;
 
-    public Runnableclass_3(String string)
-    {
+    public Runnableclass_3(String string) {
         this.string = string;
     }
 
     @Override
-    public void run()
-    {
+    public void run() {
 
-        while(tick1 > 0)
-        {
+        while (tick1 > 0) {
 
-
-                System.out.println(Thread.currentThread().getName() +"  起点  怀化   终点   " +string +"   卖出   " +tick1-- +" 票");
+            System.out.println(Thread.currentThread().getName() + "  起点  怀化   终点   " + string + "   卖出   " + tick1-- + " 票");
 
         }
-
 
     }
 

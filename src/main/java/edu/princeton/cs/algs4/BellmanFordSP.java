@@ -69,8 +69,8 @@ public class BellmanFordSP {
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
     public BellmanFordSP(EdgeWeightedDigraph G, int s) {
-        distTo  = new double[G.V()];
-        edgeTo  = new DirectedEdge[G.V()];
+        distTo = new double[G.V()];
+        edgeTo = new DirectedEdge[G.V()];
         onQueue = new boolean[G.V()];
         for (int v = 0; v < G.V(); v++)
             distTo[v] = Double.POSITIVE_INFINITY;
@@ -103,7 +103,8 @@ public class BellmanFordSP {
             }
             if (cost++ % G.V() == 0) {
                 findNegativeCycle();
-                if (hasNegativeCycle()) return;  // found a negative cycle
+                if (hasNegativeCycle())
+                    return;  // found a negative cycle
             }
         }
     }
@@ -180,7 +181,8 @@ public class BellmanFordSP {
         validateVertex(v);
         if (hasNegativeCycle())
             throw new UnsupportedOperationException("Negative cost cycle exists");
-        if (!hasPathTo(v)) return null;
+        if (!hasPathTo(v))
+            return null;
         Stack<DirectedEdge> path = new Stack<DirectedEdge>();
         for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) {
             path.push(e);
@@ -216,7 +218,8 @@ public class BellmanFordSP {
                 return false;
             }
             for (int v = 0; v < G.V(); v++) {
-                if (v == s) continue;
+                if (v == s)
+                    continue;
                 if (edgeTo[v] == null && distTo[v] != Double.POSITIVE_INFINITY) {
                     System.err.println("distTo[] and edgeTo[] inconsistent");
                     return false;
@@ -236,10 +239,12 @@ public class BellmanFordSP {
 
             // check that all edges e = v->w on SPT satisfy distTo[w] == distTo[v] + e.weight()
             for (int w = 0; w < G.V(); w++) {
-                if (edgeTo[w] == null) continue;
+                if (edgeTo[w] == null)
+                    continue;
                 DirectedEdge e = edgeTo[w];
                 int v = e.from();
-                if (w != e.to()) return false;
+                if (w != e.to())
+                    return false;
                 if (distTo[v] + e.weight() != distTo[w]) {
                     System.err.println("edge " + e + " on shortest path not tight");
                     return false;
@@ -256,7 +261,7 @@ public class BellmanFordSP {
     private void validateVertex(int v) {
         int V = distTo.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -286,8 +291,7 @@ public class BellmanFordSP {
                         StdOut.print(e + "   ");
                     }
                     StdOut.println();
-                }
-                else {
+                } else {
                     StdOut.printf("%d to %d           no path\n", s, v);
                 }
             }

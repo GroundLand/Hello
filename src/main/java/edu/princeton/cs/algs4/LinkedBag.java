@@ -94,12 +94,11 @@ public class LinkedBag<Item> implements Iterable<Item> {
         n++;
     }
 
-
     /**
      * Returns an iterator that iterates over the items in the bag.
      */
-    public Iterator<Item> iterator()  {
-        return new ListIterator();  
+    public Iterator<Item> iterator() {
+        return new ListIterator();
     }
 
     // an iterator over a linked list
@@ -123,9 +122,10 @@ public class LinkedBag<Item> implements Iterable<Item> {
 
         // returns the next item in the iterator (and advances the iterator)
         public Item next() {
-            if (!hasNext()) throw new NoSuchElementException();
+            if (!hasNext())
+                throw new NoSuchElementException();
             Item item = current.item;
-            current = current.next; 
+            current = current.next;
             return item;
         }
     }
@@ -147,7 +147,6 @@ public class LinkedBag<Item> implements Iterable<Item> {
             StdOut.println(s);
         }
     }
-
 
 }
 

@@ -6,11 +6,11 @@ import java.io.Serializable;
  * Created by Administrator on 2017/6/1 0001.
  */
 public class Student implements Serializable {
-    String name ;
+    String name;
     int age;
     double score;
 
-    public Student(String name,int age,double score){
+    public Student(String name, int age, double score) {
         this.name = name;
         this.age = age;
         this.score = score;
@@ -45,6 +45,5 @@ public class Student implements Serializable {
         return "Student [name=" + name + ", age=" + age
                 + ", score=" + score + "]";
     }
-
 
 }

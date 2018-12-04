@@ -31,7 +31,7 @@
  *  1: 220 203 200 194 189 164 150 130 107 72 
  *  2: 141 110 108 86 79 51 42 18 14 
  *  ...
- *  
+ *
  ******************************************************************************/
 
 package edu.princeton.cs.algs4;
@@ -67,7 +67,7 @@ public class Graph {
     private final int V;
     private int E;
     private Bag<Integer>[] adj;
-    
+
     /**
      * Initializes an empty graph with {@code V} vertices and 0 edges.
      * param V the number of vertices
@@ -76,7 +76,8 @@ public class Graph {
      * @throws IllegalArgumentException if {@code V < 0}
      */
     public Graph(int V) {
-        if (V < 0) throw new IllegalArgumentException("Number of vertices must be nonnegative");
+        if (V < 0)
+            throw new IllegalArgumentException("Number of vertices must be nonnegative");
         this.V = V;
         this.E = 0;
         adj = (Bag<Integer>[]) new Bag[V];
@@ -85,7 +86,7 @@ public class Graph {
         }
     }
 
-    /**  
+    /**
      * Initializes a graph from the specified input stream.
      * The format is the number of vertices <em>V</em>,
      * followed by the number of edges <em>E</em>,
@@ -99,26 +100,26 @@ public class Graph {
     public Graph(In in) {
         try {
             this.V = in.readInt();
-            if (V < 0) throw new IllegalArgumentException("number of vertices in a Graph must be nonnegative");
+            if (V < 0)
+                throw new IllegalArgumentException("number of vertices in a Graph must be nonnegative");
             adj = (Bag<Integer>[]) new Bag[V];
             for (int v = 0; v < V; v++) {
                 adj[v] = new Bag<Integer>();
             }
             int E = in.readInt();
-            if (E < 0) throw new IllegalArgumentException("number of edges in a Graph must be nonnegative");
+            if (E < 0)
+                throw new IllegalArgumentException("number of edges in a Graph must be nonnegative");
             for (int i = 0; i < E; i++) {
                 int v = in.readInt();
                 int w = in.readInt();
                 validateVertex(v);
                 validateVertex(w);
-                addEdge(v, w); 
+                addEdge(v, w);
             }
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new IllegalArgumentException("invalid input format in Graph constructor", e);
         }
     }
-
 
     /**
      * Initializes a new graph that is a deep copy of {@code G}.
@@ -161,7 +162,7 @@ public class Graph {
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
     private void validateVertex(int v) {
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**
@@ -178,7 +179,6 @@ public class Graph {
         adj[v].add(w);
         adj[w].add(v);
     }
-
 
     /**
      * Returns the vertices adjacent to vertex {@code v}.
@@ -204,7 +204,6 @@ public class Graph {
         return adj[v].size();
     }
 
-
     /**
      * Returns a string representation of this graph.
      *
@@ -223,7 +222,6 @@ public class Graph {
         }
         return s.toString();
     }
-
 
     /**
      * Unit tests the {@code Graph} data type.

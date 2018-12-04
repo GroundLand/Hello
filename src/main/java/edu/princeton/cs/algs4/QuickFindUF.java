@@ -107,7 +107,7 @@ public class QuickFindUF {
     public int count() {
         return count;
     }
-  
+
     /**
      * Returns the component identifier for the component containing site {@code p}.
      *
@@ -124,7 +124,7 @@ public class QuickFindUF {
     private void validate(int p) {
         int n = id.length;
         if (p < 0 || p >= n) {
-            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n-1));
+            throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n - 1));
         }
     }
 
@@ -143,7 +143,7 @@ public class QuickFindUF {
         validate(q);
         return id[p] == id[q];
     }
-  
+
     /**
      * Merges the component containing site {@code p} with the 
      * the component containing site {@code q}.
@@ -160,10 +160,12 @@ public class QuickFindUF {
         int qID = id[q];   // to reduce the number of array accesses
 
         // p and q are already in the same component
-        if (pID == qID) return;
+        if (pID == qID)
+            return;
 
         for (int i = 0; i < id.length; i++)
-            if (id[i] == pID) id[i] = qID;
+            if (id[i] == pID)
+                id[i] = qID;
         count--;
     }
 
@@ -181,7 +183,8 @@ public class QuickFindUF {
         while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
-            if (uf.connected(p, q)) continue;
+            if (uf.connected(p, q))
+                continue;
             uf.union(p, q);
             StdOut.println(p + " " + q);
         }

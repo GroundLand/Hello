@@ -55,14 +55,15 @@ public class TopologicalX {
         }
 
         // initialize 
-        ranks = new int[G.V()]; 
+        ranks = new int[G.V()];
         order = new Queue<Integer>();
         int count = 0;
 
         // initialize queue to contain all vertices with indegree = 0
         Queue<Integer> queue = new Queue<Integer>();
         for (int v = 0; v < G.V(); v++)
-            if (indegree[v] == 0) queue.enqueue(v);
+            if (indegree[v] == 0)
+                queue.enqueue(v);
 
         while (!queue.isEmpty()) {
             int v = queue.dequeue();
@@ -70,7 +71,8 @@ public class TopologicalX {
             ranks[v] = count++;
             for (int w : G.adj(v)) {
                 indegree[w]--;
-                if (indegree[w] == 0) queue.enqueue(w);
+                if (indegree[w] == 0)
+                    queue.enqueue(w);
             }
         }
 
@@ -96,14 +98,15 @@ public class TopologicalX {
         }
 
         // initialize 
-        ranks = new int[G.V()]; 
+        ranks = new int[G.V()];
         order = new Queue<Integer>();
         int count = 0;
 
         // initialize queue to contain all vertices with indegree = 0
         Queue<Integer> queue = new Queue<Integer>();
         for (int v = 0; v < G.V(); v++)
-            if (indegree[v] == 0) queue.enqueue(v);
+            if (indegree[v] == 0)
+                queue.enqueue(v);
 
         while (!queue.isEmpty()) {
             int v = queue.dequeue();
@@ -112,7 +115,8 @@ public class TopologicalX {
             for (DirectedEdge e : G.adj(v)) {
                 int w = e.to();
                 indegree[w]--;
-                if (indegree[w] == 0) queue.enqueue(w);
+                if (indegree[w] == 0)
+                    queue.enqueue(w);
             }
         }
 
@@ -155,8 +159,10 @@ public class TopologicalX {
      */
     public int rank(int v) {
         validateVertex(v);
-        if (hasOrder()) return ranks[v];
-        else            return -1;
+        if (hasOrder())
+            return ranks[v];
+        else
+            return -1;
     }
 
     // certify that digraph is acyclic
@@ -181,7 +187,7 @@ public class TopologicalX {
                 for (int w : G.adj(v)) {
                     if (rank(v) > rank(w)) {
                         System.err.printf("%d-%d: rank(%d) = %d, rank(%d) = %d\n",
-                                          v, w, v, rank(v), w, rank(w));
+                                v, w, v, rank(v), w, rank(w));
                         return false;
                     }
                 }
@@ -197,7 +203,6 @@ public class TopologicalX {
                 r++;
             }
         }
-
 
         return true;
     }
@@ -225,7 +230,7 @@ public class TopologicalX {
                     int w = e.to();
                     if (rank(v) > rank(w)) {
                         System.err.printf("%d-%d: rank(%d) = %d, rank(%d) = %d\n",
-                                          v, w, v, rank(v), w, rank(w));
+                                v, w, v, rank(v), w, rank(w));
                         return false;
                     }
                 }
@@ -242,7 +247,6 @@ public class TopologicalX {
             }
         }
 
-
         return true;
     }
 
@@ -250,7 +254,7 @@ public class TopologicalX {
     private void validateVertex(int v) {
         int V = ranks.length;
         if (v < 0 || v >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
     }
 
     /**

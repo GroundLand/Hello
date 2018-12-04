@@ -27,8 +27,7 @@ package edu.princeton.cs.algs4;
  *  @author Kevin Wayne
  */
 
-
-public class Stopwatch { 
+public class Stopwatch {
 
     private final long start;
 
@@ -37,8 +36,7 @@ public class Stopwatch {
      */
     public Stopwatch() {
         start = System.currentTimeMillis();
-    } 
-
+    }
 
     /**
      * Returns the elapsed CPU time (in seconds) since the stopwatch was created.
@@ -50,7 +48,6 @@ public class Stopwatch {
         return (now - start) / 1000.0;
     }
 
-    
     /**
      * Unit tests the {@code Stopwatch} data type.
      * Takes a command-line argument {@code n} and computes the 
@@ -83,7 +80,7 @@ public class Stopwatch {
         double time2 = timer2.elapsedTime();
         StdOut.printf("%e (%.2f seconds)\n", sum2, time2);
     }
-} 
+}
 
 /******************************************************************************
  *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.

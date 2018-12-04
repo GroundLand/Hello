@@ -14,7 +14,7 @@ public class Tutorial {
 
     private static final transient Logger log = LoggerFactory.getLogger(Tutorial.class);
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         log.info("My First Apache Shiro Application");
         //1.
         Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");

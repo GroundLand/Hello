@@ -1,7 +1,6 @@
 package importJAVASE.math;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class Bigtest1 {
     public static void main(String args[]) {

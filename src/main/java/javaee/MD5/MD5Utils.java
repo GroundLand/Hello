@@ -7,7 +7,6 @@ import java.security.MessageDigest;
  */
 public class MD5Utils {
 
-
     public static void main(String[] args) throws Exception {
         String password = "12345";
         byte[] byteOfMessage = password.getBytes("UTF-8");

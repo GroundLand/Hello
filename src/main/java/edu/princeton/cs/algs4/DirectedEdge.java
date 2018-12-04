@@ -8,6 +8,7 @@
  ******************************************************************************/
 
 package edu.princeton.cs.algs4;
+
 /**
  *  The {@code DirectedEdge} class represents a weighted edge in an 
  *  {@link EdgeWeightedDigraph}. Each edge consists of two integers
@@ -22,7 +23,7 @@ package edu.princeton.cs.algs4;
  *  @author Kevin Wayne
  */
 
-public class DirectedEdge { 
+public class DirectedEdge {
     private final int v;
     private final int w;
     private final double weight;
@@ -38,9 +39,12 @@ public class DirectedEdge {
      * @throws IllegalArgumentException if {@code weight} is {@code NaN}
      */
     public DirectedEdge(int v, int w, double weight) {
-        if (v < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
-        if (w < 0) throw new IllegalArgumentException("Vertex names must be nonnegative integers");
-        if (Double.isNaN(weight)) throw new IllegalArgumentException("Weight is NaN");
+        if (v < 0)
+            throw new IllegalArgumentException("Vertex names must be nonnegative integers");
+        if (w < 0)
+            throw new IllegalArgumentException("Vertex names must be nonnegative integers");
+        if (Double.isNaN(weight))
+            throw new IllegalArgumentException("Weight is NaN");
         this.v = v;
         this.w = w;
         this.weight = weight;

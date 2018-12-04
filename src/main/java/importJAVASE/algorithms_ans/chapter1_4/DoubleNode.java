@@ -9,7 +9,7 @@ public class DoubleNode<T> {
         private T item;
         private Node<T> next;
 
-        public Node(Node<T> pre,T item,Node<T> next){
+        public Node(Node<T> pre, T item, Node<T> next) {
             this.pre = pre;
             this.item = item;
             this.next = next;
@@ -20,15 +20,14 @@ public class DoubleNode<T> {
     private Node<T> last;
     private int size;
 
-
     public void addFirst(T item) {
         Node<T> oldFirst = head;
-        Node<T> newNode = new Node<>(null,item,oldFirst);
+        Node<T> newNode = new Node<>(null, item, oldFirst);
         head = newNode;
         if (oldFirst == null) {
-            last = newNode                      ;
-        }else {
-            oldFirst.pre=newNode;
+            last = newNode;
+        } else {
+            oldFirst.pre = newNode;
         }
         size++;
     }
@@ -39,18 +38,19 @@ public class DoubleNode<T> {
 
     public void addLast(T item) {
         Node<T> oldLast = last;
-        Node<T> newNode = new Node<>(last,item,null);
-        last=newNode;
+        Node<T> newNode = new Node<>(last, item, null);
+        last = newNode;
         if (oldLast == null) {
             head = newNode;
-        }else {
-         last.next = newNode;
+        } else {
+            last.next = newNode;
         }
         size++;
     }
 
     public void deHead() {
-        if (head == null) throw new NullPointerException();
+        if (head == null)
+            throw new NullPointerException();
         head = head.next;
         size--;
     }

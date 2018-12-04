@@ -2,7 +2,6 @@ package importJAVASE;
 
 import lombok.Cleanup;
 import lombok.NonNull;
-import lombok.Paper2;
 import lombok.Paper3;
 import lombok.SeriPaper;
 import lombok.extern.slf4j.Slf4j;

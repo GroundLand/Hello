@@ -17,8 +17,8 @@ public class SimpleDaemons implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        for (int i = 0; i < 10; i++){
-            Thread daemon=new Thread(new SimpleDaemons());
+        for (int i = 0; i < 10; i++) {
+            Thread daemon = new Thread(new SimpleDaemons());
             //设置为后台线程
             daemon.setDaemon(true);
             daemon.start();

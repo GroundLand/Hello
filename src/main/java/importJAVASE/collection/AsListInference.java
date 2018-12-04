@@ -1,23 +1,24 @@
 package importJAVASE.collection;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+class Snow {
+}
 
-class Snow{}
+class Power extends Snow {
+}
 
-class Power extends  Snow{}
+class Light extends Power {
+}
 
-class Light extends Power{}
+class Heavy extends Power {
+}
 
-class Heavy extends Power{}
+class Crusty extends Snow {
+}
 
-class Crusty extends Snow{}
-
-class Slush extends Snow{}
+class Slush extends Snow {
+}
 
 public class AsListInference {
-    public static void main(String[] args){
+    public static void main(String[] args) {
     }
 }
