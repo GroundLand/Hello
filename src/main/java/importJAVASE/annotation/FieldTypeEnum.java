@@ -9,4 +9,8 @@ public enum FieldTypeEnum {
     ENUM,
     DATE,
     STRING;
+    
+    
+    
+    
 }
