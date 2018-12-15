@@ -10,6 +10,14 @@ public class Son extends Parent {
 
     private LocalDate date;
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public Son() {
         super();
     }
