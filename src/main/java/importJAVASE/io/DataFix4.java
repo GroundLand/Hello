@@ -8,8 +8,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author cl
@@ -18,19 +16,20 @@ import java.util.List;
 public class DataFix4 {
     public static void main(String[] args) throws Exception{
         File file = new File("/Users/cl/Documents/query_result.csv");
-        List<String> list = new ArrayList<>();
+        StringBuilder builder = new StringBuilder();
         @Cleanup FileInputStream fis = new FileInputStream(file);
         @Cleanup InputStreamReader isr = new InputStreamReader(fis);
         BufferedReader bufferedReader = new BufferedReader(isr);
         String line;
         while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
-            list.add("update am_cm_contract_agreement set available=\'N\' where id = "+line.trim()+";\n");
+            builder.append(line);
+            builder.append(",\n");
         }
         File fileOut = new File("/Users/cl/workspace/xdeploy/sql_changed_prod_datafix_manage_20190103xxxxxx.sql");
         @Cleanup FileOutputStream fos = new FileOutputStream(fileOut);
         @Cleanup OutputStreamWriter osw = new OutputStreamWriter(fos);
-        for (String sql : list) {
-            osw.write(sql);
-        }
+
+            osw.write("update am_cm_contract_agreement set available=\'N\' where id in "+"("+builder+");");
+
     }
 }

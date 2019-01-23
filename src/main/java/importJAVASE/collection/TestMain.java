@@ -21,7 +21,9 @@ public class TestMain {
         List<Integer> integers1 = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
         for (int i = 0; i <= integers1.size() / 10; i++) {
             System.out.println("integers1  " + integers1.subList(0, 10));
-            integers1.removeAll(integers1.subList(0, 10));
+            List<Integer> subIntegerList = integers1.subList(0, 10);
+            subIntegerList.clear();
+            System.out.println(integers1.size());
         }
 
         //        System.out.print(integers.subList(0,3));
