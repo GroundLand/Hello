@@ -12,8 +12,7 @@ public class SingleTest {
 
     @Test
     public void tt() {
-        GregorianCalendar gc = new GregorianCalendar();
-        StdOut.println(gc.get(GregorianCalendar.AM_PM));
+       System.out.println(1<<1);
 
     }
 }

@@ -1,30 +1,18 @@
 package importJAVASE;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Administrator on 2017/3/22 0022.
  */
 public class HashMapTest {
+    static final int HASH_BITS = 0x7fffffff;
     public static void main(String[] args) {
-        Map<String, Employee> map = new LinkedHashMap<String, Employee>();
-
-        map.put("1111", new Employee("Dave"));
-        map.put("2222", new Employee("Alice"));
-        map.put("3333", new Employee("Bob"));
-        map.put("4444", new Employee("John"));
-
-        map.remove("1111");
-
-        Set<String> keySet = map.keySet();
-
-        for (String key : keySet) {
-            System.out.println(key);
-        }
-
-        //  map.forEach((k,v)-> System.out.println("key:"+k+"  value"+v));
-
+        String ss = "ss";
+        int s=2;
+        int i=s>>>1;
+        System.out.println(HASH_BITS);
+        System.out.println(Integer.MAX_VALUE);
     }
 }
