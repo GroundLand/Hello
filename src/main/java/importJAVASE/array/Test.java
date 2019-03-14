@@ -1,4 +1,4 @@
-package importJAVASE.ArrayTest;
+package importJAVASE.array;
 
 import com.google.common.collect.Lists;
 
