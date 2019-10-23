@@ -2,6 +2,7 @@ package importJAVASE.io;
 
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
@@ -52,5 +53,15 @@ public class CoreJavaIOTest {
         String content = new String(Files.readAllBytes(path), UTF_8);
 
         System.out.println(content);
+    }
+
+    @Test
+    public void fileTest() throws IOException{
+
+        String userDir = System.getProperty("user.dir");
+        System.out.println("userDir       : "+userDir);
+        System.out.println("CanonicalPath : "+new File(userDir).getCanonicalPath());
+        System.out.println("返回上一层 : "+new File(userDir,"..").getCanonicalPath());
+
     }
 }

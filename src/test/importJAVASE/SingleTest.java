@@ -29,6 +29,14 @@ public class SingleTest {
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Test
+    public void intToLong(){
+        Integer i = 2;
+        Long l = i.longValue();
+
+
+    }
+
+    @Test
     public void test() {
         Integer t = 1;
         Integer oldT = 2;
