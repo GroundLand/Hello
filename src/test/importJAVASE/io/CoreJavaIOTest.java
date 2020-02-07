@@ -4,8 +4,11 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.net.URISyntaxException;
@@ -13,6 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -26,6 +30,8 @@ public class CoreJavaIOTest {
     public static final String PATH1 = USER_HOME + "/workspace/demo/employee.txt";
 
     public static final String PATH2 = USER_HOME + "/workspace/demo/article.txt";
+
+    public static final String DATE_PATH = USER_HOME + "/workspace/demo/date.txt";
 
 
     public static final String UTF_8 = StandardCharsets.UTF_8.toString();
@@ -84,6 +90,64 @@ public class CoreJavaIOTest {
         System.out.println(randomFile.readLine());
         inputStream.close();
         randomFile.close();
+    }
+
+    /**
+     * 当两个对象使用同一个对象实例时
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    @Test
+    public void objectStreamTest() throws IOException,ClassNotFoundException{
+
+        Employee harry = new Employee("Harry Hacker",5000,1995,12,12);
+        Manager carl = new Manager("Carl Cracker",8000,1987,11,11);
+        carl.setEmployee(harry);
+
+        Manager tony = new Manager("Tony Tester",10000,1980,10,11);
+        tony.setEmployee(harry);
+
+        Employee[] staff = new Employee[3];
+
+        staff[0] = harry;
+        staff[1] = carl;
+        staff[2] = tony;
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PATH1))){
+            oos.writeObject(staff);
+
+        }
+
+        try (ObjectInputStream ons = new ObjectInputStream(new FileInputStream(PATH1))){
+            Employee[] newStaff = (Employee[])ons.readObject();
+            for (Employee e: newStaff){
+                System.out.println(e);
+            }
+
+        }
+    }
+
+    /**
+     * java.util.Date 会使用自己的writeObject(ObjectOutputStream s)  和 readObject(ObjectInputStream s) 方法writeObject(ObjectOutputStream s)
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    @Test
+    public void dateIOTest() throws IOException,ClassNotFoundException{
+        Date date = new Date();
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DATE_PATH))){
+            oos.writeObject(date);
+
+        }
+
+        try (ObjectInputStream ons = new ObjectInputStream(new FileInputStream(DATE_PATH))){
+            Date newDate = (Date)ons.readObject();
+
+            System.out.println(newDate);
+
+
+        }
+
     }
 
     @Test
