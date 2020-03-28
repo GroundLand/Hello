@@ -11,6 +11,11 @@ import java.util.List;
 public class Test {
 
     public static void main(String args[]) {
+        Integer[] arr = {222,22,22};
+
+
+
+
         char chars2D[][] = { { 'X', 'X', 'X', 'X' }, { 'X', 'O', 'O', 'O' }, { 'X', 'X', 'O', 'X' }, { 'X', 'X', 'O', 'X' } };
         printArray(chars2D);
         solve(chars2D);

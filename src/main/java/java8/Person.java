@@ -8,6 +8,11 @@ public class Person {
     private int age;
     private Car car;
 
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public Person(String name, int age, Car car) {
         this.name = name;
         this.age = age;

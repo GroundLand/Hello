@@ -2,8 +2,11 @@ package java8.stream;
 
 import java8.ForkJoinSumCalculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
+import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
@@ -43,6 +46,23 @@ public class ParallelStreams {
         return result;
     }
 
+    public static long iterativeFilter(List<Integer> integers){
+
+        List<Integer> newList = new ArrayList<>();
+        int j=0;
+        for (Integer i :integers) {
+            j=j+i;
+        }
+        return 0l;
+    }
+
+    public static long parallelFilter(List<Integer> integers){
+
+
+        integers.stream().reduce(0, Integer::sum);
+        return 0l;
+
+    }
     /**
      *
      * @param n

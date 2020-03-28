@@ -1,7 +1,10 @@
 package importJAVASE.algri;
 
 import importJAVASE.algorithms_lintcode.codewars.Line;
+import importJAVASE.math.Bigtest1;
 import org.junit.Test;
+
+import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,6 +26,7 @@ public class TestSingle {
 
     @Test
     public void test3() throws Exception {
-
+        BigDecimal bigDecimal = new BigDecimal(3.0);
+        System.out.println(bigDecimal.multiply(new BigDecimal(1.1)));
     }
 }

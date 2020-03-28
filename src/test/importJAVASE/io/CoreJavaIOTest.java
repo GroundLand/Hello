@@ -145,8 +145,31 @@ public class CoreJavaIOTest {
 
             System.out.println(newDate);
 
-
+            System.out.println(date.equals(newDate));
         }
+
+
+
+    }
+
+    /**
+     * the method toFile() of Path
+     */
+    @Test
+    public void pathToFile(){
+        Path path = Paths.get(PATH1);
+        File file = path.toFile();
+        System.out.println(file);
+    }
+
+    @Test
+    public void pathsTest(){
+
+       Path userHomePath =  Paths.get(USER_HOME);
+
+       System.out.println("Paths.get(USER_HOME)  : " +userHomePath);
+
+       System.out.println("Paths.get(USER_HOME)  : " +userHomePath.resolve(USER_HOME));
 
     }
 

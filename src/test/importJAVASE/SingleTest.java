@@ -32,7 +32,9 @@ public class SingleTest {
     public void intToLong(){
         Integer i = 2;
         Long l = i.longValue();
+        BigDecimal bigDecimal1 = new BigDecimal("0.1");
 
+        System.out.println(bigDecimal1.multiply(new BigDecimal(3)));
 
     }
 

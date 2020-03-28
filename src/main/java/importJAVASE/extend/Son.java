@@ -18,8 +18,9 @@ public class Son extends Parent {
         this.date = date;
     }
 
+    // 会调用父类的无参构造方法
     public Son() {
-        super();
+
     }
 
     @Override
