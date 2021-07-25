@@ -5,27 +5,22 @@ package importJAVASE;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.ZipOutputStream;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        FileOutputStream fos= new FileOutputStream(new File("/Users/cl/Documents/我的.txt"));
+    public static void main(String[] args) throws IOException, InterruptedException {
+        StringBuilder sb= new StringBuilder();
+        //for (int i = 0; i < 5000; i++) {
+          //  sb.append(" \"Nigeria kidnappings: Hunt for 300 girls as second abducted school group freed\". BBC News. 27 February 2021. Archived from the original on 27 February 2021. Retrieved 27 February 2021.\n");
+        //}
 
-        ZipOutputStream zos=new ZipOutputStream(fos);
+
+        TimeUnit.SECONDS.sleep(3);
 
 
-        // TODO 自动生成的方法存根
-
-        // TODO Auto-generated method stub
-
-        int count = 0;
-        int num = 0;
-        for (int i = 0; i <= 100; i++) {
-            num = num + i;
-            count = count++;
         }
-
-        System.out.println(count * num);
-    }
 }

@@ -2,6 +2,7 @@ package importJAVASE;
 
 import edu.princeton.cs.algs4.StdOut;
 import importJAVASE.algorithms_lintcode.codewars.LongestConsec;
+import importJAVASE.thread.lock.MethodLockObj;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -9,6 +10,10 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 
 public class ThreadTest {
+
+    private Integer i =0;
+    private MethodLockObj methodLockObj1 = new MethodLockObj();
+    private MethodLockObj methodLockObj2 = new MethodLockObj();
 
     /**
      * 测试TimeUnit
@@ -33,6 +38,13 @@ public class ThreadTest {
         assertEquals(LongestConsec.longestConsec(new String[] { "it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz" }, 3), "ixoyx3452zzzzzzzzzzzz");
         assertEquals(LongestConsec.longestConsec(new String[] { "it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz" }, 15), "");
         assertEquals(LongestConsec.longestConsec(new String[] { "it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz" }, 0), "");
+
+    }
+
+    @Test
+    public void staticTest() {
+
+
 
     }
 

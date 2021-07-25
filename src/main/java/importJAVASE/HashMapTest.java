@@ -1,5 +1,6 @@
 package importJAVASE;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,10 +10,11 @@ import java.util.Map;
 public class HashMapTest {
     static final int HASH_BITS = 0x7fffffff;
     public static void main(String[] args) {
-        String ss = "ss";
-        int s=2;
-        int i=s>>>1;
-        System.out.println(HASH_BITS);
-        System.out.println(Integer.MAX_VALUE);
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("wo");
+        HashMap<String,String> hashMap= new HashMap<>();
+        hashMap.put("34","34");
+        hashMap.put("334","34");
+
     }
 }

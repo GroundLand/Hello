@@ -32,7 +32,7 @@ public class TestHarness {
 
     private void doSomething(String str){
         int  i = 0;
-        while (i <5000 ) i++;
+        while (i <50 ) i++;
         System.out.println("22222----"+str);
     }
 

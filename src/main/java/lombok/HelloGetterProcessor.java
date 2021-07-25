@@ -30,6 +30,7 @@ import java.util.Set;
  * @author cln
  * @version $Id: HelloGetterProcessor.java v 0.1 18-10-31 下午5:30 cln Exp $$
  */
+
 @SupportedAnnotationTypes("lombok.HelloGetter")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class HelloGetterProcessor extends AbstractProcessor {
@@ -92,3 +93,4 @@ public class HelloGetterProcessor extends AbstractProcessor {
         return names.fromString("get" + s.substring(0, 1).toUpperCase() + s.substring(1, name.length()));
     }
 }
+
